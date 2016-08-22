@@ -1,0 +1,141 @@
+LandisData  "Biomass Succession v2"
+
+Timestep  10
+
+SeedingAlgorithm  WardSeedDispersal
+
+MinRelativeBiomass
+
+>> Site Shade	Percent Max Biomass
+>> Class	by Ecoregions
+>> ----------	--------------------	
+	        eco1   eco2  
+
+	1	15%    15%
+	2	25%    25%
+	3	50%    50%
+	4	80%    80%
+	5	95%    95%
+
+SufficientLightTable
+>> Spp Shade	Probability
+>> Class	by Actual Shade
+>> ----------	--------------------	
+>>		0	1	2	3	4	5
+	1	1.0	0.0	0.0	0.0	0.0	0.0
+	2	1.0	1.0	0.0	0.0	0.0	0.0
+	3	1.0	1.0	1.0	0.0	0.0	0.0
+	4	1.0	1.0	1.0	1.0	0.0	0.0
+	5	0.0	0.0	1.0	1.0	1.0	1.0
+
+BiomassParameters
+
+>> Species   Leaf	WoodyBiomass	Mortality	Leaf
+>>	     Longevity	DecayRate	ShapeParam	Lignin%
+>> --------  ---------	---------	----------	------
+   abiebals   3.0	0.1		10		0.2
+   acerrubr   1.0	0.1		10		0.1
+   acersacc   1.0	0.1		10		0.1
+   betualle   1.0	0.1		10		0.1
+   betupapy   1.0	0.1		10		0.1
+   fraxamer   1.0	0.1		10		0.1
+   piceglau   3.0	0.1		10		0.2
+   pinubank   3.0	0.1		10		0.3
+   pinuresi   3.0	0.1		10		0.3
+   pinustro   3.0	0.1		10		0.3
+   poputrem   1.0	0.1		10		0.1
+   querelli   1.0	0.1		10		0.15
+   querrubr   1.0	0.1		10		0.15
+   thujocci   4.0	0.1		10		0.2
+   tiliamer   1.0	0.1		10		0.1
+   tsugcana   3.0	0.1		10		0.2
+
+EcoregionParameters
+>>	AET
+>>	mm
+eco1	600
+eco2	600
+
+
+
+EstablishProbabilities  << Note: All example data given below are for illustrative purposes only.
+
+>> Species        Ecoregions
+>> --------       ------------------
+                  eco1    eco2
+
+   abiebals       0.9     0.05
+   acerrubr       1.0     0.6
+   acersacc       0.82    0.3
+   betualle       0.64    0.24
+   betupapy       1.0     0.75
+   fraxamer       0.18    0.1
+   piceglau       0.58    0.5
+   pinubank       1.0     0.8
+   pinuresi       0.56    0.78
+   pinustro       0.72    0.70
+   poputrem       1.0     0.8
+   querelli       0.96    0.71
+   querrubr       0.66    0.43
+   thujocci       0.76    0.002
+   tiliamer       0.54    0.06
+   tsugcana       0.22    0.01
+   
+MaxANPP << new:  use g biomass /m^2/year.  
+
+>> Species      Ecoregions
+>> --------     ------------------
+           	eco1	eco2	
+
+abiebals   	886	801	
+acerrubr   	1175	1058	
+acersacc   	1106	1003	
+betualle   	1202	1052	
+betupapy   	1202	1052	
+fraxamer   	1202	1052	
+piceglau   	969	875	
+pinubank   	1130	1015	
+pinuresi   	1017	916	
+pinustro   	1090	980	
+poputrem   	1078	968	
+querelli   	1096	984	
+querrubr	1017	916	 
+thujocci   	1090	980	
+tiliamer   	1078	968	
+tsugcana   	1096	984	
+
+		 	   
+MaxBiomass  << in this example, the units are g biomass /m^2 [g biomass/m^2/yr above]
+
+>> Species      Ecoregions
+>> --------     ------------------
+           	eco1   eco2   
+
+ abiebals  	26000	26000	
+ acerrubr  	26000	26000	
+ acersacc  	26000	26000	
+ betualle  	26000	26000	
+ betupapy  	26000	26000	
+ fraxamer  	26000	26000	
+ piceglau  	26000	26000	
+ pinubank  	26000	26000	
+ pinuresi  	26000	26000	
+ pinustro  	26000	26000	
+ poputrem  	26000	26000	
+ querelli  	26000	26000	
+ querrubr  	26000	26000	
+ thujocci  	26000	26000	
+ tiliamer  	26000	26000	
+ tsugcana  	26000	26000	
+ 	 
+AgeOnlyDisturbances:BiomassParameters  age-only-disturbances.txt
+ 	 
+>>   ClimateChange  << Optional Parameter
+
+>> Year   Parameter File
+>> ----   --------------
+>>   100    biomass/bio-climate-change_100.txt
+>>   200    biomass/bio-climate-change_200.txt
+		 	 
+		 	 
+			

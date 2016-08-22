@@ -1,0 +1,6 @@
+>> Example of a bad input file
+
+LandisData  "Age-only Disturbances - Biomass Parameters"
+
+
+  << ERROR EOF: Missing "CohortBiomassReductions" table
