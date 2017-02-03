@@ -19,6 +19,7 @@ namespace Landis.Extension.Succession.Biomass
     {
         private int timestep;
         private SeedingAlgorithms seedAlg;
+        private string climateConfigFile;
         private bool calibrateMode;
         private double spinupMortalityFraction;
 
@@ -148,6 +149,20 @@ namespace Landis.Extension.Succession.Biomass
                 spinupMortalityFraction = value;
             }
         }
+
+        public string ClimateConfigFile
+        {
+            get
+            {
+                return climateConfigFile;
+            }
+            set
+            {
+
+                climateConfigFile = value;
+            }
+        }
+
         //---------------------------------------------------------------------
         public void SetMinRelativeBiomass(byte shadeClass,
                                           IEcoregion ecoregion,
