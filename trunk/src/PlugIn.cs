@@ -3,10 +3,12 @@
 
 using Landis.Core;
 using Landis.SpatialModeling;
+using Landis.Library.Climate;
 using Landis.Library.Succession;
 using Landis.Library.InitialCommunities;
 using Landis.Library.BiomassCohorts;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -21,6 +23,7 @@ namespace Landis.Extension.Succession.Biomass
         public static bool CalibrateMode;
         public static double CurrentYearSiteMortality;
         private static int time;
+        public static int FutureClimateBaseYear;
 
         //---------------------------------------------------------------------
 
@@ -67,6 +70,10 @@ namespace Landis.Extension.Succession.Biomass
             time = Timestep;
             CalibrateMode = parameters.CalibrateMode;
             CohortBiomass.SpinupMortalityFraction = parameters.SpinupMortalityFraction;
+
+            //Initialize climate.
+            Climate.Initialize(parameters.ClimateConfigFile, false, modelCore);
+            FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
 
             sufficientLight = parameters.LightClassProbabilities;
 

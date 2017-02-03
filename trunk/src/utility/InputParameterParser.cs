@@ -18,6 +18,7 @@ namespace Landis.Extension.Succession.Biomass
         {
             public const string Timestep = "Timestep";
             public const string SeedingAlgorithm = "SeedingAlgorithm";
+            public const string ClimateConfigFile = "ClimateConfigFile";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
             public const string DynamicInputFile = "DynamicInputFile";
             public const string CalibrateMode = "CalibrateMode";
@@ -82,6 +83,10 @@ namespace Landis.Extension.Succession.Biomass
             InputVar<string> communitiesMap = new InputVar<string>("InitialCommunitiesMap");
             ReadVar(communitiesMap);
             parameters.InitialCommunitiesMap = communitiesMap.Value;
+
+            InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
+            ReadVar(climateConfigFile);
+            parameters.ClimateConfigFile = climateConfigFile.Value;
 
             //---------------------------------------------------------------------------------
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);

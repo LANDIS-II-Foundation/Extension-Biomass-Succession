@@ -20,6 +20,7 @@ namespace Landis.Extension.Succession.Biomass
         SeedingAlgorithms SeedAlgorithm {get; set;}
         string InitialCommunities{get; set;}
         string InitialCommunitiesMap{get; set;}
+        string ClimateConfigFile { get; set; }
         bool CalibrateMode { get; set; }
         double SpinupMortalityFraction {get; set;}
         List<ISufficientLight> LightClassProbabilities {get; set;}
