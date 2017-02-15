@@ -98,7 +98,8 @@ namespace Landis.Extension.Succession.Biomass
 
             InitialBiomass.Initialize(Timestep);
 
-            Cohort.DeathEvent += CohortDied;
+            Landis.Library.BiomassCohorts.Cohort.DeathEvent += CohortDied;
+            Landis.Library.LeafBiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore);
@@ -206,6 +207,36 @@ namespace Landis.Extension.Succession.Biomass
 
         }
         //---------------------------------------------------------------------
+
+        public void CohortPartialMortality(object sender, Landis.Library.BiomassCohorts.PartialDeathEventArgs eventArgs)
+        {
+            ExtensionType disturbanceType = eventArgs.DisturbanceType;
+            ActiveSite site = eventArgs.Site;
+
+            Landis.Library.LeafBiomassCohorts.ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort)eventArgs.Cohort;
+
+            float fractionPartialMortality = (float)eventArgs.Reduction;
+            //PlugIn.ModelCore.UI.WriteLine("Cohort experienced partial mortality: species={0}, age={1}, wood_biomass={2}, fraction_mortality={3:0.0}.", cohort.Species.Name, cohort.Age, cohort.WoodBiomass, fractionPartialMortality);
+
+            AgeOnlyDisturbances.PoolPercentages cohortReductions = AgeOnlyDisturbances.Module.Parameters.CohortReductions[disturbanceType];
+            int foliar = (int)(cohort.LeafBiomass * fractionPartialMortality);
+            int wood = (int)(cohort.WoodBiomass * fractionPartialMortality);
+            
+            int foliarInput = AgeOnlyDisturbances.Events.ReduceInput(foliar, cohortReductions.Foliar);
+            int woodInput = AgeOnlyDisturbances.Events.ReduceInput(wood, cohortReductions.Wood);
+
+            ForestFloor.AddWoody(woodInput, cohort.Species, site);
+            ForestFloor.AddLitter(foliarInput, cohort.Species, site);
+
+            //Roots.AddCoarseRootLitter(woodInput, cohort, cohort.Species, site);  // All of cohorts roots are killed.
+            //Roots.AddFineRootLitter(foliarInput, cohort, cohort.Species, site);
+
+            //PlugIn.ModelCore.UI.WriteLine("EVENT: Cohort Partial Mortality: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
+            //PlugIn.ModelCore.UI.WriteLine("       Cohort Reductions:  Foliar={0:0.00}.  Wood={1:0.00}.", cohortReductions.Foliar, cohortReductions.Wood);
+            //PlugIn.ModelCore.UI.WriteLine("       InputB/TotalB:  Foliar={0:0.00}/{1:0.00}, Wood={2:0.0}/{3:0.0}.", foliarInput, foliar, woodInput, wood);
+
+            return;
+        }
 
         public void CohortDied(object sender,
                                DeathEventArgs eventArgs)
