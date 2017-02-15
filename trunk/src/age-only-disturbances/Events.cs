@@ -36,7 +36,7 @@ namespace Landis.Extension.Succession.Biomass.AgeOnlyDisturbances
 
         //---------------------------------------------------------------------
 
-        private static int ReduceInput(int     poolInput,
+        public static int ReduceInput(int     poolInput,
                                           Percentage reductionPercentage)
         {
             int reduction = (int) (poolInput * reductionPercentage);

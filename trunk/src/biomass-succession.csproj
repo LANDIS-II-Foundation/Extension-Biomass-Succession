@@ -49,10 +49,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Landis.Library.Biomass-v1.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts, Version=1.3.6143.16005, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Landis.Library.BiomassCohorts.dll</HintPath>
-    </Reference>
+    <Reference Include="Landis.Library.BiomassCohorts-v2, Version=1.3.6206.14399, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Landis.Library.Climate, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Landis.Library.Climate.dll</HintPath>
@@ -60,6 +57,10 @@
     <Reference Include="Landis.Library.Cohorts, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Landis.Library.Cohorts.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.LeafBiomassCohorts, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Extension-NECN-Succession\trunk\src\bin\debug\Landis.Library.LeafBiomassCohorts.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Parameters-v1, Version=1.0.5612.15043, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,6 +124,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetName).* "C:\Program Files\LANDIS-II\v6\bin\extensions"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
