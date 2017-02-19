@@ -10,7 +10,6 @@ namespace Landis.Extension.Succession.Biomass
 {
     /// <summary>
     /// Soil organic matter (SOM) pool.
-    /// Mass = C Fraction + N Fraction + P Fraction + other(inexplicit).
     /// </summary>
     public class ForestFloor
     {

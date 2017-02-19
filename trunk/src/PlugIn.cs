@@ -99,7 +99,7 @@ namespace Landis.Extension.Succession.Biomass
             InitialBiomass.Initialize(Timestep);
 
             Landis.Library.BiomassCohorts.Cohort.DeathEvent += CohortDied;
-            Landis.Library.LeafBiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
+            Landis.Library.BiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore);
@@ -147,33 +147,8 @@ namespace Landis.Extension.Succession.Biomass
         //---------------------------------------------------------------------
         // Revised 10/5/09 - BRM
 
-        /*public override byte ComputeShade(ActiveSite site)
-        {
-            // Use correlation from Scheller and Mladenoff (Figure 4b)
-            // to assign a shade class depending on percent transmittance.
-
-
-            SiteVars.PercentShade[site] = 1.0 - SiteVars.LightTrans[site];
-
-            double percentSun = System.Math.Max(1.0 - SiteVars.PercentShade[site], 0.0);
-            percentSun = System.Math.Min(1.0, percentSun);
-
-            percentSun = percentSun * 100.0;
-
-            byte shadeClass = 0;
-
-            if (percentSun < pctSun1) shadeClass = 1;
-            if (percentSun < pctSun2) shadeClass = 2;
-            if (percentSun < pctSun3) shadeClass = 3;
-            if (percentSun < pctSun4) shadeClass = 4;
-            if (percentSun < pctSun5) shadeClass = 5;
-
-            return shadeClass;
-
-        }*/
         public override byte ComputeShade(ActiveSite site)
         {
-            //return LivingBiomass.ComputeShade(site);
             IEcoregion ecoregion = ModelCore.Ecoregion[site];
             double B_ACT = 0.0;
 
@@ -213,23 +188,24 @@ namespace Landis.Extension.Succession.Biomass
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             ActiveSite site = eventArgs.Site;
 
-            Landis.Library.LeafBiomassCohorts.ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort)eventArgs.Cohort;
+            Landis.Library.BiomassCohorts.ICohort cohort = eventArgs.Cohort;
 
-            float fractionPartialMortality = (float)eventArgs.Reduction;
+            float fractionPartialMortality = (float) eventArgs.Reduction;
             //PlugIn.ModelCore.UI.WriteLine("Cohort experienced partial mortality: species={0}, age={1}, wood_biomass={2}, fraction_mortality={3:0.0}.", cohort.Species.Name, cohort.Age, cohort.WoodBiomass, fractionPartialMortality);
 
             AgeOnlyDisturbances.PoolPercentages cohortReductions = AgeOnlyDisturbances.Module.Parameters.CohortReductions[disturbanceType];
-            int foliar = (int)(cohort.LeafBiomass * fractionPartialMortality);
-            int wood = (int)(cohort.WoodBiomass * fractionPartialMortality);
+
+            int nonWoody = cohort.ComputeNonWoodyBiomass(site);
+            int woody = (cohort.Biomass - nonWoody);
+
+            int foliar = (int)(nonWoody * fractionPartialMortality);
+            int wood = (int)(woody * fractionPartialMortality);
             
             int foliarInput = AgeOnlyDisturbances.Events.ReduceInput(foliar, cohortReductions.Foliar);
             int woodInput = AgeOnlyDisturbances.Events.ReduceInput(wood, cohortReductions.Wood);
 
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
-
-            //Roots.AddCoarseRootLitter(woodInput, cohort, cohort.Species, site);  // All of cohorts roots are killed.
-            //Roots.AddFineRootLitter(foliarInput, cohort, cohort.Species, site);
 
             //PlugIn.ModelCore.UI.WriteLine("EVENT: Cohort Partial Mortality: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
             //PlugIn.ModelCore.UI.WriteLine("       Cohort Reductions:  Foliar={0:0.00}.  Wood={1:0.00}.", cohortReductions.Foliar, cohortReductions.Wood);
