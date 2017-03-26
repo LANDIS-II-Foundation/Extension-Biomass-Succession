@@ -1,0 +1,109 @@
+LandisData  "Biomass Harvest"
+
+
+Timestep    5
+
+
+>>-------------------------
+>> HARVEST MAPS
+>>---------------------------
+ManagementAreas 	./biomass-harvest_Management.gis
+Stands     		./biomass-harvest_Stand.gis
+
+
+
+>> -------------------------
+>> HARVEST PRESCRIPTIONS
+>> -------------------------
+
+>>---- PRESCRIPTION_1 ---------------------------------------
+Prescription MaxAgeClearcut
+    StandRanking 	MaxCohortAge
+    SiteSelection 	Complete
+    CohortsRemoved 	ClearCut
+
+
+>>---- PRESCRIPTION_2 ---------------------------------------
+Prescription    AspenClearcut
+    StandRanking    Economic
+>> 	Species 	Economic Rank 	Minimum Age
+>> 	------- 	------------- 	-----------
+    	poputrem  	 100           40    
+    
+    MinimumAge  	35
+    SiteSelection	CompleteStandSpread 40 50
+    CohortsRemoved	ClearCut
+
+
+>>---- PRESCRIPTION_3 ---------------------------------------      
+Prescription SelectiveNorthernHardwood
+    StandRanking    Economic
+>>	Species 	EconomicRank	 Minimum Age
+>>	------- 	------------ 	-----------
+    	acerrubr   	60 	     	45
+    	acersacc   	100          	5
+    	betualle   	100	     	50
+    	fraxamer   	60	     	40
+
+    SiteSelection PatchCutting 10%  1  << ha
+
+    CohortsRemoved SpeciesList
+>>	Species		Selection
+>>	-------		---------
+	acerrubr   	1-400 (50%)
+	acersacc   	1-40 (50%)  45-100 (5%) 105 (65%) 
+	betualle   	1-400 (50%)
+	fraxamer   	1-400 (50%)
+
+
+>>---- PRESCRIPTION_4 ---------------------------------------
+Prescription    OakPatchCutting
+    StandRanking		MaxCohortAge
+    MinimumAge  		60
+    StandAdjacency		10
+    AdjacencyType 		StandAge
+    AdjacencyNeighborSetAside	10
+
+   ForestTypeTable
+>>	InclusionRule	ageRange	%Cells	species
+>> 	-------------	--------	------	-------
+	Forbidden	1-131		(60%)	acersacc
+	Required	100-450		(20%)	querrubr 
+	
+    SiteSelection	PatchCutting	75%	50
+
+    CohortsRemoved	SpeciesList
+>>	Species		Selection
+>>	------- 	---------
+	abiebals 	All
+	querrubr 	AllExceptOldest
+	pinubank 	All
+
+
+
+>> ----------------------------------
+>> HARVEST IMPLEMENTATION 
+>> ---------------------------------
+
+    HarvestImplementations
+>>	Mgmt Area	Prescription		Harvest Area	BeginTime	EndTime
+>> 	---------   	------------   		------------   	---------- 	--------
+	1		SelectiveNorthernHardwood	10%	0  	    	50
+	2		SelectiveNorthernHardwood	10%	0  	    	50
+>>	1		MaxAgeClearcut			5%	0	   	50
+>>	2		MaxAgeClearcut			5%	0	    	50
+
+
+	
+>> ------------
+>> OUTPUTS
+>> ----------
+
+PrescriptionMaps    harvest/biomass-harvest-prescripts-{timestep}.img
+BiomassMaps         harvest/biomass-removed-{timestep}.img
+EventLog            harvest/biomass-harvest-event-log.csv
+SummaryLog	    harvest/biomass-harvest-summary-log.csv
+
+
+
+

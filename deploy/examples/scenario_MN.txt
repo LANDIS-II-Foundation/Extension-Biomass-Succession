@@ -1,0 +1,61 @@
+LandisData  "Scenario"
+
+Duration  100
+
+Species   	./species_MN.txt
+
+Ecoregions      ./ecoregions_MN.txt
+EcoregionsMap   ./ecoregions_MN.gis
+
+CellLength  100 << meters, 100 x 100 m = 1 ha
+
+
+>> ---------------------------------------------
+>> SCENARIO OPTIONS FOR A SINGLE LANDISII RUN
+>>----------------------------------------------
+
+>>	1. Sekect ONE Succession Extension
+>>	2. Select ONE OR MORE Disturbance Extensions (but only ONE harvest extension)
+>>	3. Select ONE OR MORE (compatible) Output Extensions
+
+>>	Selection is made by uncommenting a line (ie, remove the >> symbols) 
+
+
+>> -----------------------
+>> SUCCESSION EXTENSIONS
+>> -----------------------
+
+>> 	Succession Extension     Initialization File
+>> 	--------------------     -------------------
+	"Biomass Succession"	biomass-succession_SetUp.txt
+
+
+>> --------------------------
+>> DISTURBANCE EXTENSIONS
+>> -------------------------
+
+>> 	Disturbance Extension	Initialization File
+>>	--------------------	-------------------
+	"Base Fire"		base-fire_SetUp.txt
+>>	"Biomass Harvest"	biomass-harvest_SetUp.txt
+>>	"Base BDA"		base-BDA_SetUp.txt
+
+
+>>   DisturbancesRandomOrder  yes  	<< optional
+                         		<< Commented (default) is "no"
+
+>> ------------------------
+>> OUTPUT EXTENSONS
+>> ----------------------
+
+>> 	Output Extension		Initialization File
+>> 	----------------		-------------------
+   	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession" only
+  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession" only
+
+
+
+>> RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests
+                          << Commented (default) is a RandomNumberSeed generated using the current time
+
+

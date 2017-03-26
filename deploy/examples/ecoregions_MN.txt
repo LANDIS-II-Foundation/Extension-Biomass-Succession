@@ -1,0 +1,9 @@
+LandisData	"Ecoregions"		
+
+>> 	Map Code		
+>>Active	Name	Description
+>>--------------------------------------------------------			
+yes	1	MN101		"MN 101"
+yes	2	MN102		"MN 102"
+
+
