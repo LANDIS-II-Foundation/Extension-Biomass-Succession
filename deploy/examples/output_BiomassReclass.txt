@@ -7,15 +7,15 @@ ReclassMaps
 
 >> Map Name    Forest Type    Species
 >> --------    -------------  -------
-   reclass1 -> MapleHardwood  acersacc betualle abiebals acerrubr fraxamer -pinubank
+   reclass1 -> MapleHardwood  acersacc betualle abiebals acerrubr fraxamer pinubank
                NorthernPines  pinubank pinuresi pinustro
                Oaks           querelli querrubr
-               OtherConifers  piceglau thujocci tsugcana
+               OtherConifers  piceglau thujocci
                Other	      poputrem betupapy
 
    reclass2 -> MapleHardwood  acersacc betualle acerrubr fraxamer 
                NorthernPines  pinubank pinuresi pinustro
-               OtherConifers  piceglau thujocci tsugcana abiebals
+               OtherConifers  piceglau thujocci abiebals
                Other	      poputrem betupapy querelli querrubr
 
 

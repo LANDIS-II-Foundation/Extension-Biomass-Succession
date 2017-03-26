@@ -15,7 +15,6 @@ Species    abiebals
 	   querrubr
 	   thujocci
 	   tiliamer
-	   tsugcana
 
 MapNames  biomass/biomass-{species}-{timestep}.img
 
