@@ -5,7 +5,7 @@ MapCode  0
    acerrubr 30
    pinubank 80 90
    pinuresi 110 140
-   querelli 40 120 240
+   querelli 40 120 
 
 >> young jackpine oak
 MapCode  1
@@ -40,7 +40,7 @@ MapCode 4
    querrubr 40 80
    thujocci 30 80
    tiliamer 10 30 50
-   tsugcana 10
+  
    
 >> old maple hardwoods
 MapCode 5
@@ -53,8 +53,7 @@ MapCode 5
    querrubr 100 160 180
    thujocci 200 240 260
    tiliamer 20 80 110 150
-   tsugcana 30 80 120 220 320 340
-   
+  
 >> old pine - spruce - fir
 MapCode 6
    abiebals 10 50 80

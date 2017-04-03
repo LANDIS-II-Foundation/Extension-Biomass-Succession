@@ -1,0 +1,102 @@
+LandisData  "Biomass Succession"
+
+Timestep  10
+
+SeedingAlgorithm  		WardSeedDispersal
+
+>>-----------------------------
+>>SETUP MAPS AND FILES
+>>------------------------------
+
+InitialCommunities      "./biomass-succession_InitialCommunities.txt"
+InitialCommunitiesMap   "./biomass-succession_InitialCommunities.gis"
+
+
+>>-------------------------------
+>> SETUP PARAMETERS
+>>-------------------------------
+
+ClimateConfigFile	"./biomass-succession_ClimateGenerator.txt"
+
+>> CalibrateMode 		yes
+>> SpinUpMortalityFraction 	0.0
+
+MinRelativeBiomass
+>> Shade	Percent Max Biomass
+>> Class	by Ecoregions
+>> ----------	--------------------	
+	        MN101  MN102    
+	1	25%    	25%     
+	2	45%     45% 
+	3	56%     56% 
+	4	70%     70% 
+	5	90% 	90% 
+
+
+SufficientLight
+>> Spp Shade	Probability
+>> Class	by Actual Shade
+>> ----------	--------------------	
+>>		0	1	2	3	4	5
+	1	1.0	0.5	0.25	0.0	0.0	0.0
+	2	1.0	1.0	0.5	0.25	0.0	0.0
+	3	1.0	1.0	1.0	0.5	0.25	0.0
+	4	1.0	1.0	1.0	1.0	0.5	0.25
+	5	0.1	0.5	1.0	1.0	1.0	1.0
+
+
+SpeciesParameters
+
+>> Species   Leaf	WoodyBiomass	Mortality	Growth	Leaf	
+>>	     Longevity	DecayRate	ShapeParam	Shape	Lignin%	
+>> --------  ---------	---------	----------	------	----    
+>> 	    
+abiebals   	3	0.1		10		0.25	0.252	
+acernegu	1	0.1		10		0.25	0.183	
+acerrubr   	1	0.1		10		0.25	0.183	
+acersacc   	1	0.1		10		0.25	0.175	
+acerspic	1	0.1		10		0.25	0.183	
+betualle   	1	0.1		10		0.25	0.219	
+betupapy   	1	0.1		10		0.25	0.201	
+celtis		1	0.1		10		0.25	0.175	
+fraxamer	1	0.1		10		0.25	0.144	
+fraxnigr	1	0.1		10		0.25	0.144	
+fraxpenn	1	0.1		10		0.25	0.144	
+larilari	1	0.1		10		0.25	0.297	
+ostrvirg	1	0.1		10		0.25	0.211	
+piceglau   	3	0.1		10		0.25	0.249	
+picemari	3	0.1		10		0.25	0.221	
+pinubank   	2	0.1		10		0.25	0.266	
+pinuresi   	3	0.1		10		0.25	0.266	
+pinustro   	2	0.1		10		0.25	0.263	
+popubals	1	0.1		10		0.25	0.261	
+popudelt	1	0.1		10		0.25	0.261	
+popugran	1	0.1		10		0.25	0.261	
+poputrem   	1	0.1		10		0.25	0.256	
+prunpens	1	0.1		10		0.25	0.175	
+prunsero	1	0.1		10		0.25	0.175	
+prunvirg	1	0.1		10		0.25	0.175	
+queralba	1	0.1		10		0.25	0.176	
+querelli   	1	0.1		10		0.25	0.149	
+quermacr	1	0.1		10		0.25	0.249	
+querrubr   	1	0.1		10		0.25	0.249	
+salix		1	0.1		10		0.25	0.219	
+thujocci 	3	0.1		10		0.25	0.262	
+tiliamer   	1	0.1		10		0.25	0.17	
+ulmuamer	1	0.1		10		0.25	0.137	
+ulmurubr	1	0.1		10		0.25	0.137	
+
+
+
+EcoregionParameters
+>>	AET (mm)
+MN101	600
+MN102	600
+
+
+DynamicInputFile    			biomass-succession_DynamicInput.txt 
+AgeOnlyDisturbances:BiomassParameters   biomass-succession_StdBiomassReductions.txt
+
+
+
+
