@@ -37,6 +37,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 >> 	Disturbance Extension	Initialization File
 >>	--------------------	-------------------
 >>	"Base Fire"		base-fire_SetUp.txt
+>>	"Base Wind"		base-wind_SetUp.txt
 	"Biomass Harvest"	biomass-harvest_SetUp.txt
 >>	"Base BDA"		base-BDA_SetUp.txt
 
@@ -50,8 +51,8 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> 	Output Extension		Initialization File
 >> 	----------------		-------------------
->>   	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession" only
->>  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession" only
+   	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession"
+>>  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession"
 
 
 
