@@ -5,8 +5,8 @@ Timestep  5
 >>             ___ Event Size ___   Rotation
 >> Ecoregion    Max   Mean    Min   Period
 >> ---------   ----   ----   ----   --------
-    eco1        400    100      4     100
-    eco2        600    200      6      50
+    MN101        400    100      4     100
+    MN102        600    200      6      50
 
 
 WindSeverities
