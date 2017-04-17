@@ -33,53 +33,72 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Landis.Extension.Succession.Biomass.XML</DocumentationFile>
+    <NoWarn>1587, 1591</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Edu.Wisc.Forest.Flel.Util">
+    <Reference Include="Landis.Core, Version=6.2.5807.26917, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Core">
+    <Reference Include="Landis.Library.AgeOnlyCohorts, Version=2.1.5520.27591, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.AgeOnlyCohorts.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.AgeOnlyCohorts">
+    <Reference Include="Landis.Library.Biomass-v1, Version=1.0.5590.23483, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.Biomass-v1.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Biomass-v1">
+    <Reference Include="Landis.Library.BiomassCohorts-v2, Version=1.3.6206.14399, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.BiomassCohorts-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v2">
+    <Reference Include="Landis.Library.Climate, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-	  <Private>False</Private>
-    </Reference> 
-    <Reference Include="Landis.Library.Climate">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.Climate.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Cohorts">
+    <Reference Include="Landis.Library.Cohorts, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.Cohorts.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Parameters-v1">
+    <Reference Include="Landis.Library.Parameters-v1, Version=1.0.5504.21730, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.Parameters-v1.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Succession">
+    <Reference Include="Landis.Library.Succession, Version=4.0.5521.15032, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\libs\Landis.Library.Succession.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.SpatialModeling">
+    <Reference Include="Landis.SpatialModeling, Version=1.0.4815.34359, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference> 
+      <HintPath>..\..\libs\Landis.SpatialModeling.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Utilities">
+      <HintPath>..\..\..\Library-Utilities\src\bin\x64\Release\Landis.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-	<Reference Include="System.Xml" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="age-only-disturbances\DatasetParser.cs" />
@@ -124,7 +143,8 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

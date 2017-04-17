@@ -3,7 +3,7 @@
 
 using Landis.Core;
 using System.Collections.Generic;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Biomass.AgeOnlyDisturbances
 {
@@ -12,7 +12,7 @@ namespace Landis.Extension.Succession.Biomass.AgeOnlyDisturbances
     /// disturbances from text input.
     /// </summary>
     public class DatasetParser
-        : Edu.Wisc.Forest.Flel.Util.TextParser<IParameterDataset>
+        : Landis.Utilities.TextParser<IParameterDataset>
     {
         private Dictionary<string, int> lineNums;
 

@@ -4,7 +4,7 @@
 using Landis.SpatialModeling;
 using Landis.Core;
 using Landis.Library.BiomassCohorts;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 using System;
 
 namespace Landis.Extension.Succession.Biomass
