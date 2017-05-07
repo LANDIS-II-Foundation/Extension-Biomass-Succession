@@ -19,4 +19,4 @@ ReclassMaps
                Other	      poputrem betupapy querelli querrubr
 
 
-MapFileNames   biomass-reclass/biomass-reclass-{reclass-map-name}-{timestep}.img
+MapFileNames   outputs/biomass-reclass/biomass-reclass-{reclass-map-name}-{timestep}.img

@@ -1,10 +1,12 @@
 LandisData "Base BDA"
 
+>>-----------------
+>> REQUIRED INPUTS
+>>------------------
+
 Timestep	1
 
-
-
-BDAInputFiles	base-BDA_Input.txt
+BDAInputFiles	./base-BDA_Input_s2e1.txt
 
 
 
@@ -12,8 +14,11 @@ BDAInputFiles	base-BDA_Input.txt
 >> OUTPUTS
 >>-----------------------------------------
 MapNames	bda/{agentName}-{timestep}.gis
+
 SRDMapNames	bda/{agentName}-SRD-{timestep}.gis
+
 NRDMapNames	bda/{agentName}-NRD-{timestep}.gis
+
 BDPMapNames     bda/{agentName}-BDP-{timestep}.gis
 
 LogFile		bda/bda-log.csv

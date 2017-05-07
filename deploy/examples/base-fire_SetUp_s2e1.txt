@@ -1,10 +1,17 @@
 LandisData  "Base Fire"
 
-Timestep  5
+>>-----------------
+>> REQUIRED INPUTS
+>>----------------
 
->> ---------------
->> FIRE REGIONS
->> ---------------
+Timestep			5
+
+InitialFireRegionsMap		./ecoregions_s2e1.gis
+
+
+>> --------------------------------------
+>>  FIRE DISTURBANCE REGIME PARAMETERS
+>> ---------------------------------------
 
 >> Fire        Map	___ Event Size ___   Ignition  
 >> region      Code	 Mean  Min    Max    Prob.     k
@@ -12,20 +19,11 @@ Timestep  5
     MN101       1	 100    4     400    0.1    100
     MN102       2	 200    6     600    0.1     50
 
->>----------------------
->> FIRE REGIONS MAP
->>----------------------
-InitialFireRegionsMap	./ecoregions_MN.gis
 
-
->> ---------------
->> FIRE TABLES
->> ---------------
-
->>  DynamicFireRegionTable 	<< Optional (uncomment to select) 
-
->>Year	FileName  (this line always commented out)
->>   20		ecoregions.gis		<< Optional (uncomment to select)
+>>  DynamicFireRegionTable			<< Optional (uncomment to select) 
+>> Year		FileName
+>> ----		--------
+>>   20		ecoregions_s1e1.gis		<< Optional (uncomment to select)
 
 
 FuelCurveTable
@@ -53,6 +51,10 @@ FireDamageTable
      85%                0
     100%                1
 
+
+>> ------------
+>> OUTPUTS
+>> -------------
 
 MapNames  	fire/base-fire-severity-{timestep}.img
 LogFile   	fire/base-fire-event-log.csv
