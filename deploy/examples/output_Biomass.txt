@@ -16,8 +16,8 @@ Species    abiebals
 	   thujocci
 	   tiliamer
 
-MapNames  biomass/biomass-{species}-{timestep}.img
+MapNames  outputs/biomass/biomass-{species}-{timestep}.img
 
 DeadPools both
 	  
-MapNames  biomass/biomass-{pool}-{timestep}.img
+MapNames  outputs/biomass/biomass-{pool}-{timestep}.img

@@ -1,6 +1,14 @@
 LandisData  "Base Wind"
 
-Timestep  5
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep  	5
+
+
+>>-------------------------------------
+>> WIND DISTURBANCE REGIME PARAMETERS
+>>------------------------------------
 
 >>             ___ Event Size ___   Rotation
 >> Ecoregion    Max   Mean    Min   Period
@@ -20,5 +28,10 @@ WindSeverities
        2         70% to  85%       0.85
        1         85% to 100%       0.95
 
-MapNames  wind/severity-{timestep}.img
-LogFile   wind/wind-test-log.csv
+
+>>-------------
+>> OUTPUTS
+>>-------------
+
+MapNames 	wind/severity-{timestep}.img
+LogFile		wind/wind-events-log.csv

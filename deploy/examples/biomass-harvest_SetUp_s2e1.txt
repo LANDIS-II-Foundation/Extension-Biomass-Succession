@@ -1,19 +1,19 @@
 LandisData  "Biomass Harvest"
 
 
-Timestep    5
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep		5
 
+ManagementAreas 	./biomass-harvest_Management_s2e1.gis
 
->>-------------------------
->> HARVEST MAPS
->>---------------------------
-ManagementAreas 	./biomass-harvest_Management.gis
-Stands     		./biomass-harvest_Stand.gis
+Stands     		./biomass-harvest_Stand_s2e1.gis
 
 
 
 >> -------------------------
->> HARVEST PRESCRIPTIONS
+>> HARVESTING PRESCRIPTIONS
 >> -------------------------
 
 >>---- PRESCRIPTION_1 ---------------------------------------
@@ -82,7 +82,7 @@ Prescription    OakPatchCutting
 
 
 >> ----------------------------------
->> HARVEST IMPLEMENTATION 
+>> HARVESTING IMPLEMENTATION 
 >> ---------------------------------
 
     HarvestImplementations
