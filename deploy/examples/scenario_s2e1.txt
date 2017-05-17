@@ -59,8 +59,8 @@ CellLength  	100 << meters, 100 x 100 m = 1 ha
 
 >> 	Output Extension		Initialization File
 >> 	----------------		-------------------
-  	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession" only
-  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession" only
+  	"Output Biomass"		output_Biomass.txt		
+  	"Output Biomass Reclass"    	output_BiomassReclass.txt	
 
 
 
