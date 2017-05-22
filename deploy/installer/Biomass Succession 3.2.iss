@@ -1,6 +1,6 @@
 #define PackageName      "Biomass Succession"
 #define PackageNameLong  "Biomass Succession Extension"
-#define Version          "3.2"
+#define Version          "3.2.2"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
