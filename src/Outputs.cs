@@ -15,7 +15,7 @@ namespace Landis.Extension.Succession.Biomass
 
         //private static string mapNameTemplate;
         // private static string logFileName;
-        private static StreamWriter log;
+         private static StreamWriter log;
 
         //---------------------------------------------------------------------
         public static void Initialize(IInputParameters parameters)
@@ -30,13 +30,6 @@ namespace Landis.Extension.Succession.Biomass
                 string mesg = string.Format("{0}", err.Message);
                 throw new System.ApplicationException(mesg);
             }
-
-            log.AutoFlush = true;
-            log.Write("Time, Ecoregion, NumSites,");
-            log.Write("LiveB, AG_NPP, LitterB, ExternalGrowthReduction");
-            log.WriteLine("");
-
-
         }
 
         //---------------------------------------------------------------------
@@ -74,6 +67,20 @@ namespace Landis.Extension.Succession.Biomass
             {
                 if(EcoregionData.ActiveSiteCount[ecoregion] > 0)
                 {
+                    PlugIn.summaryLog.Clear();
+                    SummaryLog sl = new SummaryLog();
+                    sl.Time = CurrentTime;
+                    sl.EcoName = ecoregion.Name;
+                    sl.ActiveCount = EcoregionData.ActiveSiteCount[ecoregion];
+                    sl.AvgAG_NPP = (avgAG_NPP[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+                    sl.AvgDefoliation = (avgDefoliation[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+                    sl.AvgLitterB = (avgLitterB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+                    sl.AvgLiveB = (avgLiveB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+
+                    PlugIn.summaryLog.AddObject(sl);
+                    PlugIn.summaryLog.WriteToFile();
+
+                    /*
                     log.Write("{0}, {1}, {2}, ",
                         CurrentTime,
                         ecoregion.Name,
@@ -86,6 +93,7 @@ namespace Landis.Extension.Succession.Biomass
                         (avgDefoliation[ecoregion.Index] / (double) EcoregionData.ActiveSiteCount[ecoregion])
                         );
                     log.WriteLine("");
+                    */
                 }
             }
 
