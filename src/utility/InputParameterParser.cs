@@ -79,8 +79,10 @@ namespace Landis.Extension.Succession.Biomass
             parameters.InitialCommunitiesMap = communitiesMap.Value;
 
             InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
-            ReadVar(climateConfigFile);
-            parameters.ClimateConfigFile = climateConfigFile.Value;
+            if (ReadOptionalVar(climateConfigFile))
+                parameters.ClimateConfigFile = climateConfigFile.Value;
+            else
+                parameters.ClimateConfigFile = null;
 
             //---------------------------------------------------------------------------------
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
