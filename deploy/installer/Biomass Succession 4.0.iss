@@ -1,6 +1,6 @@
 #define PackageName      "Biomass Succession"
 #define PackageNameLong  "Biomass Succession Extension"
-#define Version          "3.2.2"
+#define Version          "4.0"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
@@ -31,7 +31,7 @@ Source: ..\..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flag
 
  
 ; User Guides are no longer shipped with installer
-;Source: docs\LANDIS-II Biomass Succession v3.2 User Guide.pdf; DestDir: {#AppDir}\docs
+;Source: docs\LANDIS-II Biomass Succession v4.0 User Guide.pdf; DestDir: {#AppDir}\docs
 
 
 ; Complete example for testing the extension
@@ -43,7 +43,7 @@ Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\Biomass Succession
 
 ; LANDIS-II identifies the extension with the info in this .txt file
 ; NB. New releases must modify the name of this file and the info in it
-#define InfoTxt "Biomass Succession 3.2.txt"
+#define InfoTxt "Biomass Succession 4.0.txt"
 Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
 
 
