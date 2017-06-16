@@ -74,8 +74,11 @@ namespace Landis.Extension.Succession.Biomass
             CohortBiomass.SpinupMortalityFraction = parameters.SpinupMortalityFraction;
 
             //Initialize climate.
-            Climate.Initialize(parameters.ClimateConfigFile, false, modelCore);
-            FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
+            if (parameters.ClimateConfigFile != null)
+            {
+                Climate.Initialize(parameters.ClimateConfigFile, false, modelCore);
+                FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
+            }
 
             sufficientLight = parameters.LightClassProbabilities;
 
