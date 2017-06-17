@@ -1,10 +1,10 @@
-Title:			README_BiomassSuccession3.2
+Title:			README_BiomassSuccession4.0
 Project:		LANDIS-II Landscape Change Model
 Project Component:	Extension-Biomass-Succession
 Component Deposition:	https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession
 Author:			LANDIS-II Foundation
 Origin Date:		25 Mar 2017
-Final Date:		06 May 2017
+Final Date:		15 Jun 2017
 
 
 Welcome to the source code repository for Extension-Biomass-Succession, a LANDIS-II succession extension.
