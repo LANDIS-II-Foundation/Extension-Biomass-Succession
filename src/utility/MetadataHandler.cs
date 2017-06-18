@@ -17,7 +17,6 @@ namespace Landis.Extension.Succession.Biomass.utility
             };
 
             Extension = new ExtensionMetadata(PlugIn.ModelCore)
-            //Extension = new ExtensionMetadata()
             {
                 Name = PlugIn.ExtensionName,
                 TimeInterval = PlugIn.ModelCore.CurrentTime, //change this to PlugIn.TimeStep for other extensions

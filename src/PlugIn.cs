@@ -87,6 +87,7 @@ namespace Landis.Extension.Succession.Biomass
             DynamicInputs.Initialize(parameters.DynamicInputFile, false);
             SpeciesData.ChangeDynamicParameters(0);  // Year 0
             //Outputs.Initialize(parameters);
+            
             utility.MetadataHandler.InitializeMetadata(summaryLogFile);
             
             //  Cohorts must be created before the base class is initialized

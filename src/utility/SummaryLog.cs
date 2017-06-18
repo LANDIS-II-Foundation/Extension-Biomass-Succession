@@ -4,7 +4,7 @@ namespace Landis.Extension.Succession.Biomass
 {
     public class SummaryLog
     {
-        [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Time", ColumnList = true)]
+        [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Time")]
         public int Time { get; set; }
 
         [DataFieldAttribute(Desc = "Ecoregoin Name")]
