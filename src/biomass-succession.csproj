@@ -52,8 +52,8 @@
     </Reference>
     <Reference Include="Landis.Library.BiomassCohorts-v2">
       <SpecificVersion>False</SpecificVersion>
-	  <Private>False</Private>
-    </Reference> 
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Landis.Library.Climate">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -61,6 +61,10 @@
     <Reference Include="Landis.Library.Cohorts">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Landis.Library.Metadata, Version=1.0.1.31296, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Extension-biomass-succession\src\bin\Debug\Landis.Library.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Parameters-v1">
       <SpecificVersion>False</SpecificVersion>
@@ -73,13 +77,13 @@
     <Reference Include="Landis.SpatialModeling">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
-    </Reference> 
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-	<Reference Include="System.Xml" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="age-only-disturbances\DatasetParser.cs" />
@@ -104,6 +108,8 @@
     <Compile Include="SiteVars.cs" />
     <Compile Include="SpeciesData.cs" />
     <Compile Include="SufficientLight.cs" />
+    <Compile Include="utility\MetadataHandler.cs" />
+    <Compile Include="utility\SummaryLog.cs" />
     <Compile Include="utility\DynamicInputParser.cs" />
     <Compile Include="utility\DynamicInputRecord.cs" />
     <Compile Include="utility\DynamicInputs.cs" />
@@ -122,11 +128,12 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
-  </PropertyGroup>
+</PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
+   <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+<!--
+  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

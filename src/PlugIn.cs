@@ -9,6 +9,7 @@ using Landis.Library.InitialCommunities;
 using Landis.Library.BiomassCohorts;
 using System.Collections.Generic;
 using System.Linq;
+using Landis.Library.Metadata;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -16,14 +17,15 @@ namespace Landis.Extension.Succession.Biomass
         : Landis.Library.Succession.ExtensionBase
     {
         public static readonly string ExtensionName = "Biomass Succession";
+        public static readonly string summaryLogFile = "Biomass-succession-v3-log";
         private static ICore modelCore;
         private IInputParameters parameters;
-
         private List<ISufficientLight> sufficientLight;
         public static bool CalibrateMode;
         public static double CurrentYearSiteMortality;
         private static int time;
         public static int FutureClimateBaseYear;
+        public static MetadataTable<SummaryLog> summaryLog;
 
         //---------------------------------------------------------------------
 
@@ -84,7 +86,9 @@ namespace Landis.Extension.Succession.Biomass
             EcoregionData.Initialize(parameters);
             DynamicInputs.Initialize(parameters.DynamicInputFile, false);
             SpeciesData.ChangeDynamicParameters(0);  // Year 0
-            Outputs.Initialize(parameters);
+            //Outputs.Initialize(parameters);
+            
+            utility.MetadataHandler.InitializeMetadata(summaryLogFile);
             
             //  Cohorts must be created before the base class is initialized
             //  because the base class' reproduction module uses the core's
@@ -125,7 +129,7 @@ namespace Landis.Extension.Succession.Biomass
         public override void Run()
         {
             if(PlugIn.ModelCore.CurrentTime == Timestep)
-                Outputs.WriteLogFile(0);
+                //Outputs.WriteLogFile(0);
 
             if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.CapacityReduction == null)
                 SiteVars.CapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");

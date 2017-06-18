@@ -29,16 +29,13 @@ Source: ..\..\src\bin\Debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flag
 Source: ..\..\src\bin\Debug\Landis.Library.Parameters-v1.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 Source: ..\..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 
- 
-; User Guides are no longer shipped with installer
-;Source: docs\LANDIS-II Biomass Succession v3.2 User Guide.pdf; DestDir: {#AppDir}\docs
 
 
 ; Complete example for testing the extension
-Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Biomass Succession
-Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Biomass Succession
-Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Biomass Succession
-Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\Biomass Succession
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Biomass Succession; Flags: replacesameversion
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Biomass Succession; Flags: replacesameversion
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Biomass Succession; Flags: replacesameversion
+Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\Biomass Succession; Flags: replacesameversion
 
 
 ; LANDIS-II identifies the extension with the info in this .txt file
