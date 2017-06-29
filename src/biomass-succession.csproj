@@ -62,9 +62,8 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Metadata, Version=1.0.1.31296, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Landis.Library.Metadata">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Extension-biomass-succession\src\bin\Debug\Landis.Library.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Parameters-v1">
       <SpecificVersion>False</SpecificVersion>

@@ -13,25 +13,6 @@ namespace Landis.Extension.Succession.Biomass
     public class Outputs
     {
 
-        //private static string mapNameTemplate;
-        // private static string logFileName;
-         private static StreamWriter log;
-
-        //---------------------------------------------------------------------
-        public static void Initialize(IInputParameters parameters)
-        {
-
-            string logFileName   = "Biomass-succession-v3-log.csv";
-            PlugIn.ModelCore.UI.WriteLine("   Opening Biomass-succession log file \"{0}\" ...", logFileName);
-            try {
-                log = Landis.Data.CreateTextFile(logFileName);
-            }
-            catch (Exception err) {
-                string mesg = string.Format("{0}", err.Message);
-                throw new System.ApplicationException(mesg);
-            }
-        }
-
         //---------------------------------------------------------------------
         public static void WriteLogFile(int CurrentTime)
         {
@@ -80,20 +61,6 @@ namespace Landis.Extension.Succession.Biomass
                     PlugIn.summaryLog.AddObject(sl);
                     PlugIn.summaryLog.WriteToFile();
 
-                    /*
-                    log.Write("{0}, {1}, {2}, ",
-                        CurrentTime,
-                        ecoregion.Name,
-                        EcoregionData.ActiveSiteCount[ecoregion]
-                        );
-                    log.Write("{0:0.00}, {1:0.0}, {2:0.0}, {3:0.0}",
-                        (avgLiveB[ecoregion.Index] / (double) EcoregionData.ActiveSiteCount[ecoregion]),
-                        (avgAG_NPP[ecoregion.Index] / (double) EcoregionData.ActiveSiteCount[ecoregion]),
-                        (avgLitterB[ecoregion.Index] / (double) EcoregionData.ActiveSiteCount[ecoregion]),
-                        (avgDefoliation[ecoregion.Index] / (double) EcoregionData.ActiveSiteCount[ecoregion])
-                        );
-                    log.WriteLine("");
-                    */
                 }
             }
 
