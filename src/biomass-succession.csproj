@@ -127,7 +127,8 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
-</PropertyGroup>
+  </PropertyGroup>
+
   <PropertyGroup>
    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
   </PropertyGroup>
