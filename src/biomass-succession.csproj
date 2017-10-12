@@ -69,7 +69,7 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Succession-v2">
+    <Reference Include="Landis.Library.Succession-v5">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
