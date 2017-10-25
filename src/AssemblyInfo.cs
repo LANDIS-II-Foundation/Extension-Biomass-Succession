@@ -5,4 +5,4 @@
 // associated with an assembly.
 [assembly: AssemblyTitle("Landis.Extension.Succession.Biomass")]
 [assembly: AssemblyDescription("Biomass Succession")]
-[assembly: AssemblyVersion("4.0")]
+[assembly: AssemblyVersion("4.0.5")]
