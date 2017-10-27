@@ -46,7 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Biomass-v1">
+    <Reference Include="Landis.Library.Biomass-v1.0.1">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
