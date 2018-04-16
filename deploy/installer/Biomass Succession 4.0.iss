@@ -1,6 +1,6 @@
 #define PackageName      "Biomass Succession"
 #define PackageNameLong  "Biomass Succession Extension"
-#define Version          "4.0.5"
+#define Version          "4.0.6"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
@@ -23,7 +23,7 @@ Source: ..\..\src\bin\debug\Landis.Extension.Succession.Biomass.dll; DestDir: {#
 ; NB. These libraries are used by other extensions and thus are never uninstalled.
 Source: ..\..\src\bin\Debug\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 Source: ..\..\src\bin\Debug\Landis.Library.Biomass-v1.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
-Source: ..\..\src\bin\Debug\Landis.Library.BiomassCohorts-v2.0.1.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
+Source: ..\..\src\bin\Debug\Landis.Library.BiomassCohorts-v2.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 Source: ..\..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 Source: ..\..\src\bin\Debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 Source: ..\..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
