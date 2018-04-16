@@ -17,7 +17,7 @@
 ; This .dll IS the extension (ie, the extension's assembly)
 ; NB: Do not put a version number in the file name of this .dll
 Source: ..\..\src\bin\debug\Landis.Extension.Succession.Biomass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-
+Source: ..\..\src\bin\debug\Landis.Extension.Succession.Biomass.pdb; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; Requisite auxiliary libraries
 ; NB. These libraries are used by other extensions and thus are never uninstalled.
