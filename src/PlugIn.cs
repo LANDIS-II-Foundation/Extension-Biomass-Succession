@@ -200,16 +200,19 @@ namespace Landis.Extension.Succession.Biomass
             float fractionPartialMortality = (float) eventArgs.Reduction;
             //PlugIn.ModelCore.UI.WriteLine("Cohort experienced partial mortality: species={0}, age={1}, wood_biomass={2}, fraction_mortality={3:0.0}.", cohort.Species.Name, cohort.Age, cohort.WoodBiomass, fractionPartialMortality);
 
-            AgeOnlyDisturbances.PoolPercentages cohortReductions = AgeOnlyDisturbances.Module.Parameters.CohortReductions[disturbanceType];
-
             int nonWoody = cohort.ComputeNonWoodyBiomass(site);
             int woody = (cohort.Biomass - nonWoody);
 
-            int foliar = (int)(nonWoody * fractionPartialMortality);
-            int wood = (int)(woody * fractionPartialMortality);
-            
-            int foliarInput = AgeOnlyDisturbances.Events.ReduceInput(foliar, cohortReductions.Foliar);
-            int woodInput = AgeOnlyDisturbances.Events.ReduceInput(wood, cohortReductions.Wood);
+            int foliarInput = (int)(nonWoody * fractionPartialMortality);
+            int woodInput = (int)(woody * fractionPartialMortality);
+
+            if (disturbanceType.IsMemberOf("disturbance:harvest") || disturbanceType.IsMemberOf("disturbance:fire"))
+            {
+                AgeOnlyDisturbances.PoolPercentages cohortReductions = AgeOnlyDisturbances.Module.Parameters.CohortReductions[disturbanceType];
+
+                foliarInput = AgeOnlyDisturbances.Events.ReduceInput(foliarInput, cohortReductions.Foliar);
+                woodInput = AgeOnlyDisturbances.Events.ReduceInput(woodInput, cohortReductions.Wood);
+            }
 
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
