@@ -1,4 +1,3 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using Landis.SpatialModeling;
@@ -22,7 +21,7 @@ namespace Landis.Extension.Succession.Biomass
 
         //  Establishment probability for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishProbability;
-        //public static Landis.Library.Biomass.Species.AuxParm<Landis.Library.Biomass.Ecoregions.AuxParm<double>> EstablishProbability;
+        
         //  Establishment probability modifier for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishModifier;
 

@@ -1,4 +1,3 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using Landis.SpatialModeling;
@@ -21,9 +20,10 @@ namespace Landis.Extension.Succession.Biomass
                                     ISpecies   species,
                                     ActiveSite site)
         {
-        
-            SiteVars.WoodyDebris[site].AddMass(woodyBiomass, 
-                                    SpeciesData.WoodyDebrisDecay[species]);
+            double currentWoodyDebris = SiteVars.WoodyDebris[site].Mass;
+            SiteVars.WoodyDebris[site].AddMass(woodyBiomass, SpeciesData.WoodyDebrisDecay[species]);
+
+            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION: Former Wood = {0}, New Wood = {1}", currentWoodyDebris, SiteVars.WoodyDebris[site].Mass);
         }
 
         //---------------------------------------------------------------------
