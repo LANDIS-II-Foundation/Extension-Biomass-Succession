@@ -22,18 +22,18 @@ AppId={{00B1C477-6DE8-41C7-85E4-4FF75010A348}
 AppName={#CoreRelease} {#ExtensionName}
 AppVersion={#AppVersion}
 ; Name in "Programs and Features"
-AppVerName={#CoreRelease} {#AppName} v{#AppVersion}
+AppVerName={#CoreRelease} {#ExtensionName} v{#AppVersion}
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppSupportURL={#AppURL}
 AppUpdatesURL={#AppURL}
-DefaultDirName={pf}\{#AppName}
+DefaultDirName={pf}\{#ExtensionName}
 DisableDirPage=yes
-DefaultGroupName={#AppName}
+DefaultGroupName={#ExtensionName}
 DisableProgramGroupPage=yes
 LicenseFile=LANDIS-II_Binary_license.rtf
 OutputDir={#SourcePath}
-OutputBaseFilename={#CoreRelease} {#AppName} {#AppVersion}-setup
+OutputBaseFilename={#CoreRelease} {#ExtensionName} {#AppVersion}-setup
 Compression=lzma
 SolidCompression=yes
 
