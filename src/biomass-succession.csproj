@@ -1,142 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B696582D-362B-4902-9040-64365EABB93C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Landis.Extension.Succession.Biomass</RootNamespace>
-    <AssemblyName>Landis.Extension.Succession.Biomass</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <RootNamespace>Landis.Extension.!{}</RootNamespace>
+    <AssemblyName>Landis.Extension.!{}-v!{}</AssemblyName>
+    <AssemblyTitle>!{}</AssemblyTitle>
+    <AssemblyCompany>!{}</AssemblyCompany>
+    <AssemblyProduct>!{}</AssemblyProduct>
+    <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
+    <AssemblyVersion>!{}</AssemblyVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Wind</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Wind/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
+    <NeutralLanguage>English</NeutralLanguage>
+    <Authors>!{}</Authors>
+    <Product>!{}</Product>
+    <Copyright>Landis-II-Foundation</Copyright>
+    <Version>!{NuGet Package Version (use assembly version)}</Version>
+    <PackageTags>LANDIS-II;Landis;Extension;!{}</PackageTags>
+    <Description>!{}</Description>
+    <PackageReleaseNotes>!{}</PackageReleaseNotes>
+    <FileVersion>7.0.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Landis.Extension.Succession.Biomass.XML</DocumentationFile>
-    <NoWarn>1587, 1591</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Edu.Wisc.Forest.Flel.Util">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.AgeOnlyCohorts">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Biomass-v1, Version=1.0.5590.23483, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Extension-NECN-Hydro-Succession\src\bin\debug\Landis.Library.Biomass-v1.dll</HintPath>
-    </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v2, Version=1.3.6650.22592, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Extension-NECN-Hydro-Succession\src\bin\debug\Landis.Library.BiomassCohorts-v2.dll</HintPath>
-    </Reference>
-    <Reference Include="Landis.Library.Climate">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Cohorts">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Metadata">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Landis.Library.Parameters-v1">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Succession-v5">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.SpatialModeling">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Landis.Core" Version="2.0.0" />
   </ItemGroup>
+  
   <ItemGroup>
-    <Compile Include="age-only-disturbances\DatasetParser.cs" />
-    <Compile Include="age-only-disturbances\Events.cs" />
-    <Compile Include="age-only-disturbances\IParameterDataset.cs" />
-    <Compile Include="age-only-disturbances\Module.cs" />
-    <Compile Include="age-only-disturbances\NoParameters.cs" />
-    <Compile Include="age-only-disturbances\ParameterDataset.cs" />
-    <Compile Include="age-only-disturbances\PercentageTable.cs" />
-    <Compile Include="age-only-disturbances\PoolPercentages.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="BaseCohortsSiteVar.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CohortBiomass.cs" />
-    <Compile Include="EcoregionData.cs" />
-    <Compile Include="ForestFloor.cs" />
-    <Compile Include="InitialBiomass.cs" />
-    <Compile Include="Outputs.cs" />
-    <Compile Include="PlugIn.cs" />
-    <Compile Include="Pool.cs" />
-    <Compile Include="SiteVars.cs" />
-    <Compile Include="SpeciesData.cs" />
-    <Compile Include="SufficientLight.cs" />
-    <Compile Include="utility\MetadataHandler.cs" />
-    <Compile Include="utility\SummaryLog.cs" />
-    <Compile Include="utility\DynamicInputParser.cs" />
-    <Compile Include="utility\DynamicInputRecord.cs" />
-    <Compile Include="utility\DynamicInputs.cs" />
-    <Compile Include="utility\EcoregionAuxParm.cs" />
-    <Compile Include="utility\IInputParameters.cs" />
-    <Compile Include="utility\InputParameterParser.cs" />
-    <Compile Include="utility\InputParameters.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="utility\MapNames.cs" />
-    <Compile Include="utility\SpeciesAuxParm.cs" />
-    <Compile Include="utility\IntPixel.cs" />
-    <Compile Include="utility\Util.cs" />
+    <Reference Include="!{*LANDIS-II Support Library*}">
+      <HintPath>lib\!{*LANDIS-II Support Library*.dll}</HintPath>
+    </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
-  </PropertyGroup>
-  <!--
-  To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
