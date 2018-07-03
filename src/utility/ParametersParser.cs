@@ -3,7 +3,7 @@
 //  License:  Available at
 //  http://www.landis-ii.org/developers/LANDIS-IISourceCodeLicenseAgreement.pdf
 
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 
 using Landis.Ecoregions;
 using Landis.Species;

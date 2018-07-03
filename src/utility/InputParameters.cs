@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 using Landis.Core;
 using Landis.Library.Succession;
 using Landis.Library.Parameters;

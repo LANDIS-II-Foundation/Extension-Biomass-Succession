@@ -1,6 +1,6 @@
 //  Authors:  Robert M. Scheller
 
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Biomass
 {
