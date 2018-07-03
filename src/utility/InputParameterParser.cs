@@ -3,7 +3,7 @@
 using Landis.Library.Succession;
 using Landis.Core;
 using System.Collections.Generic;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Biomass
 {

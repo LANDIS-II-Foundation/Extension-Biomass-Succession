@@ -2,7 +2,9 @@
 
 using Landis.SpatialModeling;
 using Landis.Core;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
+using Landis.Library.Parameters;
+
 
 namespace Landis.Extension.Succession.Biomass
 {

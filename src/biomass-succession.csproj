@@ -1,37 +1,58 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Landis.Extension.!{}</RootNamespace>
-    <AssemblyName>Landis.Extension.!{}-v!{}</AssemblyName>
-    <AssemblyTitle>!{}</AssemblyTitle>
-    <AssemblyCompany>!{}</AssemblyCompany>
-    <AssemblyProduct>!{}</AssemblyProduct>
+    <RootNamespace>Landis.Extension.Succession.Biomass</RootNamespace>
+    <AssemblyName>Landis.Extension.Succession.Biomass-v5</AssemblyName>
+    <AssemblyTitle>Landis.Extension.Succession.Biomass-v5</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
-    <AssemblyVersion>!{}</AssemblyVersion>
+    <AssemblyVersion>5.0</AssemblyVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Wind</RepositoryUrl>
+    <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Wind/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
     <NeutralLanguage>English</NeutralLanguage>
-    <Authors>!{}</Authors>
-    <Product>!{}</Product>
+    <Authors>LANDIS-II Foundation</Authors>
+    <Product>Landis.Extension.Succession.Biomass-v5</Product>
     <Copyright>Landis-II-Foundation</Copyright>
-    <Version>!{NuGet Package Version (use assembly version)}</Version>
-    <PackageTags>LANDIS-II;Landis;Extension;!{}</PackageTags>
-    <Description>!{}</Description>
-    <PackageReleaseNotes>!{}</PackageReleaseNotes>
-    <FileVersion>7.0.0.0</FileVersion>
+    <Version>5.0</Version>
+    <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
+    <Description></Description>
+    <PackageReleaseNotes>.NET Standard 2.0 update</PackageReleaseNotes>
+    <FileVersion>7.0</FileVersion>
+    <Company>LANDIS-II Foundation</Company>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Landis.Core" Version="2.0.0" />
+    <PackageReference Include="Landis.Core.Implementation" Version="2.0.0" />
   </ItemGroup>
   
   <ItemGroup>
-    <Reference Include="!{*LANDIS-II Support Library*}">
-      <HintPath>lib\!{*LANDIS-II Support Library*.dll}</HintPath>
+    <Reference Include="Landis.Library.AgeOnlyCohorts-v3">
+      <HintPath>lib\Landis.Library.AgeOnlyCohorts-v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Biomass-v2">
+      <HintPath>lib\Landis.Library.Biomass-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.BiomassCohorts-v2">
+      <HintPath>lib\Landis.Library.BiomassCohorts-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Climate-v3">
+      <HintPath>lib\Landis.Library.Climate-v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Cohorts-v2">
+      <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Metadata-v2">
+      <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Parameters-v2">
+      <HintPath>lib\Landis.Library.Parameters-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Succession-v6">
+      <HintPath>lib\Landis.Library.Succession-v6.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
