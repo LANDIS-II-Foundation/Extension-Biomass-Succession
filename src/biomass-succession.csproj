@@ -36,8 +36,8 @@
     <Reference Include="Landis.Library.Biomass-v2">
       <HintPath>lib\Landis.Library.Biomass-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v2">
-      <HintPath>lib\Landis.Library.BiomassCohorts-v2.dll</HintPath>
+    <Reference Include="Landis.Library.BiomassCohorts-v3">
+      <HintPath>lib\Landis.Library.BiomassCohorts-v3.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Climate-v3">
       <HintPath>lib\Landis.Library.Climate-v3.dll</HintPath>
