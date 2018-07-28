@@ -1,4 +1,3 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using Landis.Library.Succession;
@@ -35,17 +34,28 @@ namespace Landis.Extension.Succession.Biomass
         //Species.AuxParm<double> PctBioMaxLAI { get;}
 
         Landis.Library.Parameters.Ecoregions.AuxParm<int> AET { get; }
-
-        //double PctSun1 { get; set;}
-        //double PctSun2 { get; set;}
-        //double PctSun3 { get; set;}
-        //double PctSun4 { get; set;}
-        //double PctSun5 { get; set;}
-
         string DynamicInputFile {get;set;}
 
-        string AgeOnlyDisturbanceParms{get; set;}
+        //string AgeOnlyDisturbanceParms{get; set;}
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Parameters for fire effects on wood and leaf litter
+        /// </summary>
+        FireReductions[] FireReductionsTable
+        {
+            get; set;
+        }
+
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Parameters for harvest or fuel treatment effects on wood and leaf litter
+        /// </summary>
+        List<HarvestReductions> HarvestReductionsTable
+        {
+            get;
+            set;
+        }
     }
 
-    
+
 }

@@ -18,9 +18,12 @@ namespace Landis.Extension.Succession.Biomass
             public const string Timestep = "Timestep";
             public const string SeedingAlgorithm = "SeedingAlgorithm";
             public const string ClimateConfigFile = "ClimateConfigFile";
-            public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
+            //public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
             public const string DynamicInputFile = "DynamicInputFile";
             public const string CalibrateMode = "CalibrateMode";
+            public const string FireReductionParameters = "FireReductionParameters";
+            public const string HarvestReductionParameters = "HarvestReductionParameters";
+
         }
         //---------------------------------------------------------------------
         public override string LandisDataValue
@@ -265,18 +268,93 @@ namespace Landis.Extension.Succession.Biomass
             ReadVar(dynInputFile);
             parameters.DynamicInputFile = dynInputFile.Value;
 
+            //--------- Read In Fire Reductions Table ---------------------------
+            PlugIn.ModelCore.UI.WriteLine("   Begin reading FIRE REDUCTION parameters.");
+            ReadName(Names.FireReductionParameters);
 
-            string lastParameter = null;
-            if (! AtEndOfInput && CurrentName == Names.AgeOnlyDisturbanceParms) {
-                InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
-                ReadVar(ageOnlyDisturbanceParms);
-                parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
+            InputVar<int> frindex = new InputVar<int>("Fire Severity Index MUST = 1-5");
+            InputVar<double> wred = new InputVar<double>("Coarse Litter Reduction");
+            InputVar<double> lred = new InputVar<double>("Fine Litter Reduction");
+            InputVar<double> som_red = new InputVar<double>("SOM Reduction");
 
-                lastParameter = "the " + Names.AgeOnlyDisturbanceParms + " parameter";
+            while (!AtEndOfInput && CurrentName != Names.HarvestReductionParameters)// && CurrentName != Names.AgeOnlyDisturbanceParms)
+            {
+                StringReader currentLine = new StringReader(CurrentLine);
+
+                ReadValue(frindex, currentLine);
+                int ln = (int)frindex.Value.Actual;
+
+                if (ln < 1 || ln > 5)
+                    throw new InputValueException(frindex.Value.String,
+                                              "The fire severity index:  {0} must be 1-5,",
+                                              frindex.Value.String);
+
+
+                FireReductions inputFireReduction = new FireReductions();  // ignoring severity = zero
+                parameters.FireReductionsTable[ln] = inputFireReduction;
+
+                ReadValue(wred, currentLine);
+                inputFireReduction.CoarseLitterReduction = wred.Value;
+
+                ReadValue(lred, currentLine);
+                inputFireReduction.FineLitterReduction = lred.Value;
+
+                //ReadValue(som_red, currentLine);
+                //inputFireReduction.SOMReduction = som_red.Value;
+
+                CheckNoDataAfter("the " + som_red.Name + " column", currentLine);
+
+                GetNextLine();
             }
 
-            if (lastParameter != null)
-                CheckNoDataAfter(lastParameter);
+            //--------- Read In Harvest Reductions Table ---------------------------
+            InputVar<string> hreds = new InputVar<string>("HarvestReductions");
+            ReadName(Names.HarvestReductionParameters);
+            PlugIn.ModelCore.UI.WriteLine("   Begin reading HARVEST REDUCTION parameters.");
+
+            InputVar<string> prescriptionName = new InputVar<string>("Prescription");
+            InputVar<double> wred_pr = new InputVar<double>("Coarse Litter Reduction");
+            InputVar<double> lred_pr = new InputVar<double>("Fine Litter Reduction");
+            //InputVar<double> som_red_pr = new InputVar<double>("SOM Reduction");
+            InputVar<double> cohortw_red_pr = new InputVar<double>("Cohort Biomass Removal");
+            //InputVar<double> cohortl_red_pr = new InputVar<double>("Cohort Leaf Removal");
+
+
+            while (!AtEndOfInput)
+            {
+
+                StringReader currentLine = new StringReader(CurrentLine);
+                HarvestReductions harvReduction = new HarvestReductions();
+                parameters.HarvestReductionsTable.Add(harvReduction);
+
+                ReadValue(prescriptionName, currentLine);
+                harvReduction.PrescriptionName = prescriptionName.Value;
+
+                ReadValue(wred_pr, currentLine);
+                harvReduction.CoarseLitterReduction = wred_pr.Value;
+
+                ReadValue(lred_pr, currentLine);
+                harvReduction.FineLitterReduction = lred_pr.Value;
+
+                ReadValue(cohortw_red_pr, currentLine);
+                harvReduction.CohortWoodReduction = cohortw_red_pr.Value;
+
+                GetNextLine();
+            }
+
+
+
+            //string lastParameter = null;
+            //if (! AtEndOfInput && CurrentName == Names.AgeOnlyDisturbanceParms) {
+            //    InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
+            //    ReadVar(ageOnlyDisturbanceParms);
+            //    parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
+
+            //    lastParameter = "the " + Names.AgeOnlyDisturbanceParms + " parameter";
+            //}
+
+            //if (lastParameter != null)
+            //    CheckNoDataAfter(lastParameter);
 
             return parameters;
         }

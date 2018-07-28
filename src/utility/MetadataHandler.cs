@@ -51,7 +51,7 @@ namespace Landis.Extension.Succession.Biomass.utility
             string dir = System.IO.Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dir))
             {
-                Edu.Wisc.Forest.Flel.Util.Directory.EnsureExists(dir);
+                Landis.Utilities.Directory.EnsureExists(dir);
             }
 
             //return new StreamWriter(path);

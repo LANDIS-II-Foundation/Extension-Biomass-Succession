@@ -1,4 +1,3 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using System.Collections.Generic;
@@ -34,9 +33,12 @@ namespace Landis.Extension.Succession.Biomass
         private Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
 
         private string dynamicInputFile;
-        private string ageOnlyDisturbanceParms;
+        //private string ageOnlyDisturbanceParms;
         private string initCommunities;
         private string communitiesMap;
+        private FireReductions[] fireReductionsTable;
+        private List<HarvestReductions> harvestReductionsTable;
+
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -264,6 +266,36 @@ namespace Landis.Extension.Succession.Biomass
             }
         }
         //---------------------------------------------------------------------
+        /// <summary>
+        /// Fire reduction of leaf and wood litter parameters.
+        /// </summary>
+        public FireReductions[] FireReductionsTable
+        {
+            get
+            {
+                return fireReductionsTable;
+            }
+            set
+            {
+                fireReductionsTable = value;
+            }
+        }
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Harvest reduction of leaf and wood litter parameters.
+        /// </summary>
+        public List<HarvestReductions> HarvestReductionsTable
+        {
+            get
+            {
+                return harvestReductionsTable;
+            }
+            set
+            {
+                harvestReductionsTable = value;
+            }
+        }
+        //---------------------------------------------------------------------
         public void SetLeafLongevity(ISpecies           species,
                                      InputValue<double> newValue)
         {
@@ -310,18 +342,18 @@ namespace Landis.Extension.Succession.Biomass
         /// Path to the optional file with the biomass parameters for age-only
         /// disturbances.
         /// </summary>
-        public string AgeOnlyDisturbanceParms
-        {
-            get {
-                return ageOnlyDisturbanceParms;
-            }
-            set {
-                string path = value;
-                if (path.Trim(null).Length == 0)
-                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
-                ageOnlyDisturbanceParms = value;
-            }
-        }
+        //public string AgeOnlyDisturbanceParms
+        //{
+        //    get {
+        //        return ageOnlyDisturbanceParms;
+        //    }
+        //    set {
+        //        string path = value;
+        //        if (path.Trim(null).Length == 0)
+        //            throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+        //        ageOnlyDisturbanceParms = value;
+        //    }
+        //}
 
         //---------------------------------------------------------------------
 
@@ -335,6 +367,9 @@ namespace Landis.Extension.Succession.Biomass
 
         public InputParameters()
         {
+            fireReductionsTable = new FireReductions[6];
+            harvestReductionsTable = new List<HarvestReductions>();
+
             sufficientLight = new List<ISufficientLight>();
             leafLongevity = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
             woodyDecayRate = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);

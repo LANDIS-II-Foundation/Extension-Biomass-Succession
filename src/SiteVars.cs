@@ -25,6 +25,9 @@ namespace Landis.Extension.Succession.Biomass
 
         private static ISiteVar<double> ag_npp;
         public static ISiteVar<double> Defoliation;
+        public static ISiteVar<string> HarvestPrescriptionName;
+        public static ISiteVar<byte> FireSeverity;
+
 
 
         //---------------------------------------------------------------------
@@ -37,7 +40,7 @@ namespace Landis.Extension.Succession.Biomass
             ISiteVar<Landis.Library.BiomassCohorts.ISiteCohorts> biomassCohortSiteVar = Landis.Library.Succession.CohortSiteVar<Landis.Library.BiomassCohorts.ISiteCohorts>.Wrap(biomassCohorts);
             
             baseCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<Landis.Library.AgeOnlyCohorts.ISiteCohorts>.Wrap(biomassCohorts);
-            
+            HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 
             woodyDebris = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Pool>();
             litter = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Pool>();
