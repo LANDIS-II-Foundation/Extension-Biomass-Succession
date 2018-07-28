@@ -25,6 +25,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="utility\EcoregionAuxParm.cs" />
+    <Compile Remove="utility\SpeciesAuxParm.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Landis.Core" Version="2.0.0" />
     <PackageReference Include="Landis.Core.Implementation" Version="2.0.0" />
   </ItemGroup>

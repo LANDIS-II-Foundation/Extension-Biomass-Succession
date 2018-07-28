@@ -1,3 +1,0 @@
->> Example of a bad input file
-
-LandisData  "Age-only Disturbances"  << ERROR HERE: Should be "Age-only Disturbances - Biomass Parameters"

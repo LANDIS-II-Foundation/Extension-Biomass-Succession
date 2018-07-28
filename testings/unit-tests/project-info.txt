@@ -1,6 +1,0 @@
-#  project information
-
-project-name	Landis.Test.Biomass.Succession_v2
-project-type	library
-version		2.0
-release         alpha 4
