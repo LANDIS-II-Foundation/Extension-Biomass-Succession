@@ -3,7 +3,7 @@ LandisData   Extension
 Name         "Biomass Succession"
 Version      5.0
 Type         succession
-Assembly     Landis.Extension.Succession.Biomass
+Assembly     Landis.Extension.Succession.Biomass-v5
 Class        Landis.Extension.Succession.Biomass.PlugIn
 Description  "Succession with biomass cohorts"
 CoreVersion  7.0
