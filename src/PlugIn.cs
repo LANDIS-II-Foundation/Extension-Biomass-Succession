@@ -16,7 +16,7 @@ namespace Landis.Extension.Succession.Biomass
         : Landis.Library.Succession.ExtensionBase
     {
         public static readonly string ExtensionName = "Biomass Succession";
-        public static readonly string summaryLogFile = "Biomass-succession-log";
+        //public static readonly string summaryLogFile = "Biomass-succession-log.txt";
         private static ICore modelCore;
         private List<ISufficientLight> sufficientLight;
         public static bool CalibrateMode;
@@ -88,7 +88,7 @@ namespace Landis.Extension.Succession.Biomass
             FireEffects.Initialize(Parameters);
             //Outputs.Initialize(parameters);
 
-            utility.MetadataHandler.InitializeMetadata(summaryLogFile);
+            //utility.MetadataHandler.InitializeMetadata(summaryLogFile);
             
             //  Cohorts must be created before the base class is initialized
             //  because the base class' reproduction module uses the core's
