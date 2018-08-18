@@ -187,7 +187,7 @@ namespace Landis.Extension.Succession.Biomass
             }
             if (!found)
             {
-                PlugIn.ModelCore.UI.WriteLine("   Prescription {0} not found in the NECN Harvest Effects Table", prescriptionName);
+                PlugIn.ModelCore.UI.WriteLine("   Prescription {0} not found in the Biomass Succession Harvest Effects Table", prescriptionName);
                 return;
             }
             //PlugIn.ModelCore.UI.WriteLine("   LitterLoss={0:0.00}, woodLoss={1:0.00}, SOM_loss={2:0.00}, SITE={3}", litterLossMultiplier, woodLossMultiplier, som_Multiplier, site);
