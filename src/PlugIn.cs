@@ -85,8 +85,9 @@ namespace Landis.Extension.Succession.Biomass
             EcoregionData.Initialize(Parameters);
             DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
             SpeciesData.ChangeDynamicParameters(0);  // Year 0
+            FireEffects.Initialize(Parameters);
             //Outputs.Initialize(parameters);
-            
+
             utility.MetadataHandler.InitializeMetadata(summaryLogFile);
             
             //  Cohorts must be created before the base class is initialized

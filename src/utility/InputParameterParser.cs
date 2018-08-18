@@ -275,9 +275,9 @@ namespace Landis.Extension.Succession.Biomass
             InputVar<int> frindex = new InputVar<int>("Fire Severity Index MUST = 1-5");
             InputVar<double> wred = new InputVar<double>("Coarse Litter Reduction");
             InputVar<double> lred = new InputVar<double>("Fine Litter Reduction");
-            InputVar<double> som_red = new InputVar<double>("SOM Reduction");
+            //InputVar<double> som_red = new InputVar<double>("SOM Reduction");
 
-            while (!AtEndOfInput && CurrentName != Names.HarvestReductionParameters)// && CurrentName != Names.AgeOnlyDisturbanceParms)
+            while (!AtEndOfInput && CurrentName != Names.HarvestReductionParameters)
             {
                 StringReader currentLine = new StringReader(CurrentLine);
 
@@ -302,7 +302,7 @@ namespace Landis.Extension.Succession.Biomass
                 //ReadValue(som_red, currentLine);
                 //inputFireReduction.SOMReduction = som_red.Value;
 
-                CheckNoDataAfter("the " + som_red.Name + " column", currentLine);
+                CheckNoDataAfter("the " + lred.Name + " column", currentLine);
 
                 GetNextLine();
             }

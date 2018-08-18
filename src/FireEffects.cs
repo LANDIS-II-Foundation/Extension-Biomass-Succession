@@ -19,9 +19,6 @@ namespace Landis.Extension.Succession.Biomass
     {
         private double coarseLitterReduction;
         private double fineLitterReduction;
-        //private double somReduction;
-        //private double cohortWoodReduction;
-        //private double cohortLeafReduction;
         
         public double CoarseLitterReduction
         {
@@ -53,9 +50,6 @@ namespace Landis.Extension.Succession.Biomass
         {
             this.CoarseLitterReduction = 0.0; 
             this.FineLitterReduction = 0.0;
-            //this.CohortLeafReduction = 0.0;
-            //this.CohortWoodReduction = 0.0;
-            //this.SOMReduction = 0.0;
         }
     }
     
@@ -89,7 +83,8 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public static void ReduceLayers(byte severity, Site site)
         {
-            // PlugIn.ModelCore.UI.WriteLine("   Calculating fire induced layer reductions. FineLitter={0}, Wood={1}, Duff={2}.", ReductionsTable[severity].FineLitterReduction, ReductionsTable[severity].CoarseLitterReduction, ReductionsTable[severity].SOMReduction);
+            //PlugIn.ModelCore.UI.WriteLine("   Calculating fire induced layer reductions. Severity={0}.", severity);
+            //PlugIn.ModelCore.UI.WriteLine("   Calculating fire induced layer reductions. FineLitter={0}, Wood={1}.", ReductionsTable[severity].FineLitterReduction, ReductionsTable[severity].CoarseLitterReduction);
 
             // litter first
             double fineLitterReduction = ReductionsTable[severity].FineLitterReduction;

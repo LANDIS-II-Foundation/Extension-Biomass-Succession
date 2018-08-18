@@ -49,6 +49,7 @@ namespace Landis.Extension.Succession.Biomass
             previousYearMortality = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             currentYearMortality = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             totalBiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
+            FireSeverity = PlugIn.ModelCore.GetSiteVar<byte>("Fire.Severity");
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
