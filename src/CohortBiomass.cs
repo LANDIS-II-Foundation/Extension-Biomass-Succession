@@ -403,7 +403,6 @@ namespace Landis.Extension.Succession.Biomass
                 }
             }
 
-
             double maxBiomass = SpeciesData.B_MAX_Spp[species,ecoregion];
 
             double maxANPP = SpeciesData.ANPP_MAX_Spp[species,ecoregion];

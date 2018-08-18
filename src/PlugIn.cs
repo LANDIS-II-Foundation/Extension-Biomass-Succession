@@ -84,7 +84,7 @@ namespace Landis.Extension.Succession.Biomass
             SpeciesData.Initialize(Parameters);
             EcoregionData.Initialize(Parameters);
             DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
-            //SpeciesData.ChangeDynamicParameters(0);  // Year 0
+            SpeciesData.ChangeDynamicParameters(0);  // Year 0
             //Outputs.Initialize(parameters);
             
             utility.MetadataHandler.InitializeMetadata(summaryLogFile);

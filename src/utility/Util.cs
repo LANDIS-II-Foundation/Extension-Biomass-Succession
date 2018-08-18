@@ -1,9 +1,9 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
 //  Authors:  Robert M. Scheller
 
 using Landis.SpatialModeling;
 using Landis.Core;
 using Landis.Utilities;
+using Landis.Library.Parameters;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -15,15 +15,19 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        public static Species.AuxParm<Ecoregions.AuxParm<T>> CreateSpeciesEcoregionParm<T>(ISpeciesDataset speciesDataset, IEcoregionDataset ecoregionDataset)
-        {
-            Species.AuxParm<Ecoregions.AuxParm<T>> newParm;
-            newParm = new Species.AuxParm<Ecoregions.AuxParm<T>>(speciesDataset);
-            foreach (ISpecies species in speciesDataset) {
-                newParm[species] = new Ecoregions.AuxParm<T>(ecoregionDataset);
-            }
-            return newParm;
-        }
+        //public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<T> CreateSpeciesEcoregionParm<T>(ISpeciesDataset speciesDataset, IEcoregionDataset ecoregionDataset)
+        //{
+        //    Landis.Library.Parameters.SpeciesEcoregionAuxParm<T> newParm;
+        //    newParm = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<T>(speciesDataset, ecoregionDataset);
+        //    foreach (IEcoregion ecoregion in ecoregionDataset)
+        //    {
+        //        foreach (ISpecies species in speciesDataset)
+        //        {
+        //            newParm[species, ecoregion] = default(T);
+        //        }
+        //    }
+        //    return newParm;
+        //}
         //---------------------------------------------------------------------
 
         public static double CheckBiomassParm(InputValue<double> newValue,
