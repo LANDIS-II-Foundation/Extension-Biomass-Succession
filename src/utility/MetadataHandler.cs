@@ -1,7 +1,7 @@
 ﻿using System;
 using Landis.Library.Metadata;
 
-namespace Landis.Extension.Succession.Biomass.utility
+namespace Landis.Extension.Succession.Biomass
 {
     class MetadataHandler
     {
