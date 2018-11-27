@@ -1,0 +1,35 @@
+LandisData	Species		
+>> same species at Sarah's - 3 deleted	
+					
+
+>>				Sexual	Shade	Fire	Seed Disp Dist	Veg	Sprout	Age	Post-Fire
+>>	Name		Long	Maturit	Tol.	Tol.	Effecti	Maximum	Rep P	Min	Max	Regen
+>>	----		-------	-----	-----	----	------  -------	-----	----	-----	--------
+	PinuJeff	500	25	2	5	50	300	0	0	0	none
+	PinuLamb	550	20	3	5	30	400	0	0	0	none
+	CaloDecu	500	30	4	5	30	2000	0	0	0	none
+	AbieConc	450	35	4	3	30	500	0	0	0	none
+	AbieMagn	500	40	3	4	30	500	0	0	0	none
+	PinuCont	250	7	1	2	30	300	0	0	0	none
+	PinuMont	550	18	3	4	30	800	0	0	0	none
+	TsugMert	800	20	5	1	30	800	0.0005	100	800	none
+	PinuAlbi	900	30	3	2	30	5000	0.0001	100	900	none
+	PopuTrem	175	15	1	2	30	1000	0.9	1	175	resprout
+	NonnResp	80	5	2	1	30	550	0.85	5	70	resprout
+	NonnSeed	80	5	2	1	30	1000	0	0	0	none
+	FixnResp	80	5	1	1	30	500	0.75	5	70	resprout
+	FixnSeed	80	5	1	1	30	800	0	0	0	none
+
+>> changed max dist poputrem from 6000 to 1000
+
+
+
+
+
+
+
+
+
+
+
+

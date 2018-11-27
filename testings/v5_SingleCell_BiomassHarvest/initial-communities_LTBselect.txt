@@ -1,0 +1,5 @@
+LandisData   "Initial Communities"
+
+>>Old jackpine oak 
+MapCode  3
+	PinuJeff 50 (6000)

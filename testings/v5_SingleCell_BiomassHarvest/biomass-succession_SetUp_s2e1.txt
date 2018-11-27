@@ -1,0 +1,97 @@
+LandisData  "Biomass Succession"
+
+
+>>------------------
+>> REQUIRED INPUTS
+>>------------------
+
+Timestep  			10
+
+SeedingAlgorithm  		WardSeedDispersal
+
+InitialCommunities      	./biomass-succession_InitialCommunities_s2e1.txt
+InitialCommunitiesMap   	./biomass-succession_InitialCommunities_s2e1.gis
+
+ClimateConfigFile		./climate-generator-baseline.txt
+
+CalibrateMode 		yes
+
+>> SpinUpMortalityFraction 	0.0
+
+
+
+>>----------------------------
+>> LIFE HISTORY PARAMETERS
+>>----------------------------
+
+MinRelativeBiomass
+>> Shade	Percent Max Biomass
+>> Class	by Ecoregions
+>> ----------	--------------------	
+	        eco3        
+	1	25%    	
+	2	45%     
+	3	56%     
+	4	70%     
+	5	90% 	
+
+
+SufficientLight
+>> Spp Shade	Probability
+>> Class	by Actual Shade
+>> ----------	--------------------	
+>>		0	1	2	3	4	5
+	1	1.0	0.5	0.25	0.0	0.0	0.0
+	2	1.0	1.0	0.5	0.25	0.0	0.0
+	3	1.0	1.0	1.0	0.5	0.25	0.0
+	4	1.0	1.0	1.0	1.0	0.5	0.25
+	5	0.1	0.5	1.0	1.0	1.0	1.0
+
+
+SpeciesParameters
+
+>> Species   Leaf	WoodyBiomass	Mortality	Growth	Leaf	
+>>	     Longevity	DecayRate	ShapeParam	Shape	Lignin%	
+>> --------  ---------	---------	----------	------	----    
+>> 	    
+abiebals   	3	0.1		10		0.25	0.252	
+acerrubr   	1	0.1		10		0.25	0.183	
+acersacc   	1	0.1		10		0.25	0.175	
+betualle   	1	0.1		10		0.25	0.219	
+betupapy   	1	0.1		10		0.25	0.201	
+fraxamer	1	0.1		10		0.25	0.144	
+piceglau   	3	0.1		10		0.25	0.249	
+pinubank   	2	0.1		10		0.25	0.266	
+pinuresi   	3	0.1		10		0.25	0.266	
+pinustro   	2	0.1		10		0.25	0.263	
+poputrem   	1	0.1		10		0.25	0.256	
+querrubr   	1	0.1		10		0.25	0.249	
+querelli   	1	0.1		10		0.25	0.149	
+thujocci 	3	0.1		10		0.25	0.262	
+tiliamer   	1	0.1		10		0.25	0.17	
+
+
+
+EcoregionParameters
+>>	AET (mm)
+eco3	600
+
+
+DynamicInputFile    			biomass-succession_DynamicInputs_s2e1.txt 
+
+FireReductionParameters
+>>	Severity	WoodLitter	Litter	
+>>	Fire		Reduct		Reduct	
+	1		0.0		0.5	
+	2		0.0		0.75	
+	3		0.0		1.0	
+
+HarvestReductionParameters
+>>	Name		WoodLitter	Litter	Cohort
+>>			Reduct		Reduct	Removal
+	MaxAgeClearcut	0.5		0.15	0.8	
+	PatchCutting	0.5		0.15	0.8	
+
+
+
+

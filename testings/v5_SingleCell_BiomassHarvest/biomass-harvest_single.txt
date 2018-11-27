@@ -1,0 +1,48 @@
+LandisData  "Biomass Harvest"
+
+
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep		1
+
+ManagementAreas 	./single3.tif
+Stands     		./single3.tif
+
+
+>> -------------------------
+>> HARVESTING PRESCRIPTIONS
+>> -------------------------
+
+>>---- PRESCRIPTION_1 ---------------------------------------
+
+Prescription PatchCutting
+    StandRanking	MaxCohortAge
+    SiteSelection 	Complete
+    CohortsRemoved SpeciesList
+	acerrubr	5-100 (90%)
+
+
+>> ----------------------------------
+>> HARVESTING IMPLEMENTATION 
+>> ---------------------------------
+
+    HarvestImplementations
+>>	Mgmt Area	Prescription		Harvest Area	BeginTime	EndTime
+>> 	---------   	------------   		------------   	---------- 	--------
+	3		PatchCutting	100%	10	11
+
+
+
+>> ------------
+>> OUTPUTS
+>> ----------
+
+PrescriptionMaps    harvest/biomass-harvest-prescripts-{timestep}.img
+BiomassMaps         harvest/biomass-removed-{timestep}.img
+EventLog            harvest/biomass-harvest-event-log.csv
+SummaryLog	    harvest/biomass-harvest-summary-log.csv
+
+
+
+
