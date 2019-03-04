@@ -1,6 +1,6 @@
 LandisData  Scenario
 
-Duration  15
+Duration  20
 
 Species   species_s2e1.txt
 

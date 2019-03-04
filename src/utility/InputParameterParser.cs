@@ -316,8 +316,8 @@ namespace Landis.Extension.Succession.Biomass
             InputVar<double> wred_pr = new InputVar<double>("Coarse Litter Reduction");
             InputVar<double> lred_pr = new InputVar<double>("Fine Litter Reduction");
             //InputVar<double> som_red_pr = new InputVar<double>("SOM Reduction");
-            InputVar<double> cohortw_red_pr = new InputVar<double>("Cohort Biomass Removal");
-            //InputVar<double> cohortl_red_pr = new InputVar<double>("Cohort Leaf Removal");
+            InputVar<double> cohortw_red_pr = new InputVar<double>("Cohort Wood Removal");
+            InputVar<double> cohortl_red_pr = new InputVar<double>("Cohort Leaf Removal");
 
 
             while (!AtEndOfInput)
@@ -339,6 +339,8 @@ namespace Landis.Extension.Succession.Biomass
                 ReadValue(cohortw_red_pr, currentLine);
                 harvReduction.CohortWoodReduction = cohortw_red_pr.Value;
 
+                ReadValue(cohortl_red_pr, currentLine);
+                harvReduction.CohortLeafReduction = cohortl_red_pr.Value;
                 GetNextLine();
             }
 

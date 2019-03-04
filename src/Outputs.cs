@@ -20,6 +20,7 @@ namespace Landis.Extension.Succession.Biomass
             double[] avgAG_NPP      = new double[PlugIn.ModelCore.Ecoregions.Count];
             double[] avgDefoliation = new double[PlugIn.ModelCore.Ecoregions.Count];
             double[] avgLitterB     = new double[PlugIn.ModelCore.Ecoregions.Count];
+            double[] avgWoodLitterB = new double[PlugIn.ModelCore.Ecoregions.Count];
 
 
             foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
@@ -28,6 +29,7 @@ namespace Landis.Extension.Succession.Biomass
                 avgAG_NPP[ecoregion.Index] = 0.0;
                 avgDefoliation[ecoregion.Index] = 0.0;
                 avgLitterB[ecoregion.Index] = 0.0;
+                avgWoodLitterB[ecoregion.Index] = 0.0;
             }
 
 
@@ -41,6 +43,8 @@ namespace Landis.Extension.Succession.Biomass
                 avgAG_NPP[ecoregion.Index]   += SiteVars.AGNPP[site];
                 avgDefoliation[ecoregion.Index] += SiteVars.Defoliation[site];
                 avgLitterB[ecoregion.Index] += SiteVars.Litter[site].Mass;
+                avgWoodLitterB[ecoregion.Index] += SiteVars.WoodyDebris[site].Mass;
+
             }
 
             foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
@@ -56,6 +60,7 @@ namespace Landis.Extension.Succession.Biomass
                     sl.AvgDefoliation = (avgDefoliation[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
                     sl.AvgLitterB = (avgLitterB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
                     sl.AvgLiveB = (avgLiveB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+                    sl.AvgWoodLitterB = (avgWoodLitterB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
 
                     PlugIn.summaryLog.AddObject(sl);
                     PlugIn.summaryLog.WriteToFile();

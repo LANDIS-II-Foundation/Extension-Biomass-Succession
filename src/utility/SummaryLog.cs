@@ -22,6 +22,9 @@ namespace Landis.Extension.Succession.Biomass
         [DataFieldAttribute(Desc = "Average LitterB")]
         public double AvgLitterB { get; set; }
 
+        [DataFieldAttribute(Desc = "Average WoodLitterB")]
+        public double AvgWoodLitterB { get; set; }
+
         [DataFieldAttribute(Desc = "Average Defoliation")]
         public double AvgDefoliation { get; set; }
 

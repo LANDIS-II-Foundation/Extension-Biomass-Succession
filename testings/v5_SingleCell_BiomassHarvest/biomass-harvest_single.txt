@@ -30,7 +30,7 @@ Prescription PatchCutting
     HarvestImplementations
 >>	Mgmt Area	Prescription		Harvest Area	BeginTime	EndTime
 >> 	---------   	------------   		------------   	---------- 	--------
-	3		PatchCutting	100%	10	11
+	3		PatchCutting	100%	12	13
 
 
 

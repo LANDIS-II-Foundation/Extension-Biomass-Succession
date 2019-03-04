@@ -18,7 +18,7 @@ MapCode 2
 
 >> old aspen-birch
 MapCode 3
-   acerrubr 10 30
+   acerrubr 10 30 50 70
 
 >> young northern hardwoods
 MapCode 4

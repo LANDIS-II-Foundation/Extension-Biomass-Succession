@@ -10,11 +10,13 @@ Timestep  			10
 SeedingAlgorithm  		WardSeedDispersal
 
 InitialCommunities      	./biomass-succession_InitialCommunities_s2e1.txt
-InitialCommunitiesMap   	./biomass-succession_InitialCommunities_s2e1.gis
+>>InitialCommunitiesMap   	./biomass-succession_InitialCommunities_s2e1.gis
+InitialCommunitiesMap   	./single3.tif
+
 
 ClimateConfigFile		./climate-generator-baseline.txt
 
-CalibrateMode 		yes
+CalibrateMode 		no
 
 >> SpinUpMortalityFraction 	0.0
 
@@ -74,7 +76,7 @@ tiliamer   	1	0.1		10		0.25	0.17
 
 EcoregionParameters
 >>	AET (mm)
-eco3	600
+eco3	200
 
 
 DynamicInputFile    			biomass-succession_DynamicInputs_s2e1.txt 
@@ -87,10 +89,9 @@ FireReductionParameters
 	3		0.0		1.0	
 
 HarvestReductionParameters
->>	Name		WoodLitter	Litter	Cohort
->>			Reduct		Reduct	Removal
-	MaxAgeClearcut	0.5		0.15	0.8	
-	PatchCutting	0.5		0.15	0.8	
+>>	Name		WoodLitter	Litter	CohortWood	CohortLeaf
+>>			Reduct		Reduct	Removal		Removal	
+	PatchCutting	1.0		1.0	1.0		0.0
 
 
 
