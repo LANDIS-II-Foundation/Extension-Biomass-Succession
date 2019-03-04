@@ -3,10 +3,10 @@
 This test was designed to demonstrate whether partial harvest and material left on site reflected intentions.
 
 Demonstration outputs:
-Biomass-succession-log-10harvest-0remove.csv
-Biomass-succession-log-90harvest-0remove.csv
-Biomass-succession-log-90harvest-50remove.csv
-Biomass-succession-log-90harvest-100remove.csv
+* Biomass-succession-log-10harvest-0remove.csv
+* Biomass-succession-log-90harvest-0remove.csv
+* Biomass-succession-log-90harvest-50remove.csv
+* Biomass-succession-log-90harvest-100remove.csv
 
 N-harvest:  The amount of partial harvest, 10% or 90%
 N-remove:  The amound of cohort wood removed from the site, 0%, 50%, 100%
