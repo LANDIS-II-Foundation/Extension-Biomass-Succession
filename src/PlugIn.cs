@@ -197,19 +197,23 @@ namespace Landis.Extension.Succession.Biomass
 
             Landis.Library.BiomassCohorts.ICohort cohort = eventArgs.Cohort;
 
-            double partialMortality = (double)eventArgs.Reduction; 
-            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY START: species={0}, age={1}, biomass={2}, eventReduction={3:0.00}.", cohort.Species.Name, cohort.Age, cohort.Biomass, eventArgs.Reduction);
-
+            double partialMortality = (double)eventArgs.Reduction;
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+            {
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY START: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY START: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Biomass);
+            }
             double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
 
             float foliarInput = (float) (partialMortality * nonWoodyFraction); // ((float) nonWoody * (float) fractionPartialMortality);
             float woodInput = (float)(partialMortality * woodyFraction); // ((float) woody * (float) fractionPartialMortality);
 
-            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
 
 
-            if (disturbanceType.IsMemberOf("disturbance:harvest"))
+                if (disturbanceType.IsMemberOf("disturbance:harvest"))
             {
                 SiteVars.HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
                 if (!Disturbed[site]) // this is the first cohort killed/damaged
@@ -239,15 +243,15 @@ namespace Landis.Extension.Succession.Biomass
                 foliarInput -= (float)foliarFireConsumption;
             }
 
-            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+                PlugIn.ModelCore.UI.WriteLine("      BIOMASS SUCCESSION PARTIAL MORTALITY ForestFloorInputs: Foliar={0:0.00}, Wood={1:0.0}.", foliarInput, woodInput);
+
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
 
             if (disturbanceType != null)
                 Disturbed[site] = true;
 
-            //PlugIn.ModelCore.UI.WriteLine("       BIOMASS SUCCESSION PARTIAL MORTALITY SUMMARY: Cohort Partial Mortality: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
-            //PlugIn.ModelCore.UI.WriteLine("           InputB/TotalB:  Foliar={0:0.00}/{1:0.00}, Wood={2:0.0}/{3:0.0}.", foliarInput, nonWoody, woodInput, woody);
 
             return;
         }
@@ -263,7 +267,8 @@ namespace Landis.Extension.Succession.Biomass
 
             if (disturbanceType != null)
             {
-                //PlugIn.ModelCore.UI.WriteLine("DISTURBANCE EVENT: Cohort Died: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, eventArgs.DisturbanceType);
+                if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION TOTAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
 
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
                 {
