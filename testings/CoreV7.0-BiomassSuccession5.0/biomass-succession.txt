@@ -87,10 +87,10 @@ FireReductionParameters
 	3		0.0		1.0	
 
 HarvestReductionParameters
->>	Name		WoodLitter	Litter	Cohort
->>			Reduct		Reduct	Removal
-	MaxAgeClearcut	0.5		0.15	0.8	
-	PatchCutting	1.0		1.0	1.0	
+>>	Name		WoodLitter	Litter	Cohort		Cohort
+>>			Reduct		Reduct	WoodRemoval	LeafRemoval
+	MaxAgeClearcut	0.5		0.15	0.8		0.0
+	PatchCutting	1.0		1.0	1.0		0.0
 
 
 

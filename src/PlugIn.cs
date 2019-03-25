@@ -8,6 +8,7 @@ using Landis.Library.InitialCommunities;
 using Landis.Library.BiomassCohorts;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Landis.Library.Metadata;
 
 namespace Landis.Extension.Succession.Biomass
@@ -25,6 +26,8 @@ namespace Landis.Extension.Succession.Biomass
         public static int FutureClimateBaseYear;
         public static MetadataTable<SummaryLog> summaryLog;
         public static IInputParameters Parameters;
+        private ICommunity initialCommunity;
+
 
         //---------------------------------------------------------------------
 
@@ -107,7 +110,6 @@ namespace Landis.Extension.Succession.Biomass
 
             Landis.Library.BiomassCohorts.Cohort.DeathEvent += CohortTotalMortality;
             Landis.Library.BiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
-            //AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             InitializeSites(Parameters.InitialCommunities, Parameters.InitialCommunitiesMap, modelCore);
         }
@@ -115,11 +117,10 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        protected override void InitializeSite(ActiveSite site,
-                                               ICommunity initialCommunity)
+        protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
         {
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); //.Clone();
+            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
             SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
             SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
         }
@@ -452,6 +453,40 @@ namespace Landis.Extension.Succession.Biomass
 
             return establishProbability > 0.0;
         }
+        public override void InitializeSites(string initialCommunitiesText, string initialCommunitiesMap, ICore modelCore)
+        {
+            ModelCore.UI.WriteLine("   Loading initial communities from file \"{0}\" ...", initialCommunitiesText);
+            Landis.Library.InitialCommunities.DatasetParser parser = new Landis.Library.InitialCommunities.DatasetParser(Timestep, ModelCore.Species);
+            Landis.Library.InitialCommunities.IDataset communities = Landis.Data.Load<Landis.Library.InitialCommunities.IDataset>(initialCommunitiesText, parser);
 
+            ModelCore.UI.WriteLine("   Reading initial communities map \"{0}\" ...", initialCommunitiesMap);
+            IInputRaster<uintPixel> map;
+            map = ModelCore.OpenRaster<uintPixel>(initialCommunitiesMap);
+            using (map)
+            {
+                uintPixel pixel = map.BufferPixel;
+                foreach (Site site in ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    uint mapCode = pixel.MapCode.Value;
+                    if (!site.IsActive)
+                        continue;
+
+                    //if (!modelCore.Ecoregion[site].Active)
+                    //    continue;
+
+                    //modelCore.Log.WriteLine("ecoregion = {0}.", modelCore.Ecoregion[site]);
+
+                    ActiveSite activeSite = (ActiveSite)site;
+                    initialCommunity = communities.Find(mapCode);
+                    if (initialCommunity == null)
+                    {
+                        throw new ApplicationException(string.Format("Unknown map code for initial community: {0}", mapCode));
+                    }
+
+                    InitializeSite(activeSite); 
+                }
+            }
+        }
     }
 }
