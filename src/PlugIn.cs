@@ -201,8 +201,8 @@ namespace Landis.Extension.Succession.Biomass
             double partialMortality = (double)eventArgs.Reduction;
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY START: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY START: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Biomass);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Biomass);
             }
             double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
@@ -211,7 +211,7 @@ namespace Landis.Extension.Succession.Biomass
             float woodInput = (float)(partialMortality * woodyFraction); // ((float) woody * (float) fractionPartialMortality);
 
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY II: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
 
 
                 if (disturbanceType.IsMemberOf("disturbance:harvest"))
@@ -245,7 +245,7 @@ namespace Landis.Extension.Succession.Biomass
             }
 
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                PlugIn.ModelCore.UI.WriteLine("      BIOMASS SUCCESSION PARTIAL MORTALITY ForestFloorInputs: Foliar={0:0.00}, Wood={1:0.0}.", foliarInput, woodInput);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY III: ForestFloorInputs: Foliar={0:0.00}, Wood={1:0.0}.", foliarInput, woodInput);
 
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
