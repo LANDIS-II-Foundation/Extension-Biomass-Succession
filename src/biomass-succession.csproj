@@ -5,7 +5,7 @@
     <AssemblyName>Landis.Extension.Succession.Biomass-v5</AssemblyName>
     <AssemblyTitle>Landis.Extension.Succession.Biomass-v5</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
-    <AssemblyVersion>5.1</AssemblyVersion>
+    <AssemblyVersion>5.2</AssemblyVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
@@ -16,11 +16,11 @@
     <Authors>LANDIS-II Foundation</Authors>
     <Product>Landis.Extension.Succession.Biomass-v5</Product>
     <Copyright>Landis-II-Foundation</Copyright>
-    <Version>5.1</Version>
+    <Version>5.2</Version>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
     <PackageReleaseNotes>.NET Standard 2.0 update</PackageReleaseNotes>
-    <FileVersion>7.0</FileVersion>
+    <FileVersion>5.2</FileVersion>
     <Company>LANDIS-II Foundation</Company>
   </PropertyGroup>
 
@@ -39,7 +39,7 @@
     <Reference Include="Landis.Library.BiomassCohorts-v3">
       <HintPath>lib\Landis.Library.BiomassCohorts-v3.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Climate-v3">
+    <Reference Include="Landis.Library.Climate-v4">
       <HintPath>lib\Landis.Library.Climate-v3.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Cohorts-v2">
@@ -54,7 +54,7 @@
     <Reference Include="Landis.Library.Parameters-v2">
       <HintPath>lib\Landis.Library.Parameters-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Succession-v7">
+    <Reference Include="Landis.Library.Succession-v8">
       <HintPath>lib\Landis.Library.Succession-v7.dll</HintPath>
     </Reference>
   </ItemGroup>
