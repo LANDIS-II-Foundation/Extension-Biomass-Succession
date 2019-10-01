@@ -37,9 +37,9 @@ namespace Landis.Extension.Succession.Biomass
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
-                int youngBiomass;  //ignored
+                //int youngBiomass;  //ignored
 
-                avgLiveB[ecoregion.Index] += Cohorts.ComputeBiomass(SiteVars.Cohorts[site], out youngBiomass);
+                avgLiveB[ecoregion.Index] += ComputeBiomass(SiteVars.Cohorts[site]); //, out youngBiomass);
                 avgAG_NPP[ecoregion.Index]   += SiteVars.AGNPP[site];
                 avgDefoliation[ecoregion.Index] += SiteVars.Defoliation[site];
                 avgLitterB[ecoregion.Index] += SiteVars.Litter[site].Mass;
@@ -86,6 +86,20 @@ namespace Landis.Extension.Succession.Biomass
                     outputRaster.WriteBufferPixel();
                 }
             }
+        }
+
+        private static int ComputeBiomass(ISiteCohorts cohorts)
+        {
+            int totalbiomass = 0;
+            foreach(ISpeciesCohorts spp in cohorts)
+            {
+                foreach (ICohort cohort in spp)
+                    totalbiomass += cohort.Biomass;
+
+            }
+
+            return totalbiomass;
+
         }
 
     }
