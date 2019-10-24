@@ -80,6 +80,7 @@ namespace Landis.Extension.Succession.Biomass
             {
                 Climate.Initialize(Parameters.ClimateConfigFile, false, modelCore);
                 FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
+                ClimateRegionData.Initialize(Parameters);
             }
 
             sufficientLight = Parameters.LightClassProbabilities;
@@ -136,6 +137,9 @@ namespace Landis.Extension.Succession.Biomass
                 SiteVars.CapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
 
             base.Run();
+
+            if (Timestep > 0)
+                ClimateRegionData.SetAllEcoregions_FutureAnnualClimate(ModelCore.CurrentTime);
 
             Outputs.WriteLogFile(PlugIn.ModelCore.CurrentTime);
 
