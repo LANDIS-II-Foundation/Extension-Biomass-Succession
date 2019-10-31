@@ -55,7 +55,7 @@
       <HintPath>lib\Landis.Library.Parameters-v2.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Succession-v8">
-      <HintPath>lib\Landis.Library.Succession-v7.dll</HintPath>
+      <HintPath>lib\Landis.Library.Succession-v8.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
