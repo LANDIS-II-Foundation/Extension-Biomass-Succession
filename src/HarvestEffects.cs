@@ -7,6 +7,7 @@ using Landis.Library.BiomassCohorts;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Landis.Extension.Succession.Biomass
@@ -172,23 +173,20 @@ namespace Landis.Extension.Succession.Biomass
             double woodLossMultiplier = 0.0;
             //double som_Multiplier = 0.0;
 
-            bool found = false;
-            foreach (HarvestReductions prescription in PlugIn.Parameters.HarvestReductionsTable)
-            {
-                if (SiteVars.HarvestPrescriptionName != null && prescriptionName.Trim() == prescription.PrescriptionName.Trim())
-                {
-                    litterLossMultiplier = prescription.FineLitterReduction;
-                    woodLossMultiplier = prescription.CoarseLitterReduction;
-                    //som_Multiplier = prescription.SOMReduction;
+            var prescription = GetPrescription(prescriptionName);
 
-                    found = true;
-                }
+            if (prescription != null)
+            {
+                litterLossMultiplier = prescription.FineLitterReduction;
+                woodLossMultiplier = prescription.CoarseLitterReduction;
+                //som_Multiplier = prescription.SOMReduction;
             }
-            if (!found)
+            else
             {
                 PlugIn.ModelCore.UI.WriteLine("   Prescription {0} not found in the Biomass Succession Harvest Effects Table", prescriptionName);
                 return;
             }
+
             //PlugIn.ModelCore.UI.WriteLine("   LitterLoss={0:0.00}, woodLoss={1:0.00}, SOM_loss={2:0.00}, SITE={3}", litterLossMultiplier, woodLossMultiplier, som_Multiplier, site);
 
             // litter first
@@ -201,5 +199,41 @@ namespace Landis.Extension.Succession.Biomass
 
         }
 
+        private static HarvestReductions GetPrescription(string prescriptionName)
+        {
+            if (SiteVars.HarvestPrescriptionName == null)
+                return null;
+
+            prescriptionName = prescriptionName.Trim();
+
+            var prescription = PlugIn.Parameters.HarvestReductionsTable.FirstOrDefault(p =>
+                prescriptionName == p.PrescriptionName.Trim());
+
+            if (prescription != null)
+                return prescription;
+
+            var templates = PlugIn.Parameters.HarvestReductionsTable.Where(p => p.PrescriptionName.Contains("*"));
+
+            var resultCharNumbers = 0;
+
+            foreach (var template in templates)
+            {
+                int charNumbers = 0;
+
+                for (int i = 0; i < template.PrescriptionName.Trim().Length; i++)
+                {
+                    if (prescriptionName.Length > i && prescriptionName[i] == template.PrescriptionName[i])
+                        charNumbers++;
+                }
+
+                if (charNumbers >= resultCharNumbers)
+                {
+                    resultCharNumbers = charNumbers;
+                    prescription = template;
+                }
+            }
+
+            return prescription;
+        }
     }
 }
