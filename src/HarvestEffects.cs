@@ -206,12 +206,14 @@ namespace Landis.Extension.Succession.Biomass
 
             prescriptionName = prescriptionName.Trim();
 
+            // Find prescription from input (HarvestReductionsTable)
             var prescription = PlugIn.Parameters.HarvestReductionsTable.FirstOrDefault(p =>
                 prescriptionName == p.PrescriptionName.Trim());
 
             if (prescription != null)
                 return prescription;
 
+            // If prescription with specific name is not found trying to find relevant template
             var templates = PlugIn.Parameters.HarvestReductionsTable.Where(p => p.PrescriptionName.Contains("*"));
 
             var resultCharNumbers = 0;
@@ -219,13 +221,15 @@ namespace Landis.Extension.Succession.Biomass
             foreach (var template in templates)
             {
                 int charNumbers = 0;
-
+                
+                // Calculate the number of characters matching the template
                 for (int i = 0; i < template.PrescriptionName.Trim().Length; i++)
                 {
                     if (prescriptionName.Length > i && prescriptionName[i] == template.PrescriptionName[i])
                         charNumbers++;
                 }
 
+                // Select template with the largest number of matches in the name 
                 if (charNumbers >= resultCharNumbers)
                 {
                     resultCharNumbers = charNumbers;
