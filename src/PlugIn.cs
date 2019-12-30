@@ -138,7 +138,7 @@ namespace Landis.Extension.Succession.Biomass
 
             base.Run();
 
-            if (Timestep > 0)
+            if (Timestep > 0 && Parameters.ClimateConfigFile != null)
                 ClimateRegionData.SetAllEcoregions_FutureAnnualClimate(ModelCore.CurrentTime);
 
             Outputs.WriteLogFile(PlugIn.ModelCore.CurrentTime);

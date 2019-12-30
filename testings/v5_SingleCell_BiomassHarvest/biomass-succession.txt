@@ -14,7 +14,7 @@ InitialCommunities      	./biomass-succession_InitialCommunities_s2e1.txt
 InitialCommunitiesMap   	./single3.tif
 
 
-ClimateConfigFile		./climate-generator-baseline.txt
+>> ClimateConfigFile		./climate-generator-baseline.txt
 
 CalibrateMode 		no
 
