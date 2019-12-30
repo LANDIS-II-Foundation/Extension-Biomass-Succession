@@ -223,7 +223,7 @@ namespace Landis.Extension.Succession.Biomass
                 SiteVars.HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
                 if (!Disturbed[site]) // this is the first cohort killed/damaged
                 {
-                    HarvestEffects.ReduceLayers(SiteVars.HarvestPrescriptionName[site], site);
+                    HarvestEffects.ReduceLayers(site);
                 }
                 woodInput  -= woodInput * (float)HarvestEffects.GetCohortWoodRemoval(site);
                 foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemoval(site);
@@ -300,7 +300,7 @@ namespace Landis.Extension.Succession.Biomass
                         SiteVars.HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
                         if (!Disturbed[site])  // the first cohort killed/damaged
                         {
-                            HarvestEffects.ReduceLayers(SiteVars.HarvestPrescriptionName[site], site);
+                            HarvestEffects.ReduceLayers(site);
                         }
                         woodInput -= (int)(woodInput * (float)HarvestEffects.GetCohortWoodRemoval(site));
                         foliarInput -= (int)(foliarInput * (float)HarvestEffects.GetCohortLeafRemoval(site));

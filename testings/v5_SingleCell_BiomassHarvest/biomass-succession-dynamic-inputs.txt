@@ -17,4 +17,4 @@ LandisData  "Dynamic Input Data"
 0 eco3  querrubr       0.66 	1017	26000	
 0 eco3  thujocci       0.76 	1090	26000	
 0 eco3  tiliamer       0.54 	1078	26000	
-0 eco3  tsugcana       0.22 	1096	26000	
+>>0 eco3  tsugcana       0.22 	1096	26000	

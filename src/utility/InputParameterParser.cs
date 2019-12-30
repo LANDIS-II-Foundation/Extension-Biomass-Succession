@@ -18,7 +18,6 @@ namespace Landis.Extension.Succession.Biomass
             public const string Timestep = "Timestep";
             public const string SeedingAlgorithm = "SeedingAlgorithm";
             public const string ClimateConfigFile = "ClimateConfigFile";
-            //public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
             public const string DynamicInputFile = "DynamicInputFile";
             public const string CalibrateMode = "CalibrateMode";
             public const string FireReductionParameters = "FireReductionParameters";
@@ -328,7 +327,7 @@ namespace Landis.Extension.Succession.Biomass
                 parameters.HarvestReductionsTable.Add(harvReduction);
 
                 ReadValue(prescriptionName, currentLine);
-                harvReduction.PrescriptionName = prescriptionName.Value;
+                harvReduction.Name = prescriptionName.Value;
 
                 ReadValue(wred_pr, currentLine);
                 harvReduction.CoarseLitterReduction = wred_pr.Value;

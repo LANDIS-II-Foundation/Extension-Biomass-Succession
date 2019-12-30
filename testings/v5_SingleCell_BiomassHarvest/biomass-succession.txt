@@ -79,7 +79,7 @@ EcoregionParameters
 eco3	200
 
 
-DynamicInputFile    			biomass-succession_DynamicInputs_s2e1.txt 
+DynamicInputFile    			biomass-succession-Dynamic-Inputs.txt 
 
 FireReductionParameters
 >>	Severity	WoodLitter	Litter	
@@ -91,7 +91,7 @@ FireReductionParameters
 HarvestReductionParameters
 >>	Name		WoodLitter	Litter	CohortWood	CohortLeaf
 >>			Reduct		Reduct	Removal		Removal	
-	PatchCutting	1.0		1.0	1.0		0.0
+	Patch*	1.0		1.0	1.0		0.0
 
 
 

@@ -23,7 +23,7 @@ namespace Landis.Extension.Succession.Biomass
         private double cohortWoodReduction;
         private double cohortLeafReduction;
 
-        public string PrescriptionName
+        public string Name
         {
             get
             {
@@ -132,7 +132,8 @@ namespace Landis.Extension.Succession.Biomass
             {
                 //PlugIn.ModelCore.UI.WriteLine("   PrescriptionName={0}, Site={1}.", prescription.PrescriptionName, site);
 
-                if (SiteVars.HarvestPrescriptionName[site].Trim() == prescription.PrescriptionName.Trim())
+                if (ComparePrescriptionNames(prescription.Name, site))
+                    //SiteVars.HarvestPrescriptionName[site].Trim() == prescription.Name.Trim())
                 {
                     woodRemoval = prescription.CohortWoodReduction;
                 }
@@ -150,7 +151,8 @@ namespace Landis.Extension.Succession.Biomass
 
             foreach (HarvestReductions prescription in PlugIn.Parameters.HarvestReductionsTable)
             {
-                if (SiteVars.HarvestPrescriptionName[site].Trim() == prescription.PrescriptionName.Trim())
+                if (ComparePrescriptionNames(prescription.Name, site))
+                    //SiteVars.HarvestPrescriptionName[site].Trim() == prescription.Name.Trim())
                 {
                     leafRemoval = prescription.CohortLeafReduction;
                 }
@@ -164,7 +166,7 @@ namespace Landis.Extension.Succession.Biomass
         /// <summary>
         /// Computes fire effects on litter, coarse woody debris, duff layer.
         /// </summary>
-        public static void ReduceLayers(string prescriptionName, Site site)
+        public static void ReduceLayers(Site site)
         {
             //PlugIn.ModelCore.UI.WriteLine("   Calculating harvest induced layer reductions...");
 
@@ -172,13 +174,16 @@ namespace Landis.Extension.Succession.Biomass
             double woodLossMultiplier = 0.0;
             //double som_Multiplier = 0.0;
 
+            string harvestPrescriptionName = SiteVars.HarvestPrescriptionName[site];
+
             bool found = false;
-            foreach (HarvestReductions prescription in PlugIn.Parameters.HarvestReductionsTable)
+            foreach (HarvestReductions prescriptionTableEntry in PlugIn.Parameters.HarvestReductionsTable)
             {
-                if (SiteVars.HarvestPrescriptionName != null && prescriptionName.Trim() == prescription.PrescriptionName.Trim())
+                if (SiteVars.HarvestPrescriptionName != null && ComparePrescriptionNames(prescriptionTableEntry.Name, site))
+                    //prescriptionName.Trim() == prescriptionTableEntry.Name.Trim())
                 {
-                    litterLossMultiplier = prescription.FineLitterReduction;
-                    woodLossMultiplier = prescription.CoarseLitterReduction;
+                    litterLossMultiplier = prescriptionTableEntry.FineLitterReduction;
+                    woodLossMultiplier = prescriptionTableEntry.CoarseLitterReduction;
                     //som_Multiplier = prescription.SOMReduction;
 
                     found = true;
@@ -186,7 +191,7 @@ namespace Landis.Extension.Succession.Biomass
             }
             if (!found)
             {
-                PlugIn.ModelCore.UI.WriteLine("   Prescription {0} not found in the Biomass Succession Harvest Effects Table", prescriptionName);
+                PlugIn.ModelCore.UI.WriteLine("   WARNING: Prescription {0} not found in the Biomass Succession Harvest Effects Table", harvestPrescriptionName);
                 return;
             }
             //PlugIn.ModelCore.UI.WriteLine("   LitterLoss={0:0.00}, woodLoss={1:0.00}, SOM_loss={2:0.00}, SITE={3}", litterLossMultiplier, woodLossMultiplier, som_Multiplier, site);
@@ -200,6 +205,25 @@ namespace Landis.Extension.Succession.Biomass
 
 
         }
+
+        public static bool ComparePrescriptionNames(string prescriptionTableName, Site site)
+        {
+            string harvestPrescriptionName = SiteVars.HarvestPrescriptionName[site].Trim();
+            string tablePrescriptionName = prescriptionTableName.Trim();
+
+            if (harvestPrescriptionName == tablePrescriptionName)
+                return true;
+            else if (tablePrescriptionName.EndsWith("*"))
+            {
+                if (harvestPrescriptionName.Contains(tablePrescriptionName.TrimEnd()))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
 
     }
 }
