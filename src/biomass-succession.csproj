@@ -5,23 +5,23 @@
     <AssemblyName>Landis.Extension.Succession.Biomass-v5</AssemblyName>
     <AssemblyTitle>Landis.Extension.Succession.Biomass-v5</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
-    <AssemblyVersion>5.2</AssemblyVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
+    <PackageReleaseNotes>.NET Standard 2.0 update</PackageReleaseNotes>
     <NeutralLanguage>English</NeutralLanguage>
-    <Authors>LANDIS-II Foundation</Authors>
     <Product>Landis.Extension.Succession.Biomass-v5</Product>
-    <Copyright>Landis-II-Foundation</Copyright>
-    <Version>5.2</Version>
+    <Authors>LANDIS-II Foundation</Authors>
+    <Copyright>LANDIS-II Foundation</Copyright>
+    <Company>LANDIS-II Foundation</Company>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
-    <PackageReleaseNotes>.NET Standard 2.0 update</PackageReleaseNotes>
-    <FileVersion>5.2</FileVersion>
-    <Company>LANDIS-II Foundation</Company>
+    <AssemblyVersion>5.2.2</AssemblyVersion>
+    <Version>5.2.2</Version>
+    <FileVersion>5.2.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
