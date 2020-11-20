@@ -1,4 +1,4 @@
-# What is the Biomass Extension?
+# What is the Biomass Succession Extension?
 
 Biomass succession simulates changes in the biomass of each cohort dependent upon age, competition, and disturbance. The extension has been a popular tool when the focus of the research is on aboveground forest dynamics and when consideration of below ground dynamics is not important. Relative to succession extensions that track all possible Carbon pools (NECN Succession and Forest Carbon Succession), it is relatively simple. 
 
