@@ -1,55 +1,53 @@
-# What is NECN?
+# What is the Biomass Extension?
 
-The Net Ecosystem Carbon & Nitrogen (NECN) Succession extension implements succession with full accounting of above and below ground carbon and nitrogen. Aboveground biomass generally follows the behavior of previous Biomass Succession extensions with cohorts that have biomass (g m-2). In addition, below ground processing of Carbon and Nitrogen is simulated following the logic of the Century nutrient cycling model (v4.0). 
+Biomass succession simulates changes in the biomass of each cohort dependent upon age, competition, and disturbance. The extension has been a popular tool when the focus of the research is on aboveground forest dynamics and when consideration of below ground dynamics is not important. Relative to succession extensions that track all possible Carbon pools (NECN Succession and Forest Carbon Succession), it is relatively simple. 
+
+The Biomass Succession Extension generally follows the methods outlined in Scheller and Mladenoff (2004). Biomass Succession calculates how cohorts reproduce, age, and die and how cohort biomass (g m-2) changes through time. The Biomass Succession extension also tracks dead biomass over time, divided into two pools: woody and leaf litter. 
+
+Versions 2 and 3 of the Biomass Succession extension is conceptually nearly identical to version 1.x, although the inputs have changed. Notably, the user can now specify the probability of establishment given the species shade tolerance and site shade. Also, the user now specifies the maximum biomass by species and ecoregion, allowing better representation of shrubs and grasses. Leaf litter decay rates are no longer input and are a function of species leaf lignin and ecoregion actual evapotranspiration. 
 
 # Features
 
-- [x] Estimate Net Ecosystem Exchange.
-- [x] Estimate Actual and Potential Evapotranspiration, Climatic Water Deficit, and Available Soil Water.
-- [x] Estimate smoke emissions from wildfires and prescribed fires.
-- [x] Species parameters input as CSV delimited files.
-- [x] Estimate Soil Organic Carbon, Soil Nitrogen, Nitrogen fluxes
+- [x] Relatively few parameters organized by ecoregions.
+- [x] Provides optional initiation of the Climate Library, for incorporating monthly or daily climate forecasts.
 
 # Release Notes
 
-- Latest official release: Version 6.4.1 — May 2020
-- This extension was formerly named Century Succession.
-- [NECN User Guide](https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession/blob/master/docs/LANDIS-II%20Net%20Ecosystem%20CN%20Succession%20v6.4%20User%20Guide.pdf).
+- Latest official release: Version 5.2.2 â€” January 2020
+- [Biomass Succession User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v5.0%20User%20Guide.pdf).
 - [User Guide for Climate Library](https://github.com/LANDIS-II-Foundation/Library-Climate/blob/master/docs/LANDIS-II%20Climate%20Library%20v4.1%20User%20Guide.pdf)
 - Full release details found in the NECN User Guide and on GitHub.
 
 # Requirements
 
-To use NECN, you need:
+To use Biomass Succession, you need:
 
 - The [LANDIS-II model v7.0](http://www.landis-ii.org/install) installed on your computer.
 - Example files (see below)
 
 # Download
 
-Version 6.4.1 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession/blob/master/deploy/past-releases/LANDIS-II-V7%20NECN%20Succession%206.4.1-setup.exe). To install it on your computer, just launch the installer.
+Version 5.2.2 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V7%20Biomass%20Succession%205.2.2-setup.exe). To install it on your computer, just launch the installer.
 
 # Citation
 
-How to cite: Scheller, R.M., D. Hua, P.V. Bolstad, R. Birdsey, D.J. Mladenoff. 2011. The effects of forest harvest intensity in combination with wind disturbance on carbon dynamics in a Lake States mesic landscape. Ecological Modelling 222: 144-153.
+Scheller, R. M. and Mladenoff, D. J. A forest growth and biomass module for a landscape simulation model, LANDIS: Design, validation, and application. Ecological Modelling. 2004; 180(1):211-229. 
 
 # Example Files
 
 LANDIS-II requires a global parameter file for your scenario, and then different parameter files for each extension.
 
-Example files are [here](https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession/tree/master/testing/Core7-NECN6.4/ExampleNECNv64.zip).
+Example files are [here](https://github.com/LANDIS-II-Foundation/UPDATE NEXT.zip).
 
 # Support
 
 If you have a question, please contact Robert Scheller at rschell@ncsu. 
 You can also ask for help in the [LANDIS-II users group](http://www.landis-ii.org/users).
 
-If you come across any issue or suspected bug when using NECN, please post about it in the [issue section of the Github repository](https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession/issues).
+If you come across any issue or suspected bug, please post about it in the [issue section of the Github repository](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/issues).
 
 # Author
 
 [The LANDIS-II Foundation](http://www.landis-ii.org)
-
-Professor at the North Carolina State University
 
 Mail : rschell@ncsu.edu
