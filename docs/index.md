@@ -27,7 +27,7 @@ To use Biomass Succession, you need:
 
 # Download
 
-Version 5.2.2 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V7%20Biomass%20Succession%205.2.2-setup.exe). To install it on your computer, just launch the installer.
+Version 5.2.2 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V7%20Biomass%20Succession%205.2.1-setup.exe). To install it on your computer, just launch the installer.
 
 # Citation
 
@@ -37,14 +37,14 @@ Scheller, R. M. and Mladenoff, D. J. A forest growth and biomass module for a la
 
 LANDIS-II requires a global parameter file for your scenario, and then different parameter files for each extension.
 
-Example files are [here](https://github.com/LANDIS-II-Foundation/UPDATE NEXT.zip).
+Example files are [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/testings/CoreV7.0-BiomassSuccession5.0/biomass-succession_example.zip).
 
 # Support
 
-If you have a question, please contact Robert Scheller at rschell@ncsu. 
+If you have a question, please contact Robert Scheller. 
 You can also ask for help in the [LANDIS-II users group](http://www.landis-ii.org/users).
 
-If you come across any issue or suspected bug, please post about it in the [issue section of the Github repository](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/issues).
+If you come across any issue or suspected bug, please post about it in the [issue section of the Github repository](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/issues) (GitID required).
 
 # Author
 
