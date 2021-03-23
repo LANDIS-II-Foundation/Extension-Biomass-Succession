@@ -19,9 +19,9 @@
     <Company>LANDIS-II Foundation</Company>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
-    <AssemblyVersion>5.2.2</AssemblyVersion>
-    <Version>5.2.2</Version>
-    <FileVersion>5.2.2</FileVersion>
+    <AssemblyVersion>5.3</AssemblyVersion>
+    <Version>5.3</Version>
+    <FileVersion>5.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
       <HintPath>lib\Landis.Library.BiomassCohorts-v3.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Climate-v4">
-      <HintPath>lib\Landis.Library.Climate-v4.dll</HintPath>
+      <HintPath>lib\Landis.Library.Climate-v4.2.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Cohorts-v2">
       <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
