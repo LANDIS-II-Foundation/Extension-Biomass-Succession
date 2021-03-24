@@ -14,7 +14,7 @@ Versions 2 and 3 of the Biomass Succession extension is conceptually nearly iden
 # Release Notes
 
 - Latest official release: Version 5.3 — March 2021
-- [Biomass Succession User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v5.0%20User%20Guide.pdf).
+- [Biomass Succession User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v5%20User%20Guide.pdf).
 - [User Guide for Climate Library](https://github.com/LANDIS-II-Foundation/Library-Climate/blob/master/docs/LANDIS-II%20Climate%20Library%20v4.2%20User%20Guide.pdf)
 - Full release details found in the NECN User Guide and on GitHub.
 
@@ -27,7 +27,7 @@ To use Biomass Succession, you need:
 
 # Download
 
-Version 5.2.2 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V7%20Biomass%20Succession%205.3-setup.exe). To install it on your computer, just launch the installer.
+The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V7%20Biomass%20Succession%205.3-setup.exe). To install it on your computer, just launch the installer.
 
 # Citation
 
