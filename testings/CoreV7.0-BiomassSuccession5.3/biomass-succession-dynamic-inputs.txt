@@ -17,4 +17,19 @@ LandisData  "Dynamic Input Data"
 0 101  querrubr       0.66 	1017	26000	
 0 101  thujocci       0.76 	1090	26000	
 0 101  tiliamer       0.54 	1078	26000	
->>0 101  tsugcana       0.22 	1096	26000	
+0 102  abiebals       0.9	886	26000	  
+0 102  acerrubr       1.0  	1175	26000	
+0 102  acersacc       0.82 	1106	26000	
+0 102  betualle       0.64 	1202	26000	
+0 102  betupapy       1.0  	1202	26000	
+0 102  fraxamer       0.18 	1202	26000	
+0 102  piceglau       0.58 	969	26000	
+0 102  pinubank       1.0  	1130	26000	
+0 102  pinuresi       0.56 	1017	26000	
+0 102  pinustro       0.72 	1090	26000	
+0 102  poputrem       1.0  	1078	26000	
+0 102  querelli       0.96 	1096	26000	
+0 102  querrubr       0.66 	1017	26000	
+0 102  thujocci       0.76 	1090	26000	
+0 102  tiliamer       0.54 	1078	26000	
+
