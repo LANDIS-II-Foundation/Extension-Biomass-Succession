@@ -20,7 +20,7 @@ namespace Landis.Extension.Succession.Biomass
             public const string Timestep = "Timestep";
             public const string SeedingAlgorithm = "SeedingAlgorithm";
             public const string ClimateConfigFile = "ClimateConfigFile";
-            public const string DynamicInputFile = "DynamicInputFile";
+            public const string DynamicInputFile = "SpeciesEcoregionDataFile";
             public const string CalibrateMode = "CalibrateMode";
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
@@ -139,7 +139,7 @@ namespace Landis.Extension.Succession.Biomass
             //  Shade classes are in increasing order.
 
             ReadName(SufficientLight);
-            const string SpeciesParameters = "SpeciesParameters";
+            const string SpeciesParameters = "SpeciesDataFile";
 
 
             InputVar<byte> sc = new InputVar<byte>("Shade Class");
@@ -202,44 +202,59 @@ namespace Landis.Extension.Succession.Biomass
 
             //-------------------------
             //  SpeciesParameters table
+            InputVar<string> sppInputFile = new InputVar<string>("SpeciesDataFile");
+            ReadVar(sppInputFile);
+            CSVParser sppParser = new CSVParser();
+            DataTable speciesTable = sppParser.ParseToDataTable(sppInputFile.Value);
 
-            ReadName("SpeciesParameters");
-            const string EcoregionParameters = "EcoregionParameters";
+            foreach (DataRow row in speciesTable.Rows)
+            {
+                ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
+                parameters.SetLeafLongevity(species, System.Convert.ToDouble(row["LeafLongevity"]));
+                parameters.SetWoodyDecayRate(species, System.Convert.ToDouble(row["WoodDecayRate"]));
+                parameters.SetMortCurveShapeParm(species, System.Convert.ToDouble(row["MortalityCurve"]));
+                parameters.SetGrowthCurveShapeParm(species, System.Convert.ToDouble(row["GrowthCurve"]));
+                parameters.SetLeafLignin(species, System.Convert.ToDouble(row["LeafLignin"]));
 
-            speciesLineNums.Clear();  //  If parser re-used (i.e., for testing purposes)
-
-            InputVar<double> leafLongevity = new InputVar<double>("Leaf Longevity");
-            InputVar<double> woodyDecayRate = new InputVar<double>("Woody Decay Rate");
-            InputVar<double> mortCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
-            InputVar<double> growthCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
-            InputVar<double> leafLignin = new InputVar<double>("Leaf Percent Lignin");
-            InputVar<double> maxlai = new InputVar<double>("Maximum LAI");
-            InputVar<double> lec = new InputVar<double>("Light extinction coefficient");
-            InputVar<double> pctBio = new InputVar<double>("Pct Biomass Max LAI");
-            //string lastColumn = "the " + mortCurveShapeParm.Name + " column";
-
-            while (! AtEndOfInput && CurrentName != EcoregionParameters) {
-                StringReader currentLine = new StringReader(CurrentLine);
-                ISpecies species = ReadSpecies(currentLine);
-
-                ReadValue(leafLongevity, currentLine);
-                parameters.SetLeafLongevity(species, leafLongevity.Value);
-
-                ReadValue(woodyDecayRate, currentLine);
-                parameters.SetWoodyDecayRate(species, woodyDecayRate.Value);
-
-                ReadValue(mortCurveShapeParm, currentLine);
-                parameters.SetMortCurveShapeParm(species, mortCurveShapeParm.Value);
-
-                ReadValue(growthCurveShapeParm, currentLine);
-                parameters.SetGrowthCurveShapeParm(species, growthCurveShapeParm.Value);
-
-                ReadValue(leafLignin, currentLine);
-                parameters.SetLeafLignin(species, leafLignin.Value);
-                
-                CheckNoDataAfter(leafLignin.Name, currentLine);
-                GetNextLine();
             }
+
+            //    ReadName("SpeciesParameters");
+            //const string EcoregionParameters = "EcoregionParameters";
+
+            //speciesLineNums.Clear();  
+
+            //InputVar<double> leafLongevity = new InputVar<double>("Leaf Longevity");
+            //InputVar<double> woodyDecayRate = new InputVar<double>("Woody Decay Rate");
+            //InputVar<double> mortCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
+            //InputVar<double> growthCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
+            //InputVar<double> leafLignin = new InputVar<double>("Leaf Percent Lignin");
+            //InputVar<double> maxlai = new InputVar<double>("Maximum LAI");
+            //InputVar<double> lec = new InputVar<double>("Light extinction coefficient");
+            //InputVar<double> pctBio = new InputVar<double>("Pct Biomass Max LAI");
+            ////string lastColumn = "the " + mortCurveShapeParm.Name + " column";
+
+            //while (! AtEndOfInput && CurrentName != EcoregionParameters) {
+            //    StringReader currentLine = new StringReader(CurrentLine);
+            //    ISpecies species = ReadSpecies(currentLine);
+
+            //    ReadValue(leafLongevity, currentLine);
+            //    parameters.SetLeafLongevity(species, leafLongevity.Value);
+
+            //    ReadValue(woodyDecayRate, currentLine);
+            //    parameters.SetWoodyDecayRate(species, woodyDecayRate.Value);
+
+            //    ReadValue(mortCurveShapeParm, currentLine);
+            //    parameters.SetMortCurveShapeParm(species, mortCurveShapeParm.Value);
+
+            //    ReadValue(growthCurveShapeParm, currentLine);
+            //    parameters.SetGrowthCurveShapeParm(species, growthCurveShapeParm.Value);
+
+            //    ReadValue(leafLignin, currentLine);
+            //    parameters.SetLeafLignin(species, leafLignin.Value);
+
+            //    CheckNoDataAfter(leafLignin.Name, currentLine);
+            //    GetNextLine();
+            //}
 
             ReadName("EcoregionParameters");
 
@@ -265,14 +280,14 @@ namespace Landis.Extension.Succession.Biomass
             }
 
 
-            InputVar<string> dynInputFile = new InputVar<string>(Names.DynamicInputFile);
+            InputVar<string> dynInputFile = new InputVar<string>("SpeciesEcoregionDataFile");
             ReadVar(dynInputFile);
-            CSVParser speciesParser = new CSVParser();
-            DataTable speciesTable = speciesParser.ParseToDataTable(dynInputFile.Value);
+            CSVParser sppEcoParser = new CSVParser();
+            DataTable sppEcoTable = sppEcoParser.ParseToDataTable(dynInputFile.Value);
 
             SpeciesData.SppEcoData = new Dictionary<int, IDynamicInputRecord[,]>();
 
-            foreach (DataRow row in speciesTable.Rows)
+            foreach (DataRow row in sppEcoTable.Rows)
             {
                 int year = System.Convert.ToInt32(row["Year"]);
 
@@ -471,7 +486,7 @@ namespace Landis.Extension.Succession.Biomass
         }
         private ISpecies ReadSpecies(string speciesName)
         {
-            ISpecies species = PlugIn.ModelCore.Species[speciesName];
+            ISpecies species = PlugIn.ModelCore.Species[speciesName.Trim()];
             if (species == null)
                 throw new InputValueException(speciesName,
                                               "{0} is not a species name.",
