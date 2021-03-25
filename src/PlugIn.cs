@@ -88,7 +88,7 @@ namespace Landis.Extension.Succession.Biomass
             SpeciesData.Initialize(Parameters);
             EcoregionData.Initialize(Parameters);
             //DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
-            SpeciesData.ChangeDynamicParameters(0);  // Year 0
+            SpeciesData.GetAnnualData(0);  // Year 0
             FireEffects.Initialize(Parameters);
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
@@ -359,7 +359,7 @@ namespace Landis.Extension.Succession.Biomass
             for (int y = 1; y <= years; ++y)
             {
                 if (PlugIn.ModelCore.CurrentTime > 0)
-                    SpeciesData.ChangeDynamicParameters(PlugIn.ModelCore.CurrentTime + y - 1);
+                    SpeciesData.GetAnnualData(PlugIn.ModelCore.CurrentTime + y - 1);
 
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;

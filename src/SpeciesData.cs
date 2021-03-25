@@ -44,7 +44,7 @@ namespace Landis.Extension.Succession.Biomass
 
         }
 
-        public static void ChangeDynamicParameters(int year)
+        public static void GetAnnualData(int year)
         {
 
             if(SpeciesData.SppEcoData.ContainsKey(year))
@@ -70,8 +70,19 @@ namespace Landis.Extension.Succession.Biomass
 
                         //if (DynamicInputs.TimestepData[species.Index, ecoregion.Index] == null)
                         //    continue;
-                        
-                        EstablishProbability[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbEstablish;
+
+                        try
+                        {
+                            EstablishProbability[species, ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbEstablish;
+                        } catch
+                        {
+                            PlugIn.ModelCore.UI.WriteLine("  Spp or Ecoregion Not Found = {0},{1}.  ALL VALUES = 0.0", species.Name, ecoregion.Name);
+                            EstablishProbability[species, ecoregion] = 0.0;
+                            MortalityProbability[species, ecoregion] = 0.0;
+                            ANPP_MAX_Spp[species, ecoregion] = 0;
+                            B_MAX_Spp[species, ecoregion] = 0;
+                            continue;
+                        }
                         MortalityProbability[species, ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbMortality;
                         ANPP_MAX_Spp[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ANPP_MAX_Spp;
                         B_MAX_Spp[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].B_MAX_Spp;

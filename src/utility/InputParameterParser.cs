@@ -285,14 +285,14 @@ namespace Landis.Extension.Succession.Biomass
 
 
                 ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
-                IEcoregion ecoregion = GetEcoregion(System.Convert.ToInt32(row["EcoregionIndex"]));
+                IEcoregion ecoregion = GetEcoregion(System.Convert.ToString(row["EcoregionName"]));
 
                 IDynamicInputRecord dynamicInputRecord = new DynamicInputRecord();
 
-                dynamicInputRecord.ProbEstablish = System.Convert.ToDouble(row["PrEstablish"]);
-                dynamicInputRecord.ProbMortality = System.Convert.ToDouble(row["PrMortality"]);
+                dynamicInputRecord.ProbEstablish = System.Convert.ToDouble(row["ProbEstablish"]);
+                dynamicInputRecord.ProbMortality = System.Convert.ToDouble(row["ProbMortality"]);
                 dynamicInputRecord.ANPP_MAX_Spp = System.Convert.ToInt32(row["ANPPmax"]);
-                dynamicInputRecord.B_MAX_Spp = System.Convert.ToInt32(row["ANPPmax"]);
+                dynamicInputRecord.B_MAX_Spp = System.Convert.ToInt32(row["BiomassMax"]);
 
                 SpeciesData.SppEcoData[year][species.Index, ecoregion.Index] = dynamicInputRecord;
 
@@ -373,20 +373,6 @@ namespace Landis.Extension.Succession.Biomass
                 harvReduction.CohortLeafReduction = cohortl_red_pr.Value;
                 GetNextLine();
             }
-
-
-
-            //string lastParameter = null;
-            //if (! AtEndOfInput && CurrentName == Names.AgeOnlyDisturbanceParms) {
-            //    InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
-            //    ReadVar(ageOnlyDisturbanceParms);
-            //    parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
-
-            //    lastParameter = "the " + Names.AgeOnlyDisturbanceParms + " parameter";
-            //}
-
-            //if (lastParameter != null)
-            //    CheckNoDataAfter(lastParameter);
 
             return parameters;
         }
@@ -473,9 +459,9 @@ namespace Landis.Extension.Succession.Biomass
 
             return ecoregions;
         }
-        private IEcoregion GetEcoregion(int ecoregionIndex)
+        private IEcoregion GetEcoregion(string ecoName)
         {
-            IEcoregion ecoregion = PlugIn.ModelCore.Ecoregions[ecoregionIndex];
+            IEcoregion ecoregion = PlugIn.ModelCore.Ecoregions[ecoName];
             if (ecoregion == null)
                 throw new InputValueException(ecoregion.Name,
                                               "{0} is not an ecoregion name.",
@@ -490,13 +476,6 @@ namespace Landis.Extension.Succession.Biomass
                 throw new InputValueException(speciesName,
                                               "{0} is not a species name.",
                                               speciesName);
-            int lineNumber;
-            if (speciesLineNums.TryGetValue(species.Name, out lineNumber))
-                throw new InputValueException(speciesName,
-                                              "The species {0} was previously used on line {1}",
-                                              speciesName, lineNumber);
-            else
-                speciesLineNums[species.Name] = LineNumber;
             return species;
         }
     }
