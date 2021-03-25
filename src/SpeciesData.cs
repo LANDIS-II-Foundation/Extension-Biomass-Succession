@@ -12,6 +12,7 @@ namespace Landis.Extension.Succession.Biomass
 {
     public class SpeciesData
     {
+        public static Dictionary<int, IDynamicInputRecord[,]> SppEcoData;
 
         public static Landis.Library.Parameters.Species.AuxParm<double> WoodyDebrisDecay;
         public static Landis.Library.Parameters.Species.AuxParm<double> LeafLignin;
@@ -22,8 +23,8 @@ namespace Landis.Extension.Succession.Biomass
         //  Establishment probability for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishProbability;
         
-        //  Establishment probability modifier for each species in each ecoregion
-        public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishModifier;
+        //  Mortality probability for each species in each ecoregion
+        public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> MortalityProbability;
 
         //  Maximum ANPP for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<int> ANPP_MAX_Spp;
@@ -46,19 +47,16 @@ namespace Landis.Extension.Succession.Biomass
         public static void ChangeDynamicParameters(int year)
         {
 
-            if(DynamicInputs.AllData.ContainsKey(year))
+            if(SpeciesData.SppEcoData.ContainsKey(year))
             {
                 EstablishProbability = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                //EstablishProbability = Util.CreateSpeciesEcoregionParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                EstablishModifier = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                //EstablishModifier = Util.CreateSpeciesEcoregionParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
+                MortalityProbability = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
+                //EstablishModifier = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
                 ANPP_MAX_Spp = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                //ANPP_MAX_Spp = Util.CreateSpeciesEcoregionParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
                 B_MAX_Spp = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                //B_MAX_Spp            = Util.CreateSpeciesEcoregionParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
 
 
-                DynamicInputs.TimestepData = DynamicInputs.AllData[year];
+                //SpeciesData.TimestepData = SpeciesData.SppEcoData[year];
 
                 foreach(ISpecies species in PlugIn.ModelCore.Species)
                 {
@@ -67,20 +65,19 @@ namespace Landis.Extension.Succession.Biomass
                         if (!ecoregion.Active)
                             continue;
 
-                        if (DynamicInputs.TimestepData[species.Index, ecoregion.Index] == null)
+                        if (!SpeciesData.SppEcoData.ContainsKey(year))
                             continue;
+
+                        //if (DynamicInputs.TimestepData[species.Index, ecoregion.Index] == null)
+                        //    continue;
                         
-                        EstablishProbability[species,ecoregion] = DynamicInputs.TimestepData[species.Index, ecoregion.Index].ProbEst;
-                        EstablishModifier[species,ecoregion] = 1.0;
-                        ANPP_MAX_Spp[species,ecoregion] = DynamicInputs.TimestepData[species.Index, ecoregion.Index].ANPP_MAX_Spp;
-                        B_MAX_Spp[species,ecoregion] = DynamicInputs.TimestepData[species.Index, ecoregion.Index].B_MAX_Spp;
+                        EstablishProbability[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbEstablish;
+                        MortalityProbability[species, ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbMortality;
+                        ANPP_MAX_Spp[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ANPP_MAX_Spp;
+                        B_MAX_Spp[species,ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].B_MAX_Spp;
 
                     }
                 }
-
-                //if(PlugIn.CalibrateMode)
-                //    DynamicInputs.Write();
-
 
                 EcoregionData.UpdateB_MAX();
             }

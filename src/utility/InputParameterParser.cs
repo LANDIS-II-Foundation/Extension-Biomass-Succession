@@ -3,6 +3,8 @@
 using Landis.Library.Succession;
 using Landis.Core;
 using System.Collections.Generic;
+using System.Collections;
+using System.Data;
 using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Biomass
@@ -265,7 +267,36 @@ namespace Landis.Extension.Succession.Biomass
 
             InputVar<string> dynInputFile = new InputVar<string>(Names.DynamicInputFile);
             ReadVar(dynInputFile);
-            parameters.DynamicInputFile = dynInputFile.Value;
+            CSVParser speciesParser = new CSVParser();
+            DataTable speciesTable = speciesParser.ParseToDataTable(dynInputFile.Value);
+
+            SpeciesData.SppEcoData = new Dictionary<int, IDynamicInputRecord[,]>();
+
+            foreach (DataRow row in speciesTable.Rows)
+            {
+                int year = System.Convert.ToInt32(row["Year"]);
+
+                if (!SpeciesData.SppEcoData.ContainsKey(year))
+                {
+                    IDynamicInputRecord[,] inputTable = new IDynamicInputRecord[PlugIn.ModelCore.Species.Count, PlugIn.ModelCore.Ecoregions.Count];
+                    SpeciesData.SppEcoData.Add(year, inputTable);
+                    //PlugIn.ModelCore.UI.WriteLine("  Dynamic Input Parser:  Add new year = {0}.", year);
+                }
+
+
+                ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
+                IEcoregion ecoregion = GetEcoregion(System.Convert.ToInt32(row["EcoregionIndex"]));
+
+                IDynamicInputRecord dynamicInputRecord = new DynamicInputRecord();
+
+                dynamicInputRecord.ProbEstablish = System.Convert.ToDouble(row["PrEstablish"]);
+                dynamicInputRecord.ProbMortality = System.Convert.ToDouble(row["PrMortality"]);
+                dynamicInputRecord.ANPP_MAX_Spp = System.Convert.ToInt32(row["ANPPmax"]);
+                dynamicInputRecord.B_MAX_Spp = System.Convert.ToInt32(row["ANPPmax"]);
+
+                SpeciesData.SppEcoData[year][species.Index, ecoregion.Index] = dynamicInputRecord;
+
+            }
 
             //--------- Read In Fire Reductions Table ---------------------------
             PlugIn.ModelCore.UI.WriteLine("   Begin reading FIRE REDUCTION parameters.");
@@ -441,6 +472,32 @@ namespace Landis.Extension.Succession.Biomass
                 throw new InputValueException("", "No ecoregions read in correctly.","");
 
             return ecoregions;
+        }
+        private IEcoregion GetEcoregion(int ecoregionIndex)
+        {
+            IEcoregion ecoregion = PlugIn.ModelCore.Ecoregions[ecoregionIndex];
+            if (ecoregion == null)
+                throw new InputValueException(ecoregion.Name,
+                                              "{0} is not an ecoregion name.",
+                                              ecoregion.Name);
+
+            return ecoregion;
+        }
+        private ISpecies ReadSpecies(string speciesName)
+        {
+            ISpecies species = PlugIn.ModelCore.Species[speciesName];
+            if (species == null)
+                throw new InputValueException(speciesName,
+                                              "{0} is not a species name.",
+                                              speciesName);
+            int lineNumber;
+            if (speciesLineNums.TryGetValue(species.Name, out lineNumber))
+                throw new InputValueException(speciesName,
+                                              "The species {0} was previously used on line {1}",
+                                              speciesName, lineNumber);
+            else
+                speciesLineNums[species.Name] = LineNumber;
+            return species;
         }
     }
 }

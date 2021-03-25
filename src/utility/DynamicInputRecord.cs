@@ -10,7 +10,8 @@ namespace Landis.Extension.Succession.Biomass
     public interface IDynamicInputRecord
     {
 
-        double ProbEst{get;set;}
+        double ProbEstablish{get;set;}
+        double ProbMortality { get; set; }
         int ANPP_MAX_Spp {get;set;}
         int B_MAX_Spp {get;set;}
     }
@@ -20,10 +21,11 @@ namespace Landis.Extension.Succession.Biomass
     {
 
         private double probEst;
+        private double probMort;
         private int anpp_max_spp;
         private int b_max_spp;
-
-        public double ProbEst
+        
+        public double ProbEstablish
         {
             get {
                 return probEst;
@@ -33,6 +35,17 @@ namespace Landis.Extension.Succession.Biomass
             }
         }
 
+        public double ProbMortality
+        {
+            get
+            {
+                return probMort;
+            }
+            set
+            {
+                probMort = value;
+            }
+        }
         public int ANPP_MAX_Spp
         {
             get {

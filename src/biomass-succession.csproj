@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <RootNamespace>Landis.Extension.Succession.Biomass</RootNamespace>
-    <AssemblyName>Landis.Extension.Succession.Biomass-v5</AssemblyName>
-    <AssemblyTitle>Landis.Extension.Succession.Biomass-v5</AssemblyTitle>
+    <AssemblyName>Landis.Extension.Succession.Biomass-v6</AssemblyName>
+    <AssemblyTitle>Landis.Extension.Succession.Biomass-v6</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -19,9 +19,9 @@
     <Company>LANDIS-II Foundation</Company>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
-    <AssemblyVersion>5.3</AssemblyVersion>
-    <Version>5.3</Version>
-    <FileVersion>5.3</FileVersion>
+    <AssemblyVersion>6.0</AssemblyVersion>
+    <Version>6.0</Version>
+    <FileVersion>6.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

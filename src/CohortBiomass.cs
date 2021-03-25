@@ -91,7 +91,6 @@ namespace Landis.Extension.Succession.Biomass
             if (totalMortality > cohort.Biomass)
                 throw new ApplicationException("Error: Mortality exceeds cohort biomass");
 
-            PlugIn.CurrentYearSiteMortality += totalMortality;
 
             // ---------------------------------------------------------
             // Defoliation ranges from 1.0 (total) to none (0.0).
@@ -108,6 +107,14 @@ namespace Landis.Extension.Succession.Biomass
                 SiteVars.Defoliation[site] += defoliationLoss;
             }
             // ---------------------------------------------------------
+            // RMS:  Adding mortality probability; do not include during spinup
+            if (PlugIn.ModelCore.CurrentTime > 0)
+            {
+                if (PlugIn.ModelCore.GenerateUniform() < SpeciesData.MortalityProbability[cohort.Species, ecoregion])
+                    totalMortality = cohort.Biomass;
+            }
+
+            PlugIn.CurrentYearSiteMortality += totalMortality;
 
             int deltaBiomass = (int)(actualANPP - totalMortality - defoliationLoss);
             double newBiomass = cohort.Biomass + (double)deltaBiomass;
