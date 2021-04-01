@@ -22,6 +22,9 @@ namespace Landis.Extension.Succession.Biomass
 
         //  Establishment probability for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishProbability;
+
+        //  Establishment probability for each species in each ecoregion
+        public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishModifier;
         
         //  Mortality probability for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> MortalityProbability;
@@ -51,7 +54,7 @@ namespace Landis.Extension.Succession.Biomass
             {
                 EstablishProbability = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
                 MortalityProbability = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
-                //EstablishModifier = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
+                EstablishModifier = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<double>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
                 ANPP_MAX_Spp = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
                 B_MAX_Spp = new Landis.Library.Parameters.SpeciesEcoregionAuxParm<int>(PlugIn.ModelCore.Species, PlugIn.ModelCore.Ecoregions);
 
