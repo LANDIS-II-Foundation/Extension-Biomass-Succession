@@ -19,9 +19,9 @@
     <Company>LANDIS-II Foundation</Company>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
-    <AssemblyVersion>5.3</AssemblyVersion>
-    <Version>5.3</Version>
-    <FileVersion>5.3</FileVersion>
+    <AssemblyVersion>5.3.1</AssemblyVersion>
+    <Version>5.3.1</Version>
+    <FileVersion>5.3.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
