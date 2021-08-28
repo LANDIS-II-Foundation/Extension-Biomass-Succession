@@ -478,9 +478,9 @@ namespace Landis.Extension.Succession.Biomass
         {
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregions[ecoName];
             if (ecoregion == null)
-                throw new InputValueException(ecoregion.Name,
+                throw new InputValueException(ecoName,
                                               "{0} is not an ecoregion name.",
-                                              ecoregion.Name);
+                                              ecoName);
 
             return ecoregion;
         }

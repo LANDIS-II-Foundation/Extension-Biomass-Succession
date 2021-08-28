@@ -27,6 +27,7 @@ namespace Landis.Extension.Succession.Biomass
         public static ISiteVar<double> Defoliation;
         public static ISiteVar<string> HarvestPrescriptionName;
         public static ISiteVar<byte> FireSeverity;
+        public static ISiteVar<int> MaxBiomass;
 
 
 
@@ -49,6 +50,7 @@ namespace Landis.Extension.Succession.Biomass
             previousYearMortality = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             currentYearMortality = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             totalBiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
+            MaxBiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             FireSeverity = PlugIn.ModelCore.GetSiteVar<byte>("Fire.Severity");
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
@@ -67,6 +69,9 @@ namespace Landis.Extension.Succession.Biomass
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.WoodyDebris, "Succession.WoodyDebris");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Litter, "Succession.Litter");
+            PlugIn.ModelCore.RegisterSiteVar(SiteVars.MaxBiomass, "Succession.MaxBiomass");
+
+            //EcoregionData.UpdateB_MAX();
 
         }
 
