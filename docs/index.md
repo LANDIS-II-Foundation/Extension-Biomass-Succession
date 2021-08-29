@@ -4,7 +4,7 @@ Biomass succession simulates changes in the biomass of each cohort dependent upo
 
 The Biomass Succession Extension generally follows the methods outlined in Scheller and Mladenoff (2004). Biomass Succession calculates how cohorts reproduce, age, and die and how cohort biomass (g m-2) changes through time. The Biomass Succession extension also tracks dead biomass over time, divided into two pools: woody and leaf litter. 
 
-Versions 2 and 3 of the Biomass Succession extension is conceptually nearly identical to version 1.x, although the inputs have changed. Notably, the user can now specify the probability of establishment given the species shade tolerance and site shade. Also, the user now specifies the maximum biomass by species and ecoregion, allowing better representation of shrubs and grasses. Leaf litter decay rates are no longer input and are a function of species leaf lignin and ecoregion actual evapotranspiration. 
+Versions 2 and 3 of the Biomass Succession extension is conceptually nearly identical to version 1.x, although the inputs have changed. Notably, the user can now specify the probability of establishment given the species shade tolerance and site shade. Later versions largely tracked major Core releases.  Version 6 altered the inputs for ease of data entry.
 
 # Features
 
