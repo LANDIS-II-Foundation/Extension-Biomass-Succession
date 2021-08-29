@@ -9,8 +9,8 @@ Timestep  			10
 
 SeedingAlgorithm  		WardSeedDispersal
 
-InitialCommunities      	./biomass-succession_InitialCommunities.txt
-InitialCommunitiesMap   	./biomass-succession_InitialCommunities.gis
+InitialCommunities      	./biomass-succession_InitialCommunities_s2e1.txt
+InitialCommunitiesMap   	./biomass-succession_InitialCommunities_s2e1.gis
 
 ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
 
@@ -48,36 +48,14 @@ SufficientLight
 	5	0.1	0.5	1.0	1.0	1.0	1.0
 
 
-SpeciesParameters
-
->> Species   Leaf	WoodyBiomass	Mortality	Growth	Leaf	
->>	     Longevity	DecayRate	ShapeParam	Shape	Lignin%	
->> --------  ---------	---------	----------	------	----    
->> 	    
-abiebals   	3	0.1		10		0.25	0.252	
-acerrubr   	1	0.1		10		0.25	0.183	
-acersacc   	1	0.1		10		0.25	0.175	
-betualle   	1	0.1		10		0.25	0.219	
-betupapy   	1	0.1		10		0.25	0.201	
-fraxamer	1	0.1		10		0.25	0.144	
-piceglau   	3	0.1		10		0.25	0.249	
-pinubank   	2	0.1		10		0.25	0.266	
-pinuresi   	3	0.1		10		0.25	0.266	
-pinustro   	2	0.1		10		0.25	0.263	
-poputrem   	1	0.1		10		0.25	0.256	
-querrubr   	1	0.1		10		0.25	0.249	
-querelli   	1	0.1		10		0.25	0.149	
-thujocci 	3	0.1		10		0.25	0.262	
-tiliamer   	1	0.1		10		0.25	0.17	
-
-
+SpeciesDataFile		SpeciesData.csv
 
 EcoregionParameters
 >>	AET (mm)
 101	600
 102	600
 
-DynamicInputFile    			biomass-succession_DynamicInputs.txt 
+SpeciesEcoregionDataFile   SppEcoregionData.csv 
 
 FireReductionParameters
 >>	Severity	WoodLitter	Litter	
@@ -85,13 +63,11 @@ FireReductionParameters
 	1		0.0		0.5	
 	2		0.0		0.75	
 	3		0.0		1.0	
-	4		0.5		1.0	
-	5		0.75		1.0	
 
 HarvestReductionParameters
 >>	Name		WoodLitter	Litter	Cohort		Cohort
 >>			Reduct		Reduct	WoodRemoval	LeafRemoval
-	MaxAgeClearcut	0.5		0.15	0.8		0.0	
+	MaxAgeClearcut	0.5		0.15	0.8		0.0
 	PatchCutting	1.0		1.0	1.0		0.0
 
 

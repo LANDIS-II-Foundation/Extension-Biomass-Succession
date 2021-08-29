@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Landis.Extension.Succession.Biomass</RootNamespace>
+    <AssemblyName>Landis.Extension.Succession.Biomass-v6</AssemblyName>
+    <AssemblyTitle>Landis.Extension.Succession.Biomass-v6</AssemblyTitle>
+    <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
+    <PackageReleaseNotes>.NET Standard 2.0 update</PackageReleaseNotes>
+    <NeutralLanguage>English</NeutralLanguage>
+    <Product>Landis.Extension.Succession.Biomass-v6</Product>
+    <Authors>LANDIS-II Foundation</Authors>
+    <Copyright>LANDIS-II Foundation</Copyright>
+    <Company>LANDIS-II Foundation</Company>
+    <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
+    <Description></Description>
+    <AssemblyVersion>6.0</AssemblyVersion>
+    <Version>6.0</Version>
+    <FileVersion>6.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Landis.Core" Version="2.0.0" />
+    <PackageReference Include="Landis.Core.Implementation" Version="2.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="Landis.Library.AgeOnlyCohorts-v3">
+      <HintPath>lib\Landis.Library.AgeOnlyCohorts-v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Biomass-v2">
+      <HintPath>lib\Landis.Library.Biomass-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.BiomassCohorts-v3">
+      <HintPath>lib\Landis.Library.BiomassCohorts-v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Climate-v4">
+      <HintPath>lib\Landis.Library.Climate-v4.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Cohorts-v2">
+      <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.InitialCommunity-v1">
+      <HintPath>lib\Landis.Library.InitialCommunity-v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Metadata-v2">
+      <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Parameters-v2">
+      <HintPath>lib\Landis.Library.Parameters-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Succession-v8">
+      <HintPath>lib\Landis.Library.Succession-v8.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

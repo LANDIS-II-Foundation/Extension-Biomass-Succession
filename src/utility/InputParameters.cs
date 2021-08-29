@@ -33,7 +33,6 @@ namespace Landis.Extension.Succession.Biomass
         private Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
 
         private string dynamicInputFile;
-        //private string ageOnlyDisturbanceParms;
         private string initCommunities;
         private string communitiesMap;
         private FireReductions[] fireReductionsTable;
@@ -160,6 +159,10 @@ namespace Landis.Extension.Succession.Biomass
             }
             set
             {
+                if (value != null)
+                {
+                    ValidatePath(value);
+                }
 
                 climateConfigFile = value;
             }
@@ -297,71 +300,51 @@ namespace Landis.Extension.Succession.Biomass
         }
         //---------------------------------------------------------------------
         public void SetLeafLongevity(ISpecies           species,
-                                     InputValue<double> newValue)
+                                     double newValue)
         {
             Debug.Assert(species != null);
-            leafLongevity[species] = newValue.CheckInRange(1.0, 10.0, "leafLongevity");
+            leafLongevity[species] = VerifyRange(newValue, 1.0, 10.0);
         }
 
         //---------------------------------------------------------------------
 
         public void SetWoodyDecayRate(ISpecies           species,
-                                     InputValue<double> newValue)
+                                     double newValue)
         {
             Debug.Assert(species != null);
-            woodyDecayRate[species] = newValue.CheckInRange(0.0, 1.0, "woodyDecayRate");
+            woodyDecayRate[species] = VerifyRange(newValue, 0.0, 1.0);
         }
 
         //---------------------------------------------------------------------
 
         public void SetMortCurveShapeParm(ISpecies           species,
-                                          InputValue<double> newValue)
+                                          double newValue)
         {
             Debug.Assert(species != null);
-            mortCurveShapeParm[species] = newValue.CheckInRange(5.0, 25.0, "mortCurveShapeParm"); 
+            mortCurveShapeParm[species] = VerifyRange(newValue, 5.0, 25.0); 
         }
 
         //---------------------------------------------------------------------
 
-        public void SetGrowthCurveShapeParm(ISpecies species,
-                                          InputValue<double> newValue)
+        public void SetGrowthCurveShapeParm(ISpecies species, double newValue)
         {
             Debug.Assert(species != null);
-            growthCurveShapeParm[species] = newValue.CheckInRange(0, 1.0, "growthCurveShapeParm"); 
+            growthCurveShapeParm[species] = VerifyRange(newValue, 0, 1.0); 
         }
         //---------------------------------------------------------------------
 
-        public void SetLeafLignin(ISpecies           species,
-                                          InputValue<double> newValue)
+        public void SetLeafLignin(ISpecies           species,double newValue)
         {
             Debug.Assert(species != null);
-            leafLignin[species] = newValue.CheckInRange(0, 0.4, "leafLignin"); 
+            leafLignin[species] = VerifyRange(newValue, 0.0, 0.4); 
         }
-        //---------------------------------------------------------------------
-        /// <summary>
-        /// Path to the optional file with the biomass parameters for age-only
-        /// disturbances.
-        /// </summary>
-        //public string AgeOnlyDisturbanceParms
-        //{
-        //    get {
-        //        return ageOnlyDisturbanceParms;
-        //    }
-        //    set {
-        //        string path = value;
-        //        if (path.Trim(null).Length == 0)
-        //            throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
-        //        ageOnlyDisturbanceParms = value;
-        //    }
-        //}
 
         //---------------------------------------------------------------------
 
-        public void SetAET(IEcoregion           ecoregion,
-                                          InputValue<int> newValue)
+        public void SetAET(IEcoregion           ecoregion,int newValue)
         {
             Debug.Assert(ecoregion != null);
-            aet[ecoregion] = newValue.CheckInRange(0, 10000, "aet");  //FIXME:  FIND GOOD MAXIMUM
+            aet[ecoregion] = VerifyRange(newValue, 0, 10000);  
         }
         //---------------------------------------------------------------------
 
@@ -376,9 +359,6 @@ namespace Landis.Extension.Succession.Biomass
             mortCurveShapeParm = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
             growthCurveShapeParm = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
             leafLignin = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
-            //maxLAI = new Species.AuxParm<double>(PlugIn.ModelCore.Species);
-            //lightExtinctionCoeff = new Species.AuxParm<double>(PlugIn.ModelCore.Species);
-            //pctBioMaxLAI = new Species.AuxParm<double>(PlugIn.ModelCore.Species);
             aet = new Landis.Library.Parameters.Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
 
             minRelativeBiomass = new Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[6];
@@ -399,5 +379,21 @@ namespace Landis.Extension.Succession.Biomass
                                               path);
         }
 
+        public static double VerifyRange(double newValue, double minValue, double maxValue)
+        {
+            if (newValue < minValue || newValue > maxValue)
+                throw new InputValueException(newValue.ToString(),
+                                              "{0} is not between {1:0.0} and {2:0.0}",
+                                              newValue.ToString(), minValue, maxValue);
+            return newValue;
+        }
+        public static int VerifyRange(int newValue, int minValue, int maxValue)
+        {
+            if (newValue < minValue || newValue > maxValue)
+                throw new InputValueException(newValue.ToString(),
+                                              "{0} is not between {1:0.0} and {2:0.0}",
+                                              newValue.ToString(), minValue, maxValue);
+            return newValue;
+        }
     }
 }

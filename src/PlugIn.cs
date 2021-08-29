@@ -87,10 +87,9 @@ namespace Landis.Extension.Succession.Biomass
 
             SpeciesData.Initialize(Parameters);
             EcoregionData.Initialize(Parameters);
-            DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
-            SpeciesData.ChangeDynamicParameters(0);  // Year 0
+            //DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
+            SpeciesData.GetAnnualData(0);  // Year 0
             FireEffects.Initialize(Parameters);
-            //Outputs.Initialize(parameters);
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
             
@@ -149,8 +148,8 @@ namespace Landis.Extension.Succession.Biomass
                 foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
                 {
                     if (!ecoregion.Active)
-                            continue;
-                    SpeciesData.EstablishModifier[species,ecoregion] = 1.0;
+                        continue;
+                    SpeciesData.EstablishModifier[species, ecoregion] = 1.0;
                 }
             }
         }
@@ -360,7 +359,7 @@ namespace Landis.Extension.Succession.Biomass
             for (int y = 1; y <= years; ++y)
             {
                 if (PlugIn.ModelCore.CurrentTime > 0)
-                    SpeciesData.ChangeDynamicParameters(PlugIn.ModelCore.CurrentTime + y - 1);
+                    SpeciesData.GetAnnualData(PlugIn.ModelCore.CurrentTime + y - 1);
 
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;
@@ -430,7 +429,7 @@ namespace Landis.Extension.Succession.Biomass
             double establishProbability = SpeciesData.EstablishProbability[species,ecoregion];
             double modEstabProb = establishProbability * SpeciesData.EstablishModifier[species,ecoregion];
 
-            return modelCore.GenerateUniform() < modEstabProb;
+            return modelCore.GenerateUniform() < establishProbability;
         }
 
         //---------------------------------------------------------------------

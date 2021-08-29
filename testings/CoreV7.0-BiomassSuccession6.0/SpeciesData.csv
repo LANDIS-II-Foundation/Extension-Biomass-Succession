@@ -1,0 +1,16 @@
+SpeciesCode,LeafLongevity,WoodDecayRate,MortalityCurve,GrowthCurve,LeafLignin
+abiebals   ,3,0.1,10,0.25,0.252
+acerrubr   ,1,0.1,10,0.25,0.183
+acersacc   ,1,0.1,10,0.25,0.175
+betualle   ,1,0.1,10,0.25,0.219
+betupapy   ,1,0.1,10,0.25,0.201
+fraxamer,1,0.1,10,0.25,0.144
+piceglau   ,3,0.1,10,0.25,0.249
+pinubank   ,2,0.1,10,0.25,0.266
+pinuresi   ,3,0.1,10,0.25,0.266
+pinustro   ,2,0.1,10,0.25,0.263
+poputrem   ,1,0.1,10,0.25,0.256
+querrubr   ,1,0.1,10,0.25,0.249
+querelli   ,1,0.1,10,0.25,0.149
+thujocci ,3,0.1,10,0.25,0.262
+tiliamer   ,1,0.1,10,0.25,0.17
