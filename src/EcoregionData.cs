@@ -63,7 +63,7 @@ namespace Landis.Extension.Succession.Biomass
                 B_MAX[ecoregion] = largest_B_MAX_Spp;
             }
 
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape.AllSites)
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape.ActiveSites)
             {
                 IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
                 int maxBiomass = B_MAX[ecoregion];
