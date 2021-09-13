@@ -129,7 +129,7 @@ namespace Landis.Extension.Succession.Biomass
 
         public override void Run()
         {
-            if(PlugIn.ModelCore.CurrentTime == Timestep)
+            //if(PlugIn.ModelCore.CurrentTime == Timestep)
                 //Outputs.WriteLogFile(0);
 
             if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.CapacityReduction == null)
