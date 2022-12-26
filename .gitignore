@@ -208,3 +208,15 @@ FakesAssemblies/
 # LANDIS-II
 /src/lib/*.dll
 /src/.vs
+testings/CoreV7.0-BiomassSuccession6.1/Climate-annual-log.csv
+testings/CoreV7.0-BiomassSuccession6.1/Climate-future-input-log.csv
+testings/CoreV7.0-BiomassSuccession6.1/Climate-spinup-input-log.csv
+testings/CoreV7.0-BiomassSuccession6.1/Landis-climate-log.txt
+testings/CoreV7.0-BiomassSuccession6.1/Landis-log.txt
+testings/CoreV7.0-BiomassSuccession6.1/Biomass-succession-log.csv
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Biomass Succession/Biomass Succession.xml
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Biomass Succession/SummaryLog_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Annual-Log_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Climate-Library.xml
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Future-Input-Log_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml

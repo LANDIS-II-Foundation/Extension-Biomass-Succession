@@ -1,0 +1,62 @@
+LandisData   "Initial Communities"
+
+>>Old jackpine oak 
+MapCode  0
+   acerrubr 30 (250)
+   pinubank 80 (1000) 90 (2000)
+   pinuresi 110 (8000) 140 (8000)
+   querelli 40 (500) 120 (1000)
+
+>> young jackpine oak
+MapCode  1
+   pinubank 30 (250) 50 (500)
+   querelli 10 (250) 40 (500) 70 (1000)
+
+>> young aspen   
+MapCode 2
+   poputrem 10 (250) 20 (250) 
+
+>> old aspen-birch
+MapCode 3
+   acerrubr 10 (250) 30 (250) 
+   betualle 10 (250) 40 (500)
+   betupapy 80 (1000) 90 (1000) 
+   fraxamer 10 (250) 50 (500)
+   poputrem 90 (1000) 100 (1000) 
+   pinustro 240 (3000) 
+   querrubr 20 (250) 50 (500)
+   thujocci 60 (500)
+   tiliamer 10 (250) 
+
+>> young northern hardwoods
+MapCode 4
+   abiebals 10 (250) 
+   acerrubr 20 (250) 40 (500)
+   acersacc 10 (250) 20 (250) 
+   betualle 40 (500) 70 (1000) 
+   betupapy 90 (1000) 
+   fraxamer 30 (250) 40 (500) 60 (500)
+   poputrem 90 (1000) 
+   querrubr 40 (500) 80 (1000) 
+   thujocci 30 (250) 80 (1000) 
+   tiliamer 10 (250) 30 (500) 50 (500)
+  
+   
+>> old maple hardwoods
+MapCode 5
+   abiebals 10 (250) 60 (500) 120 (1000) 
+   acerrubr 90 (1000) 120 (1000) 
+   acersacc 20 (250) 50 (500) 150 (1000) 200 (1000) 
+   betualle 40 (500) 140 (1000) 200 (1000) 
+   fraxamer 10 (250) 100 (1000) 130 (1000) 180 (1000) 
+   piceglau 180 (1000) 
+   querrubr 100 (1000) 160 (1000) 180 (1000) 
+   thujocci 200 (1000) 240 (1000) 260 (1000) 
+   tiliamer 20 (250) 80 (500) 110 (1000) 150 (1000) 
+  
+>> old pine - spruce - fir
+MapCode 6
+   abiebals 10 (250) 50 (500) 80 (500) 
+   piceglau 100 (1000) 140 (1000) 180 (1000) 200 (1000) 220 (1000) 
+   pinuresi 140 (1000) 160 (1000) 180 (1000) 
+   pinustro 200 (1000) 280 (1000) 350 (1000) 

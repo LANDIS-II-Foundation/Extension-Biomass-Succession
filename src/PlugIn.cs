@@ -119,8 +119,9 @@ namespace Landis.Extension.Succession.Biomass
 
         protected override void InitializeSite(ActiveSite site)
         {
+            PlugIn.ModelCore.UI.WriteLine("   Calculating initial cohorts from PlugIn...");
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
+            SiteVars.Cohorts[site] = InitialBiomass.Clone((Library.BiomassCohorts.ISiteCohorts)initialBiomass.Cohorts); //.Clone();
             SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
             SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
         }

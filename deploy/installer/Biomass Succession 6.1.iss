@@ -45,8 +45,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 ; This .dll IS the extension (ie, the extension's assembly)
 ; NB: Do not put an additional version number in the file name of this .dll
 ; (The name of this .dll is defined in the extension's \src\*.csproj file)
-Source: {#BuildDir}\Landis.Extension.Succession.Biomass-v6.dll; DestDir: {#ExtDir}; Flags: ignoreversion
-Source: {#BuildDir}\Landis.Extension.Succession.Biomass-v6.pdb; DestDir: {#ExtDir}; Flags: ignoreversion
+Source: {#BuildDir}\Landis.Extension.Succession.Biomass-v6.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: {#BuildDir}\Landis.Extension.Succession.Biomass-v6.pdb; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; Requisite auxiliary libraries
 ; NB. These libraries are used by other extensions and thus are never uninstalled.
