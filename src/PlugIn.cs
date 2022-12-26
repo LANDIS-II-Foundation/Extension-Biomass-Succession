@@ -117,10 +117,10 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
+        protected override void InitializeSite(ActiveSite site)
         {
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
+            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
             SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
             SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
         }
