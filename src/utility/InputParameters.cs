@@ -19,6 +19,8 @@ namespace Landis.Extension.Succession.Biomass
         private int timestep;
         private SeedingAlgorithms seedAlg;
         private string climateConfigFile;
+        private string woodyDebrisMap;
+        private string litterMap;
         private bool calibrateMode;
         private double spinupMortalityFraction;
 
@@ -120,6 +122,42 @@ namespace Landis.Extension.Succession.Biomass
                     ValidatePath(value);
                 }
                 communitiesMap = value;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        public string WoodyDebrisMap
+        {
+            get
+            {
+                return woodyDebrisMap;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    ValidatePath(value);
+                }
+
+                woodyDebrisMap = value;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        public string LitterMap
+        {
+            get
+            {
+                return litterMap;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    ValidatePath(value);
+                }
+
+                litterMap = value;
             }
         }
         //---------------------------------------------------------------------

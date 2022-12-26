@@ -7,9 +7,6 @@ using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Biomass
 {
-    /// <summary>
-    /// Soil organic matter (SOM) pool.
-    /// </summary>
     public class ForestFloor
     {
 
@@ -26,13 +23,24 @@ namespace Landis.Extension.Succession.Biomass
             //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION: Former Wood = {0}, New Wood = {1}", currentWoodyDebris, SiteVars.WoodyDebris[site].Mass);
         }
 
+        /// <summary>
+        /// Adds some biomass to the WOODY pools at a site with UNKNOWN SPECIES.
+        /// </summary>
+        public static void AddWoody(double woodyBiomass, ActiveSite site)
+        {
+            double currentWoodyDebris = SiteVars.WoodyDebris[site].Mass;
+            double woodDecayRate = 0.1; // This is a general default value
+            SiteVars.WoodyDebris[site].AddMass(woodyBiomass, woodDecayRate);  
+
+            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION: Former Wood = {0}, New Wood = {1}", currentWoodyDebris, SiteVars.WoodyDebris[site].Mass);
+        }
+
+
         //---------------------------------------------------------------------
         /// <summary>
         /// Adds some biomass for a species to the LITTER pools at a site.
         /// </summary>
-        public static void AddLitter(double nonWoodyBiomass,
-                                      ISpecies   species,
-                                      ActiveSite site)
+        public static void AddLitter(double nonWoodyBiomass, ISpecies species, ActiveSite site)
         {
 
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
@@ -53,6 +61,29 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.Litter[site].AddMass(nonWoodyBiomass, decayValue);
 
         }
+
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Adds some biomass to the LITTER pools at a site with UNKNOWN SPECIES..
+        /// </summary>
+        public static void AddLitter(double nonWoodyBiomass, ActiveSite site)
+        {
+
+            IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
+            double siteAET = (double)EcoregionData.AET[ecoregion];
+
+            //Calculation of decomposition rate for species litter cohort
+            // Decay rate from Meentemeyer 1978.  Ecology 59: 465-472.
+            // 0.2 is a general default for leaf lignin
+            double leafLignin = 0.2;
+            double leafKReg = (-0.5365 + (0.00241 * siteAET)) - (((-0.01586 + (0.000056 * siteAET)) * leafLignin * 100));
+
+            double decayValue = leafKReg;
+
+            SiteVars.Litter[site].AddMass(nonWoodyBiomass, decayValue);
+
+        }
+
 
     }
 }

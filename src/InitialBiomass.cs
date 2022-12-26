@@ -6,6 +6,7 @@ using Landis.Library.AgeOnlyCohorts;
 using Landis.Core;
 using System.Collections.Generic;
 using Landis.Library.InitialCommunities;
+using Landis.Library.Succession;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -178,6 +179,7 @@ namespace Landis.Extension.Succession.Biomass
             }
             if (biomassProvided)
             {
+
                 Library.BiomassCohorts.SiteCohorts cohorts = MakeBiomassCohorts_BioInput(initialCommunity.Cohorts, site);
                 initialBiomass = new InitialBiomass(cohorts,
                                                     SiteVars.WoodyDebris[site],
@@ -190,6 +192,8 @@ namespace Landis.Extension.Succession.Biomass
                                                     SiteVars.WoodyDebris[site],
                                                     SiteVars.Litter[site]);
             }
+
+
 
             //SiteCohorts cohorts = MakeBiomassCohorts(sortedAgeCohorts, site);
             //initialBiomass = new InitialBiomass(cohorts,
