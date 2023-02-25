@@ -117,11 +117,10 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        protected override void InitializeSite(ActiveSite site)
+        protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
         {
-            PlugIn.ModelCore.UI.WriteLine("   Calculating initial cohorts from PlugIn...");
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            SiteVars.Cohorts[site] = InitialBiomass.Clone((Library.BiomassCohorts.ISiteCohorts)initialBiomass.Cohorts); //.Clone();
+            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
             SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
             SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
         }
@@ -130,6 +129,8 @@ namespace Landis.Extension.Succession.Biomass
 
         public override void Run()
         {
+            //if(PlugIn.ModelCore.CurrentTime == Timestep)
+                //Outputs.WriteLogFile(0);
 
             if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.CapacityReduction == null)
                 SiteVars.CapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
@@ -313,11 +314,25 @@ namespace Landis.Extension.Succession.Biomass
             ForestFloor.AddWoody(woodInput, cohort.Species, eventArgs.Site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, eventArgs.Site);
 
+            // Assume that ALL dead root biomass stays on site.
+            //Roots.AddCoarseRootLitter(Roots.CalculateCoarseRoot(cohort, cohort.WoodBiomass), cohort, cohort.Species, eventArgs.Site);
+            //Roots.AddFineRootLitter(Roots.CalculateFineRoot(cohort, cohort.LeafBiomass), cohort, cohort.Species, eventArgs.Site);
+
             if (disturbanceType != null)
                 Disturbed[site] = true;
 
             return;
 
+            //ExtensionType disturbanceType = eventArgs.DisturbanceType;
+            //if (disturbanceType != null)
+            //{
+            //    ActiveSite site = eventArgs.Site;
+            //    Disturbed[site] = true;
+            //    if (disturbanceType.IsMemberOf("disturbance:fire"))
+            //        Reproduction.CheckForPostFireRegen(eventArgs.Cohort, site);
+            //    else
+            //        Reproduction.CheckForResprouting(eventArgs.Cohort, site);
+            //}
         }
 
 
@@ -443,49 +458,6 @@ namespace Landis.Extension.Succession.Biomass
         }
         public override void InitializeSites(string initialCommunitiesText, string initialCommunitiesMap, ICore modelCore)
         {
-            //If woodbiomass map exists, get
-            if (PlugIn.Parameters.WoodyDebrisMap != null)
-            {
-                PlugIn.ModelCore.UI.WriteLine("   Reading woody debris map \"{0}\" ...", PlugIn.Parameters.WoodyDebrisMap);
-                IInputRaster<uintPixel> wd_map;
-                wd_map = PlugIn.ModelCore.OpenRaster<uintPixel>(PlugIn.Parameters.WoodyDebrisMap);
-                using (wd_map)
-                {
-                    uintPixel pixel = wd_map.BufferPixel;
-                    foreach (Site site in ModelCore.Landscape.AllSites)
-                    {
-                        wd_map.ReadBufferPixel();
-                        uint woodyDebris = pixel.MapCode.Value;
-                        if (!site.IsActive)
-                            continue;
-
-                        ForestFloor.AddWoody(woodyDebris, (ActiveSite)site);
-
-                    }
-                }
-            }
-            //If litterbiomass map exists, get
-            if (PlugIn.Parameters.LitterMap != null)
-            {
-                PlugIn.ModelCore.UI.WriteLine("   Reading litter map \"{0}\" ...", PlugIn.Parameters.LitterMap);
-                IInputRaster<uintPixel> litter_map;
-                litter_map = PlugIn.ModelCore.OpenRaster<uintPixel>(PlugIn.Parameters.LitterMap);
-                using (litter_map)
-                {
-                    uintPixel pixel = litter_map.BufferPixel;
-                    foreach (Site site in ModelCore.Landscape.AllSites)
-                    {
-                        litter_map.ReadBufferPixel();
-                        uint litter = pixel.MapCode.Value;
-                        if (!site.IsActive)
-                            continue;
-
-                        ForestFloor.AddWoody(litter, (ActiveSite)site);
-
-                    }
-                }
-            }
-
             ModelCore.UI.WriteLine("   Loading initial communities from file \"{0}\" ...", initialCommunitiesText);
             Landis.Library.InitialCommunities.DatasetParser parser = new Landis.Library.InitialCommunities.DatasetParser(Timestep, ModelCore.Species);
             Landis.Library.InitialCommunities.IDataset communities = Landis.Data.Load<Landis.Library.InitialCommunities.IDataset>(initialCommunitiesText, parser);
@@ -503,6 +475,11 @@ namespace Landis.Extension.Succession.Biomass
                     if (!site.IsActive)
                         continue;
 
+                    //if (!modelCore.Ecoregion[site].Active)
+                    //    continue;
+
+                    //modelCore.Log.WriteLine("ecoregion = {0}.", modelCore.Ecoregion[site]);
+
                     ActiveSite activeSite = (ActiveSite)site;
                     initialCommunity = communities.Find(mapCode);
                     if (initialCommunity == null)
@@ -513,9 +490,6 @@ namespace Landis.Extension.Succession.Biomass
                     InitializeSite(activeSite); 
                 }
             }
-
-
-
         }
     }
 }

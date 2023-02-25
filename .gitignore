@@ -220,3 +220,21 @@ testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Annual-Log_Metad
 testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Climate-Library.xml
 testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Future-Input-Log_Metadata.xml
 testings/CoreV7.0-BiomassSuccession6.1/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
+*.sln
+testings/CoreV7.0-BiomassSuccession6.0/Biomass-succession-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-10.img
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-20.img
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-30.img
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-40.img
+testings/CoreV7.0-BiomassSuccession6.0/Climate-annual-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/Climate-future-input-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/Climate-spinup-input-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/Landis-climate-log.txt
+testings/CoreV7.0-BiomassSuccession6.0/Landis-log.txt
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Biomass Succession/Biomass Succession.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Biomass Succession/SummaryLog_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Annual-Log_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Climate-Library.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Future-Input-Log_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
+src/biomass-succession.sln

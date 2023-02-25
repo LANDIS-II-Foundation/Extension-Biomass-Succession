@@ -19,9 +19,9 @@
     <Company>LANDIS-II Foundation</Company>
     <PackageTags>LANDIS-II;Landis;Extension;Biomass Succession</PackageTags>
     <Description></Description>
-    <AssemblyVersion>6.1</AssemblyVersion>
-    <Version>6.1</Version>
-    <FileVersion>6.1</FileVersion>
+    <AssemblyVersion>6.0</AssemblyVersion>
+    <Version>6.0</Version>
+    <FileVersion>6.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,8 +45,8 @@
     <Reference Include="Landis.Library.Cohorts-v2">
       <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.InitialCommunity.Biomass">
-      <HintPath>lib\Landis.Library.InitialCommunity.Biomass.dll</HintPath>
+    <Reference Include="Landis.Library.InitialCommunity-v1">
+      <HintPath>lib\Landis.Library.InitialCommunity-v1.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Metadata-v2">
       <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>

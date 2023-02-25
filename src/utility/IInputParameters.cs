@@ -19,8 +19,6 @@ namespace Landis.Extension.Succession.Biomass
         SeedingAlgorithms SeedAlgorithm {get; set;}
         string InitialCommunities{get; set;}
         string InitialCommunitiesMap{get; set;}
-        string WoodyDebrisMap { get; set; }
-        string LitterMap { get; set; }
         string ClimateConfigFile { get; set; }
         bool CalibrateMode { get; set; }
         double SpinupMortalityFraction {get; set;}
@@ -31,10 +29,14 @@ namespace Landis.Extension.Succession.Biomass
         Landis.Library.Parameters.Species.AuxParm<double> MortCurveShapeParm { get; }
         Landis.Library.Parameters.Species.AuxParm<double> GrowthCurveShapeParm { get; }
         Landis.Library.Parameters.Species.AuxParm<double> LeafLignin { get; }
+        //Species.AuxParm<double> MAXLAI {get;}
+        //Species.AuxParm<double> LightExtinctionCoeff {get;}
+        //Species.AuxParm<double> PctBioMaxLAI { get;}
 
         Landis.Library.Parameters.Ecoregions.AuxParm<int> AET { get; }
         string DynamicInputFile {get;set;}
 
+        //string AgeOnlyDisturbanceParms{get; set;}
         //---------------------------------------------------------------------
         /// <summary>
         /// Parameters for fire effects on wood and leaf litter
