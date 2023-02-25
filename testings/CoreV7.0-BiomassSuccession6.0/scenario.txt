@@ -44,7 +44,7 @@ CellLength  	100 << meters, 100 x 100 m = 1 ha
 
 >> 	Disturbance Extension	Initialization File
 >>	--------------------	-------------------
-	"Base Fire"			base-fire_setup.txt
+>>	"Base Fire"			base-fire_setup.txt
 
 >>   DisturbancesRandomOrder  yes  	<< optional
                          		<< Commented (default) is "no"
