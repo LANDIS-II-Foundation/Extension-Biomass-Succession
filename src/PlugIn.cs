@@ -277,12 +277,20 @@ namespace Landis.Extension.Succession.Biomass
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
                 {
                     SiteVars.FireSeverity = PlugIn.ModelCore.GetSiteVar<byte>("Fire.Severity");
+                    //if (SiteVars.FireSeverity == null)
+                    //    PlugIn.ModelCore.UI.WriteLine("FIRE EXTENSION NOT OPERATING CORRECTLY");
+
                     Landis.Library.Succession.Reproduction.CheckForPostFireRegen(eventArgs.Cohort, site);
+                    byte fire_severity = SiteVars.FireSeverity[site];
 
                     if (!Disturbed[site])  // the first cohort killed/damaged
                     {
-                        if (SiteVars.FireSeverity != null && SiteVars.FireSeverity[site] > 0)
-                            FireEffects.ReduceLayers(SiteVars.FireSeverity[site], site);
+                        if (fire_severity > 0)
+                        {
+                            //PlugIn.ModelCore.UI.WriteLine("   FIRE SEVERITY: {0}", fire_severity);
+                            FireEffects.ReduceLayers(fire_severity, site);
+                        }
+                            
 
                     }
 

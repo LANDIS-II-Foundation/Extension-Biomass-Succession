@@ -238,3 +238,15 @@ testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Climate-Library.
 testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Future-Input-Log_Metadata.xml
 testings/CoreV7.0-BiomassSuccession6.0/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
 src/biomass-succession.sln
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-15.img
+testings/CoreV7.0-BiomassSuccession6.0/biomass-succession/biomass-anpp-5.img
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-severity-10.img
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-severity-15.img
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-severity-20.img
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-severity-5.img
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-summary-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Base Fire/Base Fire.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Base Fire/FireEventsLog_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.0/Metadata/Base Fire/FireSummaryLog_Metadata.xml
+testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-log.csv
+testings/CoreV7.0-BiomassSuccession6.0/Biomass-succession-log.csv

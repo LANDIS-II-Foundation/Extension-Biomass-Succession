@@ -80,12 +80,15 @@ namespace Landis.Extension.Succession.Biomass
         /// Computes fire effects on litter, coarse woody debris, mineral soil, and charcoal.
         ///   No effects on soil organic matter (negligible according to Johnson et al. 2001).
         /// </summary>
-        public static void ReduceLayers(byte severity, Site site)
+        public static void ReduceLayers(byte severity, ActiveSite site)
         {
             //PlugIn.ModelCore.UI.WriteLine("   Calculating fire induced layer reductions. Severity={0}.", severity);
             //PlugIn.ModelCore.UI.WriteLine("   Calculating fire induced layer reductions. FineLitter={0}, Wood={1}.", ReductionsTable[severity].FineLitterReduction, ReductionsTable[severity].CoarseLitterReduction);
 
             // litter first
+            if(ReductionsTable[severity] == null)
+                throw new ApplicationException(string.Format("Fire reductions are missing for severity = {0}", severity));
+
             double fineLitterReduction = ReductionsTable[severity].FineLitterReduction;
             SiteVars.Litter[site].ReduceMass(fineLitterReduction);
 
