@@ -215,7 +215,7 @@ namespace Landis.Extension.Succession.Biomass
                 return true;
             else if (tablePrescriptionName.EndsWith("*"))
             {
-                if (harvestPrescriptionName.Contains(tablePrescriptionName.TrimEnd()))
+                if (harvestPrescriptionName.Contains(tablePrescriptionName.TrimEnd('*')))
                     return true;
                 else
                     return false;
