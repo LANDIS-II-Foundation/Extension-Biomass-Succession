@@ -1,12 +1,9 @@
 //  Author: Robert Scheller, Melissa Lucash
 
-using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Utilities;
-using Landis.Library.BiomassCohorts;  
 
 using System;
-using System.Collections.Generic;
 
 
 namespace Landis.Extension.Succession.Biomass
@@ -106,7 +103,7 @@ namespace Landis.Extension.Succession.Biomass
         //{
         
         //    int difference = (int) siteSeverity - cohort.Species.FireTolerance;
-        //    double ageFraction = 1.0 - ((double) cohort.Age / (double) cohort.Species.Longevity);
+        //    double ageFraction = 1.0 - ((double) cohort.Data.Age / (double) cohort.Species.Longevity);
             
         //    if(SpeciesData.Epicormic[cohort.Species])
         //    {

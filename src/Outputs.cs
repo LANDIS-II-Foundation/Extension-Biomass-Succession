@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using Landis.Core;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 
 
@@ -94,7 +94,7 @@ namespace Landis.Extension.Succession.Biomass
             foreach(ISpeciesCohorts spp in cohorts)
             {
                 foreach (ICohort cohort in spp)
-                    totalbiomass += cohort.Biomass;
+                    totalbiomass += cohort.Data.Biomass;
 
             }
 

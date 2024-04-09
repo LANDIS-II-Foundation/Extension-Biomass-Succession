@@ -1,7 +1,7 @@
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using Landis.SpatialModeling;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.UniversalCohorts;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -11,12 +11,12 @@ namespace Landis.Extension.Succession.Biomass
     public static class SiteVars
     {
 
-        private static ISiteVar<Landis.Library.BiomassCohorts.SiteCohorts> biomassCohorts;
+        private static ISiteVar<SiteCohorts> biomassCohorts;
         
-        private static ISiteVar<Landis.Library.AgeOnlyCohorts.ISiteCohorts> baseCohortsSiteVar;
+        private static ISiteVar<ISiteCohorts> baseCohortsSiteVar;
 
-        private static ISiteVar<Landis.Library.Biomass.Pool> woodyDebris;
-        private static ISiteVar<Landis.Library.Biomass.Pool> litter;
+        private static ISiteVar<Landis.Library.UniversalCohorts.Pool> woodyDebris;
+        private static ISiteVar<Landis.Library.UniversalCohorts.Pool> litter;
         
         private static ISiteVar<double> capacityReduction;
         private static ISiteVar<int> previousYearMortality;
@@ -37,14 +37,14 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public static void Initialize()
         {
-            biomassCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<Library.BiomassCohorts.SiteCohorts>();
-            ISiteVar<Landis.Library.BiomassCohorts.ISiteCohorts> biomassCohortSiteVar = Landis.Library.Succession.CohortSiteVar<Landis.Library.BiomassCohorts.ISiteCohorts>.Wrap(biomassCohorts);
+            biomassCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
+            ISiteVar<ISiteCohorts> biomassCohortSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(biomassCohorts);
             
-            baseCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<Landis.Library.AgeOnlyCohorts.ISiteCohorts>.Wrap(biomassCohorts);
+            baseCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(biomassCohorts);
             HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 
-            woodyDebris = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Pool>();
-            litter = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Pool>();
+            woodyDebris = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.UniversalCohorts.Pool>();
+            litter = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.UniversalCohorts.Pool>();
             ag_npp          = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             Defoliation     = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             previousYearMortality = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
@@ -56,8 +56,8 @@ namespace Landis.Extension.Succession.Biomass
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 //  site cohorts are initialized by the PlugIn.InitializeSite method
-                woodyDebris[site] = new Landis.Library.Biomass.Pool();
-                litter[site] = new Landis.Library.Biomass.Pool();
+                woodyDebris[site] = new Landis.Library.UniversalCohorts.Pool();
+                litter[site] = new Landis.Library.UniversalCohorts.Pool();
             }
 
             currentYearMortality.ActiveSiteValues = 0;
@@ -83,7 +83,7 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.AGNPP[site] = 0.0;
             SiteVars.Defoliation[site] = 0.0;
             SiteVars.TotalBiomass[site] = 0;
-            SiteVars.TotalBiomass[site] = Library.BiomassCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
+            SiteVars.TotalBiomass[site] = Landis.Library.UniversalCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
 
             SiteVars.PreviousYearMortality[site] = SiteVars.CurrentYearMortality[site];
             SiteVars.CurrentYearMortality[site] = 0;
@@ -112,7 +112,7 @@ namespace Landis.Extension.Succession.Biomass
         /// <summary>
         /// The intact dead woody pools for the landscape's sites.
         /// </summary>
-        public static ISiteVar<Landis.Library.Biomass.Pool> WoodyDebris
+        public static ISiteVar<Landis.Library.UniversalCohorts.Pool> WoodyDebris
         {
             get
             {
@@ -125,7 +125,7 @@ namespace Landis.Extension.Succession.Biomass
         /// <summary>
         /// The dead non-woody pools for the landscape's sites.
         /// </summary>
-        public static ISiteVar<Landis.Library.Biomass.Pool> Litter
+        public static ISiteVar<Landis.Library.UniversalCohorts.Pool> Litter
         {
             get
             {
