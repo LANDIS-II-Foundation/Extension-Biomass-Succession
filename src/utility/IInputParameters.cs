@@ -29,6 +29,8 @@ namespace Landis.Extension.Succession.Biomass
         Landis.Library.Parameters.Species.AuxParm<double> MortCurveShapeParm { get; }
         Landis.Library.Parameters.Species.AuxParm<double> GrowthCurveShapeParm { get; }
         Landis.Library.Parameters.Species.AuxParm<double> LeafLignin { get; }
+        Landis.Library.Parameters.Species.AuxParm<byte> FireTolerance { get; }
+        Landis.Library.Parameters.Species.AuxParm<byte> ShadeTolerance { get; }
         //Species.AuxParm<double> MAXLAI {get;}
         //Species.AuxParm<double> LightExtinctionCoeff {get;}
         //Species.AuxParm<double> PctBioMaxLAI { get;}

@@ -1,12 +1,7 @@
 //  Author: Robert Scheller, Melissa Lucash
 
-using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Utilities;
-using Landis.Library.BiomassCohorts;
-
-using System;
-using System.Collections.Generic;
 
 
 namespace Landis.Extension.Succession.Biomass

@@ -29,6 +29,8 @@ namespace Landis.Extension.Succession.Biomass
         private Landis.Library.Parameters.Species.AuxParm<double> mortCurveShapeParm;
         private Landis.Library.Parameters.Species.AuxParm<double> growthCurveShapeParm;
         private Landis.Library.Parameters.Species.AuxParm<double> leafLignin;
+        private Landis.Library.Parameters.Species.AuxParm<byte> fireTolerance;
+        private Landis.Library.Parameters.Species.AuxParm<byte> shadeTolerance;
         private Landis.Library.Parameters.Ecoregions.AuxParm<int> aet;
         private Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
 
@@ -210,6 +212,26 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
+        public Landis.Library.Parameters.Species.AuxParm<byte> FireTolerance
+        {
+            get
+            {
+                return fireTolerance;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
+        public Landis.Library.Parameters.Species.AuxParm<byte> ShadeTolerance
+        {
+            get
+            {
+                return shadeTolerance;
+            }
+        }
+
+        //---------------------------------------------------------------------
+
         public Landis.Library.Parameters.Species.AuxParm<double> WoodyDecayRate
         {
             get {
@@ -341,6 +363,22 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
+        public void SetFireTolerance(ISpecies species, byte newValue)
+        {
+            Debug.Assert(species != null);
+            FireTolerance[species] = VerifyByteRange(newValue, 0, 5);
+        }
+
+        //---------------------------------------------------------------------
+
+        public void SetShadeTolerance(ISpecies species, byte newValue)
+        {
+            Debug.Assert(species != null);
+            ShadeTolerance[species] = VerifyByteRange(newValue, 0, 5);
+        }
+
+        //---------------------------------------------------------------------
+
         public void SetAET(IEcoregion           ecoregion,int newValue)
         {
             Debug.Assert(ecoregion != null);
@@ -360,6 +398,8 @@ namespace Landis.Extension.Succession.Biomass
             growthCurveShapeParm = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
             leafLignin = new Landis.Library.Parameters.Species.AuxParm<double>(PlugIn.ModelCore.Species);
             aet = new Landis.Library.Parameters.Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
+            shadeTolerance = new Library.Parameters.Species.AuxParm<byte>(PlugIn.ModelCore.Species);
+            fireTolerance = new Library.Parameters.Species.AuxParm<byte>(PlugIn.ModelCore.Species);
 
             minRelativeBiomass = new Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[6];
             for (byte shadeClass = 1; shadeClass <= 5; shadeClass++)
@@ -388,6 +428,15 @@ namespace Landis.Extension.Succession.Biomass
             return newValue;
         }
         public static int VerifyRange(int newValue, int minValue, int maxValue)
+        {
+            if (newValue < minValue || newValue > maxValue)
+                throw new InputValueException(newValue.ToString(),
+                                              "{0} is not between {1:0.0} and {2:0.0}",
+                                              newValue.ToString(), minValue, maxValue);
+            return newValue;
+        }
+
+        public static byte VerifyByteRange(byte newValue, byte minValue, byte maxValue)
         {
             if (newValue < minValue || newValue > maxValue)
                 throw new InputValueException(newValue.ToString(),

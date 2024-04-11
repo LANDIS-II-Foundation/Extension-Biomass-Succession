@@ -4,8 +4,8 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.Climate;
 using Landis.Library.Succession;
-using Landis.Library.InitialCommunities;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.InitialCommunities.Universal;
+using Landis.Library.UniversalCohorts;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -96,7 +96,7 @@ namespace Landis.Extension.Succession.Biomass
             //  Cohorts must be created before the base class is initialized
             //  because the base class' reproduction module uses the core's
             //  SuccessionCohorts property in its Initialization method.
-            Landis.Library.BiomassCohorts.Cohorts.Initialize(Timestep, new CohortBiomass());
+            Landis.Library.UniversalCohorts.Cohorts.Initialize(Timestep, new CohortBiomass());
 
             // Initialize Reproduction routines:
             Reproduction.SufficientResources = SufficientLight;
@@ -108,8 +108,8 @@ namespace Landis.Extension.Succession.Biomass
 
             InitialBiomass.Initialize(Timestep);
 
-            Landis.Library.BiomassCohorts.Cohort.DeathEvent += CohortTotalMortality;
-            Landis.Library.BiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
+            Cohort.DeathEvent += CohortTotalMortality;
+            Cohort.PartialDeathEvent += CohortPartialMortality;
 
             InitializeSites(Parameters.InitialCommunities, Parameters.InitialCommunitiesMap, modelCore);
         }
@@ -167,8 +167,8 @@ namespace Landis.Extension.Succession.Biomass
             {
                 foreach (ISpeciesCohorts sppCohorts in SiteVars.Cohorts[site])
                     foreach (ICohort cohort in sppCohorts)
-                        if (cohort.Age > 5)
-                            B_ACT += cohort.Biomass;
+                        if (cohort.Data.Age > 5)
+                            B_ACT += cohort.Data.Biomass;
             }
 
             int lastMortality = SiteVars.PreviousYearMortality[site];
@@ -194,27 +194,27 @@ namespace Landis.Extension.Succession.Biomass
         }
         //---------------------------------------------------------------------
 
-        public void CohortPartialMortality(object sender, Landis.Library.BiomassCohorts.PartialDeathEventArgs eventArgs)
+        public void CohortPartialMortality(object sender, PartialDeathEventArgs eventArgs)
         {
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             ActiveSite site = eventArgs.Site;
 
-            Landis.Library.BiomassCohorts.ICohort cohort = eventArgs.Cohort;
+            ICohort cohort = eventArgs.Cohort;
 
             double partialMortality = (double)eventArgs.Reduction;
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Biomass);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Data.Biomass);
             }
-            double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Biomass;
+            double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Data.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
 
             float foliarInput = (float) (partialMortality * nonWoodyFraction); // ((float) nonWoody * (float) fractionPartialMortality);
             float woodInput = (float)(partialMortality * woodyFraction); // ((float) woody * (float) fractionPartialMortality);
 
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY II: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY II: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
 
 
                 if (disturbanceType.IsMemberOf("disturbance:harvest"))
@@ -227,7 +227,7 @@ namespace Landis.Extension.Succession.Biomass
                 woodInput  -= woodInput * (float)HarvestEffects.GetCohortWoodRemoval(site);
                 foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemoval(site);
             }
-            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
             if (disturbanceType.IsMemberOf("disturbance:fire"))
             {
 
@@ -265,14 +265,14 @@ namespace Landis.Extension.Succession.Biomass
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             ActiveSite site = eventArgs.Site;
 
-            ICohort cohort = (Landis.Library.BiomassCohorts.ICohort)eventArgs.Cohort;
+            ICohort cohort = (ICohort)eventArgs.Cohort;
             int foliarInput = cohort.ComputeNonWoodyBiomass(site);
-            int woodInput = (cohort.Biomass - foliarInput);
+            int woodInput = (cohort.Data.Biomass - foliarInput);
 
             if (disturbanceType != null)
             {
                 if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION TOTAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Age, woodInput, foliarInput);
+                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION TOTAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
 
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
                 {
@@ -318,7 +318,7 @@ namespace Landis.Extension.Succession.Biomass
                 }
             }
 
-            //PlugIn.ModelCore.UI.WriteLine("Cohort Died: species={0}, age={1}, wood={2:0.00}, foliage={3:0.00}.", cohort.Species.Name, cohort.Age, wood, foliar);
+            //PlugIn.ModelCore.UI.WriteLine("Cohort Died: species={0}, age={1}, wood={2:0.00}, foliage={3:0.00}.", cohort.Species.Name, cohort.Data.Age, wood, foliar);
             ForestFloor.AddWoody(woodInput, cohort.Species, eventArgs.Site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, eventArgs.Site);
 
@@ -399,7 +399,7 @@ namespace Landis.Extension.Succession.Biomass
             {
 
                 //PlugIn.ModelCore.Log.WriteLine("Sufficient Light:  ShadeClass={0}, Prob0={1}.", lights.ShadeClass, lights.ProbabilityLight0);
-                if (lights.ShadeClass == species.ShadeTolerance)
+                if (lights.ShadeClass == SpeciesData.ShadeTolerance[species])
                 {
                     if (siteShade == 0) lightProbability = lights.ProbabilityLight0;
                     if (siteShade == 1) lightProbability = lights.ProbabilityLight1;
@@ -421,9 +421,9 @@ namespace Landis.Extension.Succession.Biomass
         /// This is a Delegate method to base succession.
         /// </summary>
 
-        public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType)
+        public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
-            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site));
+            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), new System.Dynamic.ExpandoObject());
         }
         //---------------------------------------------------------------------
 
@@ -467,15 +467,15 @@ namespace Landis.Extension.Succession.Biomass
         public override void InitializeSites(string initialCommunitiesText, string initialCommunitiesMap, ICore modelCore)
         {
             ModelCore.UI.WriteLine("   Loading initial communities from file \"{0}\" ...", initialCommunitiesText);
-            Landis.Library.InitialCommunities.DatasetParser parser = new Landis.Library.InitialCommunities.DatasetParser(Timestep, ModelCore.Species);
-            Landis.Library.InitialCommunities.IDataset communities = Landis.Data.Load<Landis.Library.InitialCommunities.IDataset>(initialCommunitiesText, parser);
+            Landis.Library.InitialCommunities.Universal.DatasetParser parser = new Landis.Library.InitialCommunities.Universal.DatasetParser(Timestep, ModelCore.Species, additionalCohortParameters, initialCommunitiesText);
+            Landis.Library.InitialCommunities.Universal.IDataset communities = Landis.Data.Load<Landis.Library.InitialCommunities.Universal.IDataset>(initialCommunitiesText, parser);
 
             ModelCore.UI.WriteLine("   Reading initial communities map \"{0}\" ...", initialCommunitiesMap);
-            IInputRaster<uintPixel> map;
-            map = ModelCore.OpenRaster<uintPixel>(initialCommunitiesMap);
+            IInputRaster<UIntPixel> map;
+            map = ModelCore.OpenRaster<UIntPixel>(initialCommunitiesMap);
             using (map)
             {
-                uintPixel pixel = map.BufferPixel;
+                UIntPixel pixel = map.BufferPixel;
                 foreach (Site site in ModelCore.Landscape.AllSites)
                 {
                     map.ReadBufferPixel();
@@ -498,6 +498,12 @@ namespace Landis.Extension.Succession.Biomass
                     InitializeSite(activeSite); 
                 }
             }
+        }
+
+        public override void AddCohortData()
+        {
+            // No new parameters to add
+            return;
         }
     }
 }

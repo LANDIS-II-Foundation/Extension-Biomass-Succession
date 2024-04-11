@@ -1,12 +1,9 @@
 //  Authors:  Robert M. Scheller, James B. Domingo
 
-using Landis.SpatialModeling;
-using Landis.Library.BiomassCohorts;
 using Landis.Core;
 using System.Collections.Generic;
 using Landis.Utilities;
 using Landis.Library.Succession;
-using Landis.Library.Biomass;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -19,6 +16,8 @@ namespace Landis.Extension.Succession.Biomass
         public static Landis.Library.Parameters.Species.AuxParm<double> LeafLongevity;
         public static Landis.Library.Parameters.Species.AuxParm<double> MortCurveShapeParm;
         public static Landis.Library.Parameters.Species.AuxParm<double> GrowthCurveShapeParm;
+        public static Landis.Library.Parameters.Species.AuxParm<byte> FireTolerance;
+        public static Landis.Library.Parameters.Species.AuxParm<byte> ShadeTolerance;
 
         //  Establishment probability for each species in each ecoregion
         public static Landis.Library.Parameters.SpeciesEcoregionAuxParm<double> EstablishProbability;
@@ -43,7 +42,8 @@ namespace Landis.Extension.Succession.Biomass
             MortCurveShapeParm      = parameters.MortCurveShapeParm;
             GrowthCurveShapeParm = parameters.GrowthCurveShapeParm;
             WoodyDebrisDecay = parameters.WoodyDecayRate;
-
+            FireTolerance = parameters.FireTolerance;
+            ShadeTolerance = parameters.ShadeTolerance;
 
         }
 

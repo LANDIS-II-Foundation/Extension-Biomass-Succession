@@ -215,7 +215,8 @@ namespace Landis.Extension.Succession.Biomass
                 parameters.SetMortCurveShapeParm(species, System.Convert.ToDouble(row["MortalityCurve"]));
                 parameters.SetGrowthCurveShapeParm(species, System.Convert.ToDouble(row["GrowthCurve"]));
                 parameters.SetLeafLignin(species, System.Convert.ToDouble(row["LeafLignin"]));
-
+                parameters.SetShadeTolerance(species, System.Convert.ToByte(row["ShadeTolerance"]));
+                parameters.SetFireTolerance(species, System.Convert.ToByte(row["FireTolerance"]));
             }
 
             //    ReadName("SpeciesParameters");

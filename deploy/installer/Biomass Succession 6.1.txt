@@ -6,4 +6,4 @@ Type         succession
 Assembly     Landis.Extension.Succession.Biomass-v6
 Class        Landis.Extension.Succession.Biomass.PlugIn
 Description  "Succession with biomass cohorts"
-CoreVersion  7.0
+CoreVersion  8.0
