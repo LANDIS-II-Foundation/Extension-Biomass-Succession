@@ -11,9 +11,9 @@ namespace Landis.Extension.Succession.Biomass
     public static class SiteVars
     {
 
-        private static ISiteVar<SiteCohorts> biomassCohorts;
+        private static ISiteVar<SiteCohorts> universalCohorts;
         
-        private static ISiteVar<ISiteCohorts> baseCohortsSiteVar;
+        private static ISiteVar<ISiteCohorts> universalCohortsSiteVar;
 
         private static ISiteVar<Landis.Library.UniversalCohorts.Pool> woodyDebris;
         private static ISiteVar<Landis.Library.UniversalCohorts.Pool> litter;
@@ -37,10 +37,9 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public static void Initialize()
         {
-            biomassCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
-            ISiteVar<ISiteCohorts> biomassCohortSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(biomassCohorts);
-            
-            baseCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(biomassCohorts);
+            universalCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
+            universalCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(universalCohorts);
+
             HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 
             woodyDebris = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.UniversalCohorts.Pool>();
@@ -63,8 +62,7 @@ namespace Landis.Extension.Succession.Biomass
             currentYearMortality.ActiveSiteValues = 0;
             previousYearMortality.ActiveSiteValues = 0;
 
-            PlugIn.ModelCore.RegisterSiteVar(biomassCohortSiteVar, "Succession.BiomassCohorts");
-            PlugIn.ModelCore.RegisterSiteVar(baseCohortsSiteVar, "Succession.AgeCohorts");
+            PlugIn.ModelCore.RegisterSiteVar(universalCohortsSiteVar, "Succession.UniversalCohorts");
  
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.WoodyDebris, "Succession.WoodyDebris");
@@ -99,11 +97,11 @@ namespace Landis.Extension.Succession.Biomass
         {
             get
             {
-                return biomassCohorts;
+                return universalCohorts;
             }
             set
             {
-                biomassCohorts = value;
+                universalCohorts = value;
             }
         }
 
