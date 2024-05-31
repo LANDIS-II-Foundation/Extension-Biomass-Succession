@@ -68,7 +68,7 @@ namespace Landis.Extension.Succession.Biomass
                 }
             }
 
-            string path = MapNames.ReplaceTemplateVars(@"biomass-succession\biomass-anpp-{timestep}.img", PlugIn.ModelCore.CurrentTime);
+            string path = MapNames.ReplaceTemplateVars(@"biomass-succession\biomass-anpp-{timestep}.tif", PlugIn.ModelCore.CurrentTime);
             using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(path, PlugIn.ModelCore.Landscape.Dimensions))
             {
                 IntPixel pixel = outputRaster.BufferPixel;

@@ -250,3 +250,20 @@ testings/CoreV7.0-BiomassSuccession6.0/Metadata/Base Fire/FireEventsLog_Metadata
 testings/CoreV7.0-BiomassSuccession6.0/Metadata/Base Fire/FireSummaryLog_Metadata.xml
 testings/CoreV7.0-BiomassSuccession6.0/fire/base-fire-log.csv
 testings/CoreV7.0-BiomassSuccession6.0/Biomass-succession-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Biomass Succession/SummaryLog_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Biomass Succession/Biomass Succession.xml
+testings/CoreV8.0-BiomassSuccession7.0/Landis-climate-log.txt
+testings/CoreV8.0-BiomassSuccession7.0/Landis-log.txt
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Annual-Log_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Climate-Library.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Future-Input-Log_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/LANDIS-II v8.0/LANDIS-II v8.0.xml
+testings/CoreV8.0-BiomassSuccession7.0/Climate-annual-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-10.tif
+testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-20.tif
+testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-30.tif
+testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-40.tif
+testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-50.tif
