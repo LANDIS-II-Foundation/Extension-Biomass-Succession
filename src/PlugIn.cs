@@ -298,7 +298,6 @@ namespace Landis.Extension.Succession.Biomass
                 SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep));
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();
-                //PlugIn.ModelCore.UI.WriteLine("   DECOMPOSE: Former Wood = {0}, New Wood = {1}", oldWood, SiteVars.WoodyDebris[site].Mass);
                 SiteVars.Litter[site].Decompose();
             }
 
