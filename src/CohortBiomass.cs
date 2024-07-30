@@ -103,7 +103,7 @@ namespace Landis.Extension.Succession.Biomass
             // with a defoliation calculator.  The method CohortDefoliation.Compute is a delegate method
             // and lives within the defoliating extension.
 
-            defoliation = CohortDefoliation.Compute(site, cohort.Species, cohort.Data.Biomass, siteBiomass);
+            defoliation = CohortDefoliation.Compute(site, cohort, cohort.Data.Biomass, siteBiomass);
             double defoliationLoss = 0.0;
             if (defoliation > 0)
             {
