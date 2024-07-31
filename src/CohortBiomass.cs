@@ -59,6 +59,7 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public double ComputeChange(ICohort cohort,
                                  ActiveSite site,
+                                 out int ANPP,
                                  out ExpandoObject otherParams)
         {
             dynamic tempObject = new ExpandoObject();
@@ -76,6 +77,8 @@ namespace Landis.Extension.Succession.Biomass
             //  Age mortality is discounted from ANPP to prevent the over-
             //  estimation of mortality.  ANPP cannot be negative.
             actualANPP = Math.Max(1, actualANPP - mortalityAge);
+
+            ANPP = (int) actualANPP;
 
             SiteVars.AGNPP[site] += actualANPP;
 
