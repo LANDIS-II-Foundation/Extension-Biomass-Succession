@@ -268,3 +268,7 @@ testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-30.tif
 testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-40.tif
 testings/CoreV8.0-BiomassSuccession7.0/biomass-succession/biomass-anpp-50.tif
 testings/CoreV8.0-BiomassSuccession7.0/Biomass-succession-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Future-Annual-Log_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Metadata/Climate-Library/Spinup-Annual-Log_Metadata.xml
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-annual-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-annual-log.csv
