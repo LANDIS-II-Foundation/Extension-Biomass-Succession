@@ -79,7 +79,7 @@ namespace Landis.Extension.Succession.Biomass
             if (Parameters.ClimateConfigFile != null)
             {
                 Climate.Initialize(Parameters.ClimateConfigFile, false, modelCore);
-                FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
+                //FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
                 ClimateRegionData.Initialize(Parameters);
             }
 
@@ -87,7 +87,6 @@ namespace Landis.Extension.Succession.Biomass
 
             SpeciesData.Initialize(Parameters);
             EcoregionData.Initialize(Parameters);
-            //DynamicInputs.Initialize(Parameters.DynamicInputFile, false);
             SpeciesData.GetAnnualData(0);  // Year 0
             FireEffects.Initialize(Parameters);
 
