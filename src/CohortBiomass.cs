@@ -137,8 +137,6 @@ namespace Landis.Extension.Succession.Biomass
                 PlugIn.ModelCore.UI.WriteLine("Yr={0}.    DeltaB={1:0.0}, CohortB={2}, Bsite={3}", (PlugIn.ModelCore.CurrentTime + SubYear), deltaBiomass, cohort.Data.Biomass, (int)siteBiomass);
             }
 
-            ANPP = (int)actualANPP;
-
             return deltaBiomass;
         }
 
