@@ -41,7 +41,6 @@ namespace Landis.Extension.Succession.Biomass
         public override void LoadParameters(string dataFile, ICore mCore)
         {
             modelCore = mCore;
-            SiteVars.Initialize();
             InputParametersParser parser = new InputParametersParser();
             Parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
@@ -72,6 +71,7 @@ namespace Landis.Extension.Succession.Biomass
 
             Timestep = Parameters.Timestep;
             time = Timestep;
+
             CalibrateMode = Parameters.CalibrateMode;
             CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
 
@@ -79,16 +79,16 @@ namespace Landis.Extension.Succession.Biomass
             if (Parameters.ClimateConfigFile != null)
             {
                 Climate.Initialize(Parameters.ClimateConfigFile, false, modelCore);
-                //FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
                 ClimateRegionData.Initialize(Parameters);
             }
 
             sufficientLight = Parameters.LightClassProbabilities;
 
             SpeciesData.Initialize(Parameters);
+            FireEffects.Initialize(Parameters);
+            SiteVars.Initialize();
             EcoregionData.Initialize(Parameters);
             SpeciesData.GetAnnualData(0);  // Year 0
-            FireEffects.Initialize(Parameters);
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
             
@@ -117,9 +117,9 @@ namespace Landis.Extension.Succession.Biomass
         protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
         {
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
-            SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
-            SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
+            //SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
+            //SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
         }
 
         //---------------------------------------------------------------------
@@ -293,8 +293,11 @@ namespace Landis.Extension.Succession.Biomass
 
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;
-
-                SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep));
+                if (y == 1)
+                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
+                else
+                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
+                
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();
                 SiteVars.Litter[site].Decompose();

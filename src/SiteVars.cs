@@ -10,7 +10,6 @@ namespace Landis.Extension.Succession.Biomass
     /// </summary>
     public static class SiteVars
     {
-        private static ISiteVar<ISiteCohorts> universalCohortsSiteVar;
         public static ISiteVar<double> Defoliation;
         public static ISiteVar<string> HarvestPrescriptionName;
         public static ISiteVar<byte> FireSeverity;
@@ -24,8 +23,8 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public static void Initialize()
         {
-            Cohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
-            universalCohortsSiteVar = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(Cohorts);
+            cohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
+            //Cohorts = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(Cohorts);
 
             HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 
@@ -49,9 +48,7 @@ namespace Landis.Extension.Succession.Biomass
             CurrentYearMortality.ActiveSiteValues = 0;
             PreviousYearMortality.ActiveSiteValues = 0;
 
-            PlugIn.ModelCore.RegisterSiteVar(universalCohortsSiteVar, "Succession.UniversalCohorts");
- 
-
+            PlugIn.ModelCore.RegisterSiteVar(cohorts, "Succession.UniversalCohorts");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.WoodyDebris, "Succession.WoodyDebris");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Litter, "Succession.Litter");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.MaxBiomass, "Succession.MaxBiomass");
@@ -73,11 +70,21 @@ namespace Landis.Extension.Succession.Biomass
 
         }
         //---------------------------------------------------------------------
-
         /// <summary>
-        /// Biomass cohorts at each site.
+        /// Cohorts at each site.
         /// </summary>
-        public static ISiteVar<SiteCohorts> Cohorts { get; set; }
+        private static ISiteVar<SiteCohorts> cohorts;
+        public static ISiteVar<SiteCohorts> Cohorts
+        {
+            get
+            {
+                return cohorts;
+            }
+            set
+            {
+                cohorts = value;
+            }
+        }
 
         //---------------------------------------------------------------------
 
