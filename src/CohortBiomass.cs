@@ -177,7 +177,7 @@ namespace Landis.Extension.Succession.Biomass
             // Growth reduction is calculated by an disturbance function, typically an extension
             // with a dedicated calculator.  The method CohortGrowthReduction.Compute is a delegate method
             // and lives within the disturbance extension.
-           
+
             growthReduction = CohortGrowthReduction.Compute(cohort, site);
             
             double growthShape = SpeciesData.GrowthCurveShapeParm[cohort.Species];
@@ -387,14 +387,14 @@ namespace Landis.Extension.Succession.Biomass
                                                     ActiveSite site)
         {
 
-            double mortalityAge = ComputeAgeMortality(cohort);
-            double actualANPP = ComputeActualANPP(cohort, site); 
+            //double mortalityAge = ComputeAgeMortality(cohort);
+            //double actualANPP = ComputeActualANPP(cohort, site); 
 
-            //  Age mortality is discounted from ANPP to prevent the over-
-            //  estimation of mortality.  ANPP cannot be negative.
-            actualANPP = Math.Max(0, actualANPP - mortalityAge);
+            ////  Age mortality is discounted from ANPP to prevent the over-
+            ////  estimation of mortality.  ANPP cannot be negative.
+            //actualANPP = Math.Max(0, actualANPP - mortalityAge);
 
-            return new Percentage(ComputeStandingLeafBiomass(actualANPP, cohort) / cohort.Data.Biomass);
+            return new Percentage(ComputeStandingLeafBiomass(cohort.Data.ANPP, cohort) / cohort.Data.Biomass);
         }
         //---------------------------------------------------------------------
 

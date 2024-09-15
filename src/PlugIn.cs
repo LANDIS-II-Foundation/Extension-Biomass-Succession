@@ -207,8 +207,8 @@ namespace Landis.Extension.Succession.Biomass
             double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Data.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
 
-            float foliarInput = (float) (partialMortality * nonWoodyFraction); // ((float) nonWoody * (float) fractionPartialMortality);
-            float woodInput = (float)(partialMortality * woodyFraction); // ((float) woody * (float) fractionPartialMortality);
+            float foliarInput = (float) (partialMortality * nonWoodyFraction); 
+            float woodInput = (float)(partialMortality * woodyFraction); 
 
             if (disturbanceType != null)
             {
