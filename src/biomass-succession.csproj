@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Reference Include="Landis.Library.Climate-v5">
+      <HintPath>lib\Landis.Library.Climate-v5.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.InitialCommunity.Universal">
       <HintPath>lib\Landis.Library.InitialCommunity.Universal.dll</HintPath>
