@@ -15,9 +15,6 @@ ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
 
 >> CalibrateMode 		yes
 
->> SpinUpMortalityFraction 	0.0
-
-
 
 >>----------------------------
 >> LIFE HISTORY PARAMETERS
