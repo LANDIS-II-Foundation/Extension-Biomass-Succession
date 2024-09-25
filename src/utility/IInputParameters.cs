@@ -21,7 +21,7 @@ namespace Landis.Extension.Succession.Biomass
         string InitialCommunitiesMap{get; set;}
         string ClimateConfigFile { get; set; }
         bool CalibrateMode { get; set; }
-        double SpinupMortalityFraction {get; set;}
+        //double SpinupMortalityFraction {get; set;}
         List<ISufficientLight> LightClassProbabilities {get; set;}
         Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[] MinRelativeBiomass { get; }
         Landis.Library.Parameters.Species.AuxParm<double> LeafLongevity { get; }

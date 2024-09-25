@@ -3,7 +3,6 @@
 using Landis.Library.Succession;
 using Landis.Core;
 using System.Collections.Generic;
-using System.Collections;
 using System.Data;
 using Landis.Utilities;
 
@@ -83,10 +82,10 @@ namespace Landis.Extension.Succession.Biomass
             parameters.InitialCommunitiesMap = communitiesMap.Value;
 
             InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
-            if (ReadOptionalVar(climateConfigFile))
-                parameters.ClimateConfigFile = climateConfigFile.Value;
-            else
-                parameters.ClimateConfigFile = null;
+            ReadVar(climateConfigFile);
+            parameters.ClimateConfigFile = climateConfigFile.Value;
+            //else
+            //    parameters.ClimateConfigFile = null;
 
             //---------------------------------------------------------------------------------
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
@@ -95,11 +94,11 @@ namespace Landis.Extension.Succession.Biomass
             else
                 parameters.CalibrateMode = false;
 
-            InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
-            if(ReadOptionalVar(spinMort))
-                parameters.SpinupMortalityFraction = spinMort.Value;
-            else
-                parameters.SpinupMortalityFraction = 0.0;
+            //InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
+            //if(ReadOptionalVar(spinMort))
+            //    parameters.SpinupMortalityFraction = spinMort.Value;
+            //else
+            //    parameters.SpinupMortalityFraction = 0.0;
 
             //--------------------------
             //  MinRelativeBiomass table

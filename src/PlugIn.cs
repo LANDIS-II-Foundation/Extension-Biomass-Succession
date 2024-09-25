@@ -73,7 +73,7 @@ namespace Landis.Extension.Succession.Biomass
             time = Timestep;
 
             CalibrateMode = Parameters.CalibrateMode;
-            CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
+            //CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
 
             //Initialize climate.
             if (Parameters.ClimateConfigFile != null)
