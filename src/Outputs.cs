@@ -56,7 +56,7 @@ namespace Landis.Extension.Succession.Biomass
                     sl.Time = CurrentTime;
                     sl.EcoName = ecoregion.Name;
                     sl.ActiveCount = EcoregionData.ActiveSiteCount[ecoregion];
-                    sl.AvgAG_NPP = (avgAG_NPP[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
+                    sl.AvgAG_NPP = (int) (avgAG_NPP[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
                     sl.AvgDefoliation = (avgDefoliation[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
                     sl.AvgLitterB = (avgLitterB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);
                     sl.AvgLiveB = (avgLiveB[ecoregion.Index] / (double)EcoregionData.ActiveSiteCount[ecoregion]);

@@ -16,8 +16,8 @@ namespace Landis.Extension.Succession.Biomass
         [DataFieldAttribute(Unit = FieldUnits.g_B_m2, Desc = "Average LiveB", Format = "0.0")]
         public double AvgLiveB { get; set; }
 
-        [DataFieldAttribute(Unit = FieldUnits.g_B_m2_yr1, Desc = "Average AG_NPP", Format = "0.0")]
-        public double AvgAG_NPP { get; set; }
+        [DataFieldAttribute(Unit = FieldUnits.g_B_m2_yr1, Desc = "Average AG_NPP", Format = "0")]
+        public int AvgAG_NPP { get; set; }
 
         [DataFieldAttribute(Unit = FieldUnits.g_B_m2, Desc = "Average LitterB", Format = "0.0")]
         public double AvgLitterB { get; set; }
