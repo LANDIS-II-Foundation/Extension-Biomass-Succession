@@ -31,8 +31,6 @@ namespace Landis.Extension.Succession.Biomass
         public static int SubYear;
         private double growthReduction;
         private double defoliation;
-        //public static double SpinupMortalityFraction;
-        //public static double CanopyLightExtinction;
 
         //---------------------------------------------------------------------
 
@@ -59,7 +57,7 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public double ComputeChange(ICohort cohort,
                                  ActiveSite site,
-                                 out int ANPP,
+                                 out double ANPP,
                                  out ExpandoObject otherParams)
         {
             dynamic tempObject = new ExpandoObject();
@@ -73,7 +71,7 @@ namespace Landis.Extension.Succession.Biomass
             double mortalityAge = ComputeAgeMortality(cohort);
 
             double actualANPP = ComputeActualANPP(cohort, site);
-            ANPP = (int)actualANPP;
+            ANPP = actualANPP;
             SiteVars.AGNPP[site] += cohort.Data.ANPP;// actualANPP;
 
             //  Age mortality is discounted from ANPP to prevent the over-
