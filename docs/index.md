@@ -25,7 +25,8 @@ To use Biomass Succession, you need:
 
 # Download and Install the Extension
 
-- The latest version can be [downloaded from GitHub](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V8%20Biomass%20Succession%207.0.2-setup.exe). (Look for the download icon |_| in the upper right.) 
+- The latest version can be [downloaded from GitHub](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V8%20Biomass%20Succession%207.0.2-setup.exe).
+- (Look for the download icon in the upper right.) 
 - Next, launch the installer.
 
 # Citation
