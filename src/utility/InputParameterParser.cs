@@ -218,43 +218,6 @@ namespace Landis.Extension.Succession.Biomass
                 parameters.SetFireTolerance(species, System.Convert.ToByte(row["FireTolerance"]));
             }
 
-            //    ReadName("SpeciesParameters");
-            //const string EcoregionParameters = "EcoregionParameters";
-
-            //speciesLineNums.Clear();  
-
-            //InputVar<double> leafLongevity = new InputVar<double>("Leaf Longevity");
-            //InputVar<double> woodyDecayRate = new InputVar<double>("Woody Decay Rate");
-            //InputVar<double> mortCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
-            //InputVar<double> growthCurveShapeParm = new InputVar<double>("Mortality Curve Shape Parameter");
-            //InputVar<double> leafLignin = new InputVar<double>("Leaf Percent Lignin");
-            //InputVar<double> maxlai = new InputVar<double>("Maximum LAI");
-            //InputVar<double> lec = new InputVar<double>("Light extinction coefficient");
-            //InputVar<double> pctBio = new InputVar<double>("Pct Biomass Max LAI");
-            ////string lastColumn = "the " + mortCurveShapeParm.Name + " column";
-
-            //while (! AtEndOfInput && CurrentName != EcoregionParameters) {
-            //    StringReader currentLine = new StringReader(CurrentLine);
-            //    ISpecies species = ReadSpecies(currentLine);
-
-            //    ReadValue(leafLongevity, currentLine);
-            //    parameters.SetLeafLongevity(species, leafLongevity.Value);
-
-            //    ReadValue(woodyDecayRate, currentLine);
-            //    parameters.SetWoodyDecayRate(species, woodyDecayRate.Value);
-
-            //    ReadValue(mortCurveShapeParm, currentLine);
-            //    parameters.SetMortCurveShapeParm(species, mortCurveShapeParm.Value);
-
-            //    ReadValue(growthCurveShapeParm, currentLine);
-            //    parameters.SetGrowthCurveShapeParm(species, growthCurveShapeParm.Value);
-
-            //    ReadValue(leafLignin, currentLine);
-            //    parameters.SetLeafLignin(species, leafLignin.Value);
-
-            //    CheckNoDataAfter(leafLignin.Name, currentLine);
-            //    GetNextLine();
-            //}
 
             ReadName("EcoregionParameters");
 
