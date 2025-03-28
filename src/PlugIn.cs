@@ -129,8 +129,8 @@ namespace Landis.Extension.Succession.Biomass
             //if(PlugIn.ModelCore.CurrentTime == Timestep)
                 //Outputs.WriteLogFile(0);
 
-            if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.CapacityReduction == null)
-                SiteVars.CapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
+            if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.HarvestCapacityReduction == null)
+                SiteVars.HarvestCapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
 
             base.Run();
 

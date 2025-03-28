@@ -123,7 +123,7 @@ namespace Landis.Extension.Succession.Biomass
         //---------------------------------------------------------------------
         /// <summary>
         /// </summary>
-        public static ISiteVar<double> CapacityReduction { get; set; }
+        public static ISiteVar<double> HarvestCapacityReduction { get; set; }
         //---------------------------------------------------------------------
 
         /// <summary>

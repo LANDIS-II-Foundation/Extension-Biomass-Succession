@@ -180,9 +180,9 @@ namespace Landis.Extension.Succession.Biomass
             double cohortBiomass = cohort.Data.Biomass;
             double capacityReduction = 1.0;
 
-            if(SiteVars.CapacityReduction != null && SiteVars.CapacityReduction[site] > 0)
+            if(SiteVars.HarvestCapacityReduction != null && SiteVars.HarvestCapacityReduction[site] > 0)
             {
-                capacityReduction = 1.0 - SiteVars.CapacityReduction[site];
+                capacityReduction = 1.0 - SiteVars.HarvestCapacityReduction[site];
                 if(PlugIn.CalibrateMode)
                     PlugIn.ModelCore.UI.WriteLine("Yr={0}. Capacity Remaining={1:0.00}, Spp={2}, Age={3} B={4}.", (PlugIn.ModelCore.CurrentTime + SubYear), capacityReduction, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
             }
