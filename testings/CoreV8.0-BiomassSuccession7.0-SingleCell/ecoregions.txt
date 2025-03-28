@@ -1,0 +1,8 @@
+LandisData	"Ecoregions"		
+
+>> 	Map Code		
+>>Active	Name	Description
+>>--------------------------------------------------------			
+yes	3	101		"Sandy"
+
+
