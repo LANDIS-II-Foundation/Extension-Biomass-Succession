@@ -10,7 +10,7 @@ Timestep  			10
 SeedingAlgorithm  		WardSeedDispersal
 
 InitialCommunities      	./biomass-succession_InitialCommunities.csv
-InitialCommunitiesMap   	Initial-Communities.tif
+InitialCommunitiesMap   	initial-communities.tif
 ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
 
 >> CalibrateMode 		yes
