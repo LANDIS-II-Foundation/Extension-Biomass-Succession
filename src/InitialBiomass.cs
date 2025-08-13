@@ -14,8 +14,8 @@ namespace Landis.Extension.Succession.Biomass
     public class InitialBiomass
     {
         private ISiteCohorts cohorts;
-        //private Library.UniversalCohorts.Pool deadWoodyPool;
-        //private Library.UniversalCohorts.Pool deadNonWoodyPool;
+        private Library.UniversalCohorts.Pool deadWoodyPool;
+        private Library.UniversalCohorts.Pool deadNonWoodyPool;
 
         //---------------------------------------------------------------------
 
