@@ -223,14 +223,14 @@ namespace Landis.Extension.Succession.Biomass
         /// Makes the set of biomass cohorts using cohort Spin Up
         public static SiteCohorts MakeBiomassCohortsSpinUp(List<ICohort> cohortsList, ActiveSite site)
         {
-            return MakeBiomassCohortsSpinUp(cohortsList, site, CohortBiomass.InitialBiomass);
+            return GrowCohorts(cohortsList, site, CohortBiomass.InitialBiomass);
         }
 
         //---------------------------------------------------------------------
         /// <summary>
         /// Makes the set of biomass cohorts at a site, using input Biomass values
         /// </summary>
-        public static SiteCohorts MakeBiomassCohortsSpinUp(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
+        public static SiteCohorts GrowCohorts(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
         {
 
             SiteVars.Cohorts[site] = new SiteCohorts();
