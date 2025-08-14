@@ -27,6 +27,7 @@ namespace Landis.Extension.Succession.Biomass
         public static MetadataTable<SummaryLog> summaryLog;
         public static IInputParameters Parameters;
         private ICommunity initialCommunity;
+        private static bool SpinUp = false;
 
 
         //---------------------------------------------------------------------
@@ -89,6 +90,7 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.Initialize();
             EcoregionData.Initialize(Parameters);
             SpeciesData.GetAnnualData(0);  // Year 0
+            // SpinUp = Parameters.SpinUp; TODO
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
             
@@ -116,10 +118,16 @@ namespace Landis.Extension.Succession.Biomass
 
         protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
         {
-            InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
-            //SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
-            //SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+            InitialBiomass initialBiomass;
+            if (!SpinUp)
+                initialBiomass = InitialBiomass.Compute(site, initialCommunity);
+            else
+            {
+                initialBiomass = InitialBiomass.ComputeSpinUp(site, initialCommunity);
+                SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
+                SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
+                SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+            }
         }
 
         //---------------------------------------------------------------------
@@ -406,11 +414,6 @@ namespace Landis.Extension.Succession.Biomass
                     uint mapCode = pixel.MapCode.Value;
                     if (!site.IsActive)
                         continue;
-
-                    //if (!modelCore.Ecoregion[site].Active)
-                    //    continue;
-
-                    //modelCore.Log.WriteLine("ecoregion = {0}.", modelCore.Ecoregion[site]);
 
                     ActiveSite activeSite = (ActiveSite)site;
                     initialCommunity = communities.Find(mapCode);
