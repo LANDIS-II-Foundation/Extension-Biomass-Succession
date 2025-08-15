@@ -94,11 +94,11 @@ namespace Landis.Extension.Succession.Biomass
             else
                 parameters.CalibrateMode = false;
 
-            //InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
-            //if(ReadOptionalVar(spinMort))
-            //    parameters.SpinupMortalityFraction = spinMort.Value;
-            //else
-            //    parameters.SpinupMortalityFraction = 0.0;
+            InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
+            if (ReadOptionalVar(spinMort))
+                parameters.SpinupMortalityFraction = spinMort.Value;
+            else
+                parameters.SpinupMortalityFraction = 0.0;
 
             //--------------------------
             //  MinRelativeBiomass table

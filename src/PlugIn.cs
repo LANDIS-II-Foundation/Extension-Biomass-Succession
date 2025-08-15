@@ -27,7 +27,7 @@ namespace Landis.Extension.Succession.Biomass
         public static MetadataTable<SummaryLog> summaryLog;
         public static IInputParameters Parameters;
         private ICommunity initialCommunity;
-        private static bool SpinUp = false;
+        private static bool SpinUp = true;
 
 
         //---------------------------------------------------------------------
@@ -74,7 +74,7 @@ namespace Landis.Extension.Succession.Biomass
             time = Timestep;
 
             CalibrateMode = Parameters.CalibrateMode;
-            //CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
+            CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
 
             //Initialize climate.
             if (Parameters.ClimateConfigFile != null)
@@ -134,8 +134,6 @@ namespace Landis.Extension.Succession.Biomass
 
         public override void Run()
         {
-            //if(PlugIn.ModelCore.CurrentTime == Timestep)
-                //Outputs.WriteLogFile(0);
 
             if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.HarvestCapacityReduction == null)
                 SiteVars.HarvestCapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
