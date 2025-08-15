@@ -123,7 +123,7 @@ namespace Landis.Extension.Succession.Biomass
                 initialBiomass = InitialBiomass.Compute(site, initialCommunity);
             else
             {
-                initialBiomass = InitialBiomass.ComputeSpinUp(site, initialCommunity);
+                initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
                 SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
                 SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
                 SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
