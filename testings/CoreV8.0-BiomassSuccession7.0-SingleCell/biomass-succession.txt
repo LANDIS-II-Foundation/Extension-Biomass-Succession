@@ -14,6 +14,8 @@ InitialCommunitiesMap   	single3.tif
 ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
 
 >> CalibrateMode 		yes
+SpinupCohorts			yes
+SpinupMortalityFraction 0.05
 
 
 >>----------------------------

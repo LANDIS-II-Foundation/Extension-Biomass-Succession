@@ -90,7 +90,7 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.Initialize();
             EcoregionData.Initialize(Parameters);
             SpeciesData.GetAnnualData(0);  // Year 0
-            // SpinUp = Parameters.SpinUp; TODO
+            SpinUp = Parameters.SpinupCohorts; 
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
             

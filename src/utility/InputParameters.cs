@@ -20,6 +20,7 @@ namespace Landis.Extension.Succession.Biomass
         private SeedingAlgorithms seedAlg;
         private string climateConfigFile;
         private bool calibrateMode;
+        private bool spinupCohorts; 
         private double spinupMortalityFraction;
 
         private List<ISufficientLight> sufficientLight;
@@ -135,6 +136,18 @@ namespace Landis.Extension.Succession.Biomass
             }
         }
 
+        //---------------------------------------------------------------------
+        public bool SpinupCohorts
+        {
+            get
+            {
+                return spinupCohorts;
+            }
+            set
+            {
+                spinupCohorts = value;
+            }
+        }
         //---------------------------------------------------------------------
         /// <summary>
         /// Background mortality rates applied during the biomass spin-up phase.
