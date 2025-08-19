@@ -125,6 +125,7 @@ namespace Landis.Extension.Succession.Biomass
             {
                 initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
                 SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
+                
                 SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
                 SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
             }
@@ -353,7 +354,12 @@ namespace Landis.Extension.Succession.Biomass
 
         public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
-            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), new System.Dynamic.ExpandoObject());
+            //int newBiomass = CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site);
+
+            //Cohorts will be officially added after growth phase
+            //siteCohortsToAdd.Add(new SiteCohortToAdd(site, species, newBiomass));
+
+            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), 0, new System.Dynamic.ExpandoObject());
         }
         //---------------------------------------------------------------------
 

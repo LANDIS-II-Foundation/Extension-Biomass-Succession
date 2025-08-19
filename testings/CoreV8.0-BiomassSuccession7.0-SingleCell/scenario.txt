@@ -18,7 +18,7 @@ LandisData  "Scenario"
 >> REQUIRED INPUTS
 >>-------------------
 
-Duration  	400
+Duration  	10
 
 Species   	Core_species_data.txt
 
