@@ -1,15 +1,14 @@
 //  Authors:  Robert M. Scheller
 
 using Landis.Core;
-using Landis.SpatialModeling;
 using Landis.Library.Climate;
-using Landis.Library.Succession;
 using Landis.Library.InitialCommunities.Universal;
+using Landis.Library.Metadata;
+using Landis.Library.Succession;
 using Landis.Library.UniversalCohorts;
+using Landis.SpatialModeling;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Landis.Library.Metadata;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -28,7 +27,6 @@ namespace Landis.Extension.Succession.Biomass
         public static IInputParameters Parameters;
         private ICommunity initialCommunity;
         private static bool SpinUp = true;
-
 
         //---------------------------------------------------------------------
 
@@ -120,7 +118,7 @@ namespace Landis.Extension.Succession.Biomass
         {
             InitialBiomass initialBiomass;
             if (!SpinUp)
-                initialBiomass = InitialBiomass.Compute(site, initialCommunity);
+                initialBiomass = InitialBiomass.CreateInitialCommunitiesCSV(site, initialCommunity);
             else
             {
                 initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
@@ -156,8 +154,8 @@ namespace Landis.Extension.Succession.Biomass
                     SpeciesData.EstablishModifier[species, ecoregion] = 1.0;
                 }
             }
-        }
 
+        }
 
         //---------------------------------------------------------------------
         // Revised 10/5/09 - BRM
@@ -279,19 +277,18 @@ namespace Landis.Extension.Succession.Biomass
                                            ushort years,
                                            int? successionTimestep)
         {
-            GrowCohorts(site, years, successionTimestep.HasValue);
+            GrowSpinUpCohorts(site, years, successionTimestep.HasValue);
         }
         //---------------------------------------------------------------------
         /// <summary>
         /// Grows all cohorts at a site for a specified number of years.  The
         /// dead pools at the site also decompose for the given time period.
         /// </summary>
-        public static void GrowCohorts(
+        public static void GrowSpinUpCohorts(
                                        ActiveSite site,
                                        int years,
                                        bool isSuccessionTimestep)
         {
-            //PlugIn.ModelCore.Log.WriteLine("years = {0}, successionTS = {1}.", years, successionTimestep.Value);
 
             for (int y = 1; y <= years; ++y)
             {
@@ -300,11 +297,18 @@ namespace Landis.Extension.Succession.Biomass
 
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;
-                if (y == 1)
-                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
-                else
-                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
+                SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
                 
+                //if (y == 1)  WHERE DID THIS CODE COME FROM?  HUGE MYSTERY.
+                //else
+                //    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
+
+                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                {
+                    foreach (ICohort cohort in speciesCohorts)
+                        PlugIn.ModelCore.UI.WriteLine("Year {0}:  Grow the cohort(s) {1} {2} {3}.", y, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                }
+
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();
                 SiteVars.Litter[site].Decompose();
@@ -319,17 +323,12 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public bool SufficientLight(ISpecies species, ActiveSite site)
         {
-
             byte siteShade = PlugIn.ModelCore.GetSiteVar<byte>("Shade")[site];
-
             double lightProbability = 0.0;
-
             bool found = false;
 
             foreach (ISufficientLight lights in sufficientLight)
             {
-
-                //PlugIn.ModelCore.Log.WriteLine("Sufficient Light:  ShadeClass={0}, Prob0={1}.", lights.ShadeClass, lights.ProbabilityLight0);
                 if (lights.ShadeClass == SpeciesData.ShadeTolerance[species])
                 {
                     if (siteShade == 0) lightProbability = lights.ProbabilityLight0;
@@ -354,11 +353,6 @@ namespace Landis.Extension.Succession.Biomass
 
         public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
-            //int newBiomass = CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site);
-
-            //Cohorts will be officially added after growth phase
-            //siteCohortsToAdd.Add(new SiteCohortToAdd(site, species, newBiomass));
-
             SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), 0, new System.Dynamic.ExpandoObject());
         }
         //---------------------------------------------------------------------
