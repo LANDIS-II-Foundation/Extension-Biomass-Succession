@@ -114,7 +114,7 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
+        protected override void InitializeSite(ActiveSite site)
         {
             InitialBiomass initialBiomass;
             if (!SpinUp)
@@ -126,6 +126,15 @@ namespace Landis.Extension.Succession.Biomass
                 
                 SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
                 SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+
+
+                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                {
+                    foreach (ICohort cohort in speciesCohorts)
+                        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                }
+
+
             }
         }
 
@@ -141,6 +150,7 @@ namespace Landis.Extension.Succession.Biomass
 
             if (Timestep > 0 && Parameters.ClimateConfigFile != null)
                 ClimateRegionData.SetAllEcoregions_FutureAnnualClimate(ModelCore.CurrentTime);
+
 
             Outputs.WriteLogFile(PlugIn.ModelCore.CurrentTime);
 
@@ -277,14 +287,14 @@ namespace Landis.Extension.Succession.Biomass
                                            ushort years,
                                            int? successionTimestep)
         {
-            GrowSpinUpCohorts(site, years, successionTimestep.HasValue);
+            GrowCohorts(site, years, successionTimestep.HasValue);
         }
         //---------------------------------------------------------------------
         /// <summary>
         /// Grows all cohorts at a site for a specified number of years.  The
         /// dead pools at the site also decompose for the given time period.
         /// </summary>
-        public static void GrowSpinUpCohorts(
+        public static void GrowCohorts(
                                        ActiveSite site,
                                        int years,
                                        bool isSuccessionTimestep)
