@@ -217,7 +217,7 @@ namespace Landis.Extension.Succession.Biomass
                 sortedCohorts[initialCommunity.MapCode] = sortedCohortList;
             }
 
-            SiteCohorts cohorts = GrowCohorts(sortedCohortList, site, CohortBiomass.InitialBiomass);
+            SiteCohorts cohorts = GrowSpinUpCohorts(sortedCohortList, site, CohortBiomass.InitialBiomass);
             //SiteCohorts cohorts = MakeUniversalCohortsSpinUp(sortedCohortList, site, CohortBiomass.InitialBiomass);
             
             initialBiomass = new InitialBiomass(cohorts,
@@ -248,7 +248,7 @@ namespace Landis.Extension.Succession.Biomass
         /// <summary>
         /// Makes the set of biomass cohorts at a site, using input Biomass values
         /// </summary>
-        public static SiteCohorts GrowCohorts(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
+        public static SiteCohorts GrowSpinUpCohorts(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
         {
 
             SiteVars.Cohorts[site] = new SiteCohorts();
