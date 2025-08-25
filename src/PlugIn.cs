@@ -116,26 +116,31 @@ namespace Landis.Extension.Succession.Biomass
 
         protected override void InitializeSite(ActiveSite site)
         {
+            
             InitialBiomass initialBiomass;
             if (!SpinUp)
+            {
                 initialBiomass = InitialBiomass.CreateInitialCommunitiesCSV(site, initialCommunity);
+                //PlugIn.ModelCore.UI.WriteLine("Initialize active site NO spin up.");
+            }
             else
             {
+                //PlugIn.ModelCore.UI.WriteLine("Initialize active site with SPIN UP.");
                 initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
-                SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
-                
+
+                SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
                 SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
                 SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
 
-
-                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-                {
-                    foreach (ICohort cohort in speciesCohorts)
-                        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-                }
+                //foreach (ISpeciesCohorts speciesCohorts in initialBiomass.Cohorts)
+                //{
+                //    foreach (ICohort cohort in speciesCohorts)
+                //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                //}
 
 
             }
+
         }
 
         //---------------------------------------------------------------------
@@ -313,11 +318,11 @@ namespace Landis.Extension.Succession.Biomass
                 //else
                 //    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
 
-                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-                {
-                    foreach (ICohort cohort in speciesCohorts)
-                        PlugIn.ModelCore.UI.WriteLine("Year {0}:  Grow the cohort(s) {1} {2} {3}.", y, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-                }
+                //foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                //{
+                //    foreach (ICohort cohort in speciesCohorts)
+                //        PlugIn.ModelCore.UI.WriteLine("Year {0}:  Grow the cohort(s) {1} {2} {3}.", y, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                //}
 
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();

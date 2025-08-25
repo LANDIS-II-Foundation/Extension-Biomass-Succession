@@ -96,13 +96,6 @@ namespace Landis.Extension.Succession.Biomass
             successionTimestep = (ushort)timestep;
         }
 
-        //private InitialBiomass(ISiteCohorts cohorts)
-        //{
-        //    this.cohorts = cohorts;
-        //    //this.deadWoodyPool = deadWoodyPool;
-        //    //this.deadNonWoodyPool = deadNonWoodyPool;
-        //}
-
         //---------------------------------------------------------------------
         // This method is for NO SPIN UP - Values are input initial community CSV file
         public static InitialBiomass CreateInitialCommunitiesCSV(ActiveSite site, ICommunity initialCommunity)
@@ -132,23 +125,6 @@ namespace Landis.Extension.Succession.Biomass
             return initialBiomass;
         }
 
-        //---------------------------------------------------------------------
-        // This method is for NO SPIN UP - Values are input initial community CSV file
-        //public static SiteCohorts CreateCSVCohorts(List<ICohort> sortedCohorts, ActiveSite site)
-        //{
-
-        //    IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
-
-        //    SiteVars.Cohorts[site] = new SiteCohorts();
-
-        //    foreach (ICohort cohort in sortedCohorts)
-        //    {
-        //        SiteVars.Cohorts[site].AddNewCohort(cohort.Species, cohort.Data.Age, cohort.Data.Biomass, 0, cohort.Data.AdditionalParameters);
-        //    }
-        //    return SiteVars.Cohorts[site];
-        //}
-
-
 
         // *****************************************************
         // Functions Below are for Operating with Cohort Spin Up
@@ -157,14 +133,14 @@ namespace Landis.Extension.Succession.Biomass
         public static List<ICohort> SortCohorts(List<ISpeciesCohorts> sppCohorts)
         {
             List<ICohort> cohorts = new List<ICohort>();
-            //foreach (ISpeciesCohorts speciesCohorts in sppCohorts)
-            //{
-            //    foreach (ICohort cohort in speciesCohorts)
-            //    {
-            //        cohorts.Add(cohort);
-            //        PlugIn.ModelCore.UI.WriteLine("ADDED:  {0} {1}.", cohort.Species.Name, cohort.Data.Age);
-            //    }
-            //}
+            foreach (ISpeciesCohorts speciesCohorts in sppCohorts)
+            {
+                foreach (ICohort cohort in speciesCohorts)
+                {
+                    cohorts.Add(cohort);
+                    //PlugIn.ModelCore.UI.WriteLine("ADDED:  {0} {1}.", cohort.Species.Name, cohort.Data.Age);
+                }
+            }
             cohorts.Sort(Landis.Library.UniversalCohorts.Util.WhichIsOlderCohort);
             return cohorts;
         }
@@ -205,6 +181,7 @@ namespace Landis.Extension.Succession.Biomass
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
             uint key = ComputeKey(initialCommunity.MapCode, ecoregion.MapCode);
             InitialBiomass initialBiomass;
+            
             if (initialSites.TryGetValue(key, out initialBiomass))
                 return initialBiomass;
 
@@ -219,7 +196,13 @@ namespace Landis.Extension.Succession.Biomass
 
             SiteCohorts cohorts = GrowSpinUpCohorts(sortedCohortList, site, CohortBiomass.InitialBiomass);
             //SiteCohorts cohorts = MakeUniversalCohortsSpinUp(sortedCohortList, site, CohortBiomass.InitialBiomass);
-            
+            //foreach (ICohort cohort in sortedCohortList)
+            //{
+            //    //foreach (ICohort cohort in speciesCohorts)
+            //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+            //}
+
+
             initialBiomass = new InitialBiomass(cohorts,
                                                 SiteVars.WoodyDebris[site],
                                                 SiteVars.Litter[site]);
@@ -230,19 +213,19 @@ namespace Landis.Extension.Succession.Biomass
         //---------------------------------------------------------------------
         /// <summary>
         /// Makes the set of biomass cohorts using cohort Spin Up
-        //public static SiteCohorts MakeUniversalCohortsSpinUp(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
-        //{
-        //    //SiteVars.Cohorts[site] = new SiteCohorts();
+        public static SiteCohorts MakeUniversalCohortsSpinUp(List<ICohort> cohortList, ActiveSite site, ComputeMethod initialBiomassMethod)
+        {
+            SiteVars.Cohorts[site] = new SiteCohorts();
 
-        //    //if (cohortList.Count == 0)
-        //    //    return SiteVars.Cohorts[site];
+            if (cohortList.Count == 0)
+                return SiteVars.Cohorts[site];
 
-        //    GrowSpinUpCohorts(cohortList, site, initialBiomassMethod);
+            //GrowSpinUpCohorts(cohortList, site, initialBiomassMethod);
 
-        //    return SiteVars.Cohorts[site];
+            //return SiteVars.Cohorts[site];
 
-        //    //return GrowSpinUpCohorts(cohortsList, site, CohortBiomass.InitialBiomass);
-        //}
+            return GrowSpinUpCohorts(cohortList, site, CohortBiomass.InitialBiomass);
+        }
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -285,18 +268,18 @@ namespace Landis.Extension.Succession.Biomass
                     int initialBiomass = initialBiomassMethod(species, SiteVars.Cohorts[site], site);
 
                     SiteVars.Cohorts[site].AddNewCohort(cohortList[indexNextCohort].Species, 1, initialBiomass, 0, new System.Dynamic.ExpandoObject());
-                    
+
                     //PlugIn.ModelCore.UI.WriteLine("Initialize new cohort = {0} {1}.", cohortList[indexNextCohort].Species.Name, initialBiomass);
                     indexNextCohort++;
 
+                    //foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                    //{
+                    //    foreach (ICohort cohort in speciesCohorts)
+                    //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                    //}
                 }
             }
 
-            foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-            {
-                foreach (ICohort cohort in speciesCohorts)
-                    PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-            }
 
             return SiteVars.Cohorts[site];
         }

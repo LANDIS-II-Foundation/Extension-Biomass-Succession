@@ -353,3 +353,7 @@ testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anp
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-15.tif
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-25.tif
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-35.tif
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-monthly-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-monthly-input-log.csv
