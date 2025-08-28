@@ -31,6 +31,8 @@ namespace Landis.Extension.Succession.Biomass
         public static int SubYear;
         private double growthReduction;
         private double defoliation;
+        public static double SpinupMortalityFraction;
+
 
         //---------------------------------------------------------------------
 
@@ -151,12 +153,12 @@ namespace Landis.Extension.Succession.Biomass
 
             M_AGE = Math.Min(M_AGE, cohort.Data.Biomass);
 
-            //if(PlugIn.ModelCore.CurrentTime <= 0 && SpinupMortalityFraction > 0.0)
-            //{
-            //    M_AGE += cohort.Data.Biomass * SpinupMortalityFraction;
-            //    if(PlugIn.CalibrateMode)
-            //        PlugIn.ModelCore.UI.WriteLine("Yr={0}. SpinupMortalityFraction={1:0.0000}, AdditionalMortality={2:0.0}, Spp={3}, Age={4}.", (PlugIn.ModelCore.CurrentTime + SubYear), SpinupMortalityFraction, (cohort.Data.Biomass * SpinupMortalityFraction), cohort.Species.Name, cohort.Data.Age);
-            //}
+            if (PlugIn.ModelCore.CurrentTime <= 0 && SpinupMortalityFraction > 0.0)
+            {
+                M_AGE += cohort.Data.Biomass * SpinupMortalityFraction;
+                if (PlugIn.CalibrateMode)
+                    PlugIn.ModelCore.UI.WriteLine("Yr={0}. SpinupMortalityFraction={1:0.0000}, AdditionalMortality={2:0.0}, Spp={3}, Age={4}.", (PlugIn.ModelCore.CurrentTime + SubYear), SpinupMortalityFraction, (cohort.Data.Biomass * SpinupMortalityFraction), cohort.Species.Name, cohort.Data.Age);
+            }
 
 
             return Math.Min(M_AGE, cohort.Data.Biomass);

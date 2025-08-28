@@ -24,7 +24,7 @@ namespace Landis.Extension.Succession.Biomass
         public static void Initialize()
         {
             cohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteCohorts>();
-            //Cohorts = Landis.Library.Succession.CohortSiteVar<ISiteCohorts>.Wrap(Cohorts);
+            
 
             HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 

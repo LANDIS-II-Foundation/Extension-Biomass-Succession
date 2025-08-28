@@ -84,8 +84,6 @@ namespace Landis.Extension.Succession.Biomass
             InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
             ReadVar(climateConfigFile);
             parameters.ClimateConfigFile = climateConfigFile.Value;
-            //else
-            //    parameters.ClimateConfigFile = null;
 
             //---------------------------------------------------------------------------------
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
@@ -94,11 +92,18 @@ namespace Landis.Extension.Succession.Biomass
             else
                 parameters.CalibrateMode = false;
 
-            //InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
-            //if(ReadOptionalVar(spinMort))
-            //    parameters.SpinupMortalityFraction = spinMort.Value;
-            //else
-            //    parameters.SpinupMortalityFraction = 0.0;
+            //---------------------------------------------------------------------------------
+            InputVar<bool> spinup = new InputVar<bool>("SpinupCohorts");
+            if (ReadOptionalVar(spinup))
+                parameters.SpinupCohorts = spinup.Value;
+            else
+                parameters.SpinupCohorts = false;
+            //---------------------------------------------------------------------------------
+            InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
+            if (ReadOptionalVar(spinMort))
+                parameters.SpinupMortalityFraction = spinMort.Value;
+            else
+                parameters.SpinupMortalityFraction = 0.0;
 
             //--------------------------
             //  MinRelativeBiomass table

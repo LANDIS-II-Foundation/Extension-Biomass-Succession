@@ -345,3 +345,15 @@ testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Metadata/Climate-Library/Futur
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Metadata/Climate-Library/Spinup-Annual-Log_Metadata.xml
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
 testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Metadata/LANDIS-II v8.0/LANDIS-II v8.0.xml
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Climate-future-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Climate-future-monthly-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Climate-spinup-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/Climate-spinup-monthly-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-5.tif
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-15.tif
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-25.tif
+testings/CoreV8.0-BiomassSuccession7.0-SingleCell/biomass-succession/biomass-anpp-35.tif
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-future-monthly-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-annual-input-log.csv
+testings/CoreV8.0-BiomassSuccession7.0/Climate-spinup-monthly-input-log.csv

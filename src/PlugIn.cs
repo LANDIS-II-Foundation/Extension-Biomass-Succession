@@ -1,15 +1,14 @@
 //  Authors:  Robert M. Scheller
 
 using Landis.Core;
-using Landis.SpatialModeling;
 using Landis.Library.Climate;
-using Landis.Library.Succession;
 using Landis.Library.InitialCommunities.Universal;
+using Landis.Library.Metadata;
+using Landis.Library.Succession;
 using Landis.Library.UniversalCohorts;
+using Landis.SpatialModeling;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Landis.Library.Metadata;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -27,7 +26,7 @@ namespace Landis.Extension.Succession.Biomass
         public static MetadataTable<SummaryLog> summaryLog;
         public static IInputParameters Parameters;
         private ICommunity initialCommunity;
-
+        private static bool SpinUp = true;
 
         //---------------------------------------------------------------------
 
@@ -73,7 +72,7 @@ namespace Landis.Extension.Succession.Biomass
             time = Timestep;
 
             CalibrateMode = Parameters.CalibrateMode;
-            //CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
+            CohortBiomass.SpinupMortalityFraction = Parameters.SpinupMortalityFraction;
 
             //Initialize climate.
             if (Parameters.ClimateConfigFile != null)
@@ -89,6 +88,7 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.Initialize();
             EcoregionData.Initialize(Parameters);
             SpeciesData.GetAnnualData(0);  // Year 0
+            SpinUp = Parameters.SpinupCohorts; 
 
             MetadataHandler.InitializeMetadata(summaryLogFileName);
             
@@ -114,20 +114,39 @@ namespace Landis.Extension.Succession.Biomass
 
         //---------------------------------------------------------------------
 
-        protected override void InitializeSite(ActiveSite site)//,ICommunity initialCommunity)
+        protected override void InitializeSite(ActiveSite site)
         {
-            InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts); 
-            //SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
-            //SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+            
+            InitialBiomass initialBiomass;
+            if (!SpinUp)
+            {
+                initialBiomass = InitialBiomass.CreateInitialCommunitiesCSV(site, initialCommunity);
+                //PlugIn.ModelCore.UI.WriteLine("Initialize active site NO spin up.");
+            }
+            else
+            {
+                //PlugIn.ModelCore.UI.WriteLine("Initialize active site with SPIN UP.");
+                initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
+
+                SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
+                SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
+                SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
+
+                //foreach (ISpeciesCohorts speciesCohorts in initialBiomass.Cohorts)
+                //{
+                //    foreach (ICohort cohort in speciesCohorts)
+                //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                //}
+
+
+            }
+
         }
 
         //---------------------------------------------------------------------
 
         public override void Run()
         {
-            //if(PlugIn.ModelCore.CurrentTime == Timestep)
-                //Outputs.WriteLogFile(0);
 
             if(PlugIn.ModelCore.CurrentTime > 0 && SiteVars.HarvestCapacityReduction == null)
                 SiteVars.HarvestCapacityReduction   = PlugIn.ModelCore.GetSiteVar<double>("Harvest.CapacityReduction");
@@ -136,6 +155,7 @@ namespace Landis.Extension.Succession.Biomass
 
             if (Timestep > 0 && Parameters.ClimateConfigFile != null)
                 ClimateRegionData.SetAllEcoregions_FutureAnnualClimate(ModelCore.CurrentTime);
+
 
             Outputs.WriteLogFile(PlugIn.ModelCore.CurrentTime);
 
@@ -149,8 +169,8 @@ namespace Landis.Extension.Succession.Biomass
                     SpeciesData.EstablishModifier[species, ecoregion] = 1.0;
                 }
             }
-        }
 
+        }
 
         //---------------------------------------------------------------------
         // Revised 10/5/09 - BRM
@@ -284,7 +304,6 @@ namespace Landis.Extension.Succession.Biomass
                                        int years,
                                        bool isSuccessionTimestep)
         {
-            //PlugIn.ModelCore.Log.WriteLine("years = {0}, successionTS = {1}.", years, successionTimestep.Value);
 
             for (int y = 1; y <= years; ++y)
             {
@@ -293,11 +312,18 @@ namespace Landis.Extension.Succession.Biomass
 
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;
-                if (y == 1)
-                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
-                else
-                    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
+                SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
                 
+                //if (y == 1)  WHERE DID THIS CODE COME FROM?  HUGE MYSTERY.
+                //else
+                //    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
+
+                //foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                //{
+                //    foreach (ICohort cohort in speciesCohorts)
+                //        PlugIn.ModelCore.UI.WriteLine("Year {0}:  Grow the cohort(s) {1} {2} {3}.", y, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
+                //}
+
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();
                 SiteVars.Litter[site].Decompose();
@@ -312,17 +338,12 @@ namespace Landis.Extension.Succession.Biomass
         /// </summary>
         public bool SufficientLight(ISpecies species, ActiveSite site)
         {
-
             byte siteShade = PlugIn.ModelCore.GetSiteVar<byte>("Shade")[site];
-
             double lightProbability = 0.0;
-
             bool found = false;
 
             foreach (ISufficientLight lights in sufficientLight)
             {
-
-                //PlugIn.ModelCore.Log.WriteLine("Sufficient Light:  ShadeClass={0}, Prob0={1}.", lights.ShadeClass, lights.ProbabilityLight0);
                 if (lights.ShadeClass == SpeciesData.ShadeTolerance[species])
                 {
                     if (siteShade == 0) lightProbability = lights.ProbabilityLight0;
@@ -347,7 +368,7 @@ namespace Landis.Extension.Succession.Biomass
 
         public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
-            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), new System.Dynamic.ExpandoObject());
+            SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), 0, new System.Dynamic.ExpandoObject());
         }
         //---------------------------------------------------------------------
 
@@ -406,11 +427,6 @@ namespace Landis.Extension.Succession.Biomass
                     uint mapCode = pixel.MapCode.Value;
                     if (!site.IsActive)
                         continue;
-
-                    //if (!modelCore.Ecoregion[site].Active)
-                    //    continue;
-
-                    //modelCore.Log.WriteLine("ecoregion = {0}.", modelCore.Ecoregion[site]);
 
                     ActiveSite activeSite = (ActiveSite)site;
                     initialCommunity = communities.Find(mapCode);

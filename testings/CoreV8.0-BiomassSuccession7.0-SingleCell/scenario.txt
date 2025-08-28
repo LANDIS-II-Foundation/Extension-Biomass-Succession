@@ -18,7 +18,7 @@ LandisData  "Scenario"
 >> REQUIRED INPUTS
 >>-------------------
 
-Duration  	400
+Duration  	20
 
 Species   	Core_species_data.txt
 
@@ -59,7 +59,7 @@ CellLength  	100 << meters, 100 x 100 m = 1 ha
 
 
 
->> RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests
+ RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests
                           << Commented (default) is a RandomNumberSeed generated using the current time
 
 

@@ -5,7 +5,7 @@ LandisData  "Biomass Succession"
 >> REQUIRED INPUTS
 >>------------------
 
-Timestep  			10
+Timestep  			5
 
 SeedingAlgorithm  		WardSeedDispersal
 
@@ -14,6 +14,8 @@ InitialCommunitiesMap   	single3.tif
 ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
 
 >> CalibrateMode 		yes
+SpinupCohorts			yes
+SpinupMortalityFraction 0.05
 
 
 >>----------------------------

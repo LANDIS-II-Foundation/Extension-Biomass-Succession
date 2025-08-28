@@ -21,7 +21,9 @@ namespace Landis.Extension.Succession.Biomass
         string InitialCommunitiesMap{get; set;}
         string ClimateConfigFile { get; set; }
         bool CalibrateMode { get; set; }
-        //double SpinupMortalityFraction {get; set;}
+
+        bool SpinupCohorts { get; set; }
+        double SpinupMortalityFraction {get; set;}
         List<ISufficientLight> LightClassProbabilities {get; set;}
         Landis.Library.Parameters.Ecoregions.AuxParm<Percentage>[] MinRelativeBiomass { get; }
         Landis.Library.Parameters.Species.AuxParm<double> LeafLongevity { get; }
@@ -31,14 +33,9 @@ namespace Landis.Extension.Succession.Biomass
         Landis.Library.Parameters.Species.AuxParm<double> LeafLignin { get; }
         Landis.Library.Parameters.Species.AuxParm<byte> FireTolerance { get; }
         Landis.Library.Parameters.Species.AuxParm<byte> ShadeTolerance { get; }
-        //Species.AuxParm<double> MAXLAI {get;}
-        //Species.AuxParm<double> LightExtinctionCoeff {get;}
-        //Species.AuxParm<double> PctBioMaxLAI { get;}
-
         Landis.Library.Parameters.Ecoregions.AuxParm<int> AET { get; }
         string DynamicInputFile {get;set;}
 
-        //string AgeOnlyDisturbanceParms{get; set;}
         //---------------------------------------------------------------------
         /// <summary>
         /// Parameters for fire effects on wood and leaf litter
