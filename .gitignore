@@ -417,3 +417,5 @@ testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Metadata/Climate-Library/Futur
 testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Metadata/Climate-Library/Spinup-Annual-Log_Metadata.xml
 testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Metadata/Climate-Library/Spinup-Input-Log_Metadata.xml
 testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Metadata/LANDIS-II v8.0/LANDIS-II v8.0.xml
+testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Biomass-succession-log.csv
+testings/CoreV8.0-BiomassSuccession7.1-SingleCell/Landis-log.txt
