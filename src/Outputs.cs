@@ -12,6 +12,8 @@ namespace Landis.Extension.Succession.Biomass
     public class Outputs
     {
 
+        public static char separator = Path.DirectorySeparatorChar;
+
         //---------------------------------------------------------------------
         public static void WriteLogFile(int CurrentTime)
         {
@@ -37,9 +39,8 @@ namespace Landis.Extension.Succession.Biomass
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
-                //int youngBiomass;  //ignored
 
-                avgLiveB[ecoregion.Index] += ComputeBiomass(SiteVars.Cohorts[site]); //, out youngBiomass);
+                avgLiveB[ecoregion.Index] += ComputeBiomass(SiteVars.Cohorts[site]); 
                 avgAG_NPP[ecoregion.Index]   += SiteVars.AGNPP[site];
                 avgDefoliation[ecoregion.Index] += SiteVars.Defoliation[site];
                 avgLitterB[ecoregion.Index] += SiteVars.Litter[site].Mass;
@@ -68,7 +69,7 @@ namespace Landis.Extension.Succession.Biomass
                 }
             }
 
-            string path = MapNames.ReplaceTemplateVars(@"biomass-succession\biomass-anpp-{timestep}.tif", PlugIn.ModelCore.CurrentTime);
+            string path = MapNames.ReplaceTemplateVars(@"biomass-succession{slash}biomass-anpp-{timestep}.tif", separator, PlugIn.ModelCore.CurrentTime);
             using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(path, PlugIn.ModelCore.Landscape.Dimensions))
             {
                 IntPixel pixel = outputRaster.BufferPixel;
