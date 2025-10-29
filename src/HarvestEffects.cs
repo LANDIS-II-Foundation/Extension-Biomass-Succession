@@ -116,7 +116,7 @@ namespace Landis.Extension.Succession.Biomass
     public class HarvestEffects
     {
 
-        public static double GetCohortWoodRemoval(ActiveSite site)
+        public static double GetCohortWoodRemovalFraction(ActiveSite site)
         {
 
             double woodRemoval = 1.0;  // Default is 100% removal
@@ -125,10 +125,7 @@ namespace Landis.Extension.Succession.Biomass
 
             foreach (HarvestReductions prescription in PlugIn.Parameters.HarvestReductionsTable)
             {
-                //PlugIn.ModelCore.UI.WriteLine("   PrescriptionName={0}, Site={1}.", prescription.PrescriptionName, site);
-
                 if (ComparePrescriptionNames(prescription.Name, site))
-                    //SiteVars.HarvestPrescriptionName[site].Trim() == prescription.Name.Trim())
                 {
                     woodRemoval = prescription.CohortWoodReduction;
                 }
@@ -138,7 +135,7 @@ namespace Landis.Extension.Succession.Biomass
 
         }
 
-        public static double GetCohortLeafRemoval(ActiveSite site)
+        public static double GetCohortLeafRemovalFraction(ActiveSite site)
         {
             double leafRemoval = 0.0;  // Default is 0% removal
             if (SiteVars.HarvestPrescriptionName == null)
@@ -147,7 +144,6 @@ namespace Landis.Extension.Succession.Biomass
             foreach (HarvestReductions prescription in PlugIn.Parameters.HarvestReductionsTable)
             {
                 if (ComparePrescriptionNames(prescription.Name, site))
-                    //SiteVars.HarvestPrescriptionName[site].Trim() == prescription.Name.Trim())
                 {
                     leafRemoval = prescription.CohortLeafReduction;
                 }

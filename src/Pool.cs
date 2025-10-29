@@ -1,8 +1,5 @@
 //  Authors:  Robert M. Scheller, James B. Domingo
 
-using Landis.SpatialModeling;
-using Landis.Core;
-using Landis.Utilities;
 using System;
 
 namespace Landis.Extension.Succession.Biomass
@@ -86,7 +83,7 @@ namespace Landis.Extension.Succession.Biomass
         //---------------------------------------------------------------------
 
         /// <summary>
-        /// Adds some dead biomass (and associated C/N/P contents) to the pool.
+        /// Adds some dead biomass (and associated C/N contents) to the pool.
         /// </summary>
         /// <remarks>
         /// The pool's decomposition rate is adjusted by computing a weighted

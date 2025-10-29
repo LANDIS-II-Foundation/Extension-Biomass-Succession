@@ -219,6 +219,7 @@ namespace Landis.Extension.Succession.Biomass
             ICohort cohort = eventArgs.Cohort;
 
             double partialMortality = (double)eventArgs.Reduction;
+            double biomassMortality = cohort.Data.Biomass * partialMortality;
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
                 PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
@@ -227,8 +228,8 @@ namespace Landis.Extension.Succession.Biomass
             double nonWoodyFraction = (double) cohort.ComputeNonWoodyBiomass(site) / (double) cohort.Data.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
 
-            float foliarInput = (float) (partialMortality * nonWoodyFraction); 
-            float woodInput = (float)(partialMortality * woodyFraction); 
+            float foliarInput = (float) (biomassMortality * nonWoodyFraction); 
+            float woodInput = (float)(biomassMortality * woodyFraction); 
 
             if (disturbanceType != null)
             {
@@ -242,8 +243,8 @@ namespace Landis.Extension.Succession.Biomass
                     {
                         HarvestEffects.ReduceLayers(site);
                     }
-                    woodInput -= woodInput * (float)HarvestEffects.GetCohortWoodRemoval(site);
-                    foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemoval(site);
+                    woodInput -= woodInput * (float)HarvestEffects.GetCohortWoodRemovalFraction(site);
+                    foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemovalFraction(site);
                 }
                 //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
