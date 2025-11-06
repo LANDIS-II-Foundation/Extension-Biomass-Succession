@@ -224,11 +224,14 @@ namespace Landis.Extension.Succession.Biomass
             double foliarInput = 0.0;
             double woodInput = 0.0;
 
-
             // If this is a disturbance reduction, called via ReduceCohort, then eventArgs.Reduction is in units of Biomass:
             if (disturbanceType != null)
             {
                 double disturbanceMortality = (double)eventArgs.Reduction;  
+                
+                if (disturbanceMortality == 1.0)  // this is a klugey fix until universal cohort library is properly refactored.
+                    disturbanceMortality = cohort.Data.Biomass; 
+
                 if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
                 {
                     PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY II: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
