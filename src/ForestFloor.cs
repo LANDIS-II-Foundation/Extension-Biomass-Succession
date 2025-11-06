@@ -22,8 +22,6 @@ namespace Landis.Extension.Succession.Biomass
         {
             double currentWoodyDebris = SiteVars.WoodyDebris[site].Mass;
             SiteVars.WoodyDebris[site].AddMass(woodyBiomass, SpeciesData.WoodyDebrisDecay[species]);
-
-            //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION: Former Wood = {0}, New Wood = {1}", currentWoodyDebris, SiteVars.WoodyDebris[site].Mass);
         }
 
         //---------------------------------------------------------------------
@@ -46,8 +44,6 @@ namespace Landis.Extension.Succession.Biomass
             //double leafKReg = ((0.10015 * siteAET - 3.44618) - (0.01341 + 0.00147 * siteAET) *
             //SpeciesData.LeafLignin[species]) / 100;
             
-            //PlugIn.ModelCore.UI.WriteLine("Decay rate for {0} within {1} = {2}.  LL = {3}.", species.Name, ecoregion.Name, leafKReg, SpeciesData.LeafLignin[species]);
-
             double decayValue = leafKReg;
 
             SiteVars.Litter[site].AddMass(nonWoodyBiomass, decayValue);
