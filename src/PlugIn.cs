@@ -218,28 +218,32 @@ namespace Landis.Extension.Succession.Biomass
 
             ICohort cohort = eventArgs.Cohort;
 
+            double biomassMortality = (double)eventArgs.Reduction;  
+
+            //If the source is RemoveCohort, eventArgs.Reduction is currently fixed to 1.0,
+            //but all cohort biomass is to be removed, and litter is calculated off of that.
+            //Currently RemoveCohort may have a non-null disturbanceType (when called by MarkCohorts),
+            //making it hard to distinguish the source being RemoveCohort or ReduceCohort,
+            //ie, whether the sent reduction=1.0 is the fixed value denoting total cohort biomass or a calculated one.
+            //But it is unlikely that ReduceCohort sends reduction exactly 1.0,
+            //so this is a klugey fix until universal cohort library is properly refactored
+            //Issue: https://github.com/LANDIS-II-Foundation/Library-Universal-Cohort/issues/4
+            if (biomassMortality == 1.0)
+                biomassMortality = cohort.Data.Biomass; 
+
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+            {
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}, biomassMortality={2:0.0}.", eventArgs.Reduction, cohort.Data.Biomass, biomassMortality);
+            }
             double nonWoodyFraction = (double)cohort.ComputeNonWoodyBiomass(site) / (double)cohort.Data.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
 
-            double foliarInput = 0.0;
-            double woodInput = 0.0;
+            double foliarInput = (float)(biomassMortality * nonWoodyFraction);
+            double woodInput = (float)(biomassMortality * woodyFraction);
 
-            // If this is a disturbance reduction, called via ReduceCohort, then eventArgs.Reduction is in units of Biomass:
             if (disturbanceType != null)
             {
-                double disturbanceMortality = (double)eventArgs.Reduction;  
-                
-                if (disturbanceMortality == 1.0)  // this is a klugey fix until universal cohort library is properly refactored.
-                    disturbanceMortality = cohort.Data.Biomass; 
-
-                if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                {
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY II: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY II: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Data.Biomass);
-                }
-
-                foliarInput = (float)(disturbanceMortality * nonWoodyFraction);
-                woodInput = (float)(disturbanceMortality * woodyFraction);
 
                 if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
                     PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY II: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
@@ -282,25 +286,9 @@ namespace Landis.Extension.Succession.Biomass
                     Landis.Library.Succession.Reproduction.CheckForResprouting(eventArgs.Cohort, site);
                 }
 
-                if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY III: ForestFloorInputs: Foliar={0:0.00}, Wood={1:0.0}.", foliarInput, woodInput);
             }
-            
-            // If this is NOT a disturbance reduction (i.e., senescence), it is called via RemoveCohort, then eventArgs.Reduction is simply 1.0 (and NOT biomass):
-            // In this case, eventArgs.Reduction is not necessary
-            else
-            {
-                double totalCohortMortality = cohort.Data.Biomass;
-                if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
-                {
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
-                    PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Data.Biomass);
-                }
-
-                foliarInput = (float)(totalCohortMortality * nonWoodyFraction);
-                woodInput = (float)(totalCohortMortality * woodyFraction);
-
-            }
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY III: ForestFloorInputs: Foliar={0:0.00}, Wood={1:0.0}.", foliarInput, woodInput);
 
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
