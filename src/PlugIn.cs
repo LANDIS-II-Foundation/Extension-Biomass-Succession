@@ -218,18 +218,7 @@ namespace Landis.Extension.Succession.Biomass
 
             ICohort cohort = eventArgs.Cohort;
 
-            double biomassMortality = (double)eventArgs.Reduction;  
-
-            //If the source is RemoveCohort, eventArgs.Reduction is currently fixed to 1.0,
-            //but all cohort biomass is to be removed, and litter is calculated off of that.
-            //Currently RemoveCohort may have a non-null disturbanceType (when called by MarkCohorts),
-            //making it hard to distinguish the source being RemoveCohort or ReduceCohort,
-            //ie, whether the sent reduction=1.0 is the fixed value denoting total cohort biomass or a calculated one.
-            //But it is unlikely that ReduceCohort sends reduction exactly 1.0,
-            //so this is a klugey fix until universal cohort library is properly refactored
-            //Issue: https://github.com/LANDIS-II-Foundation/Library-Universal-Cohort/issues/4
-            if (biomassMortality == 1.0)
-                biomassMortality = cohort.Data.Biomass; 
+            double biomassMortality = (double)eventArgs.FractionBiomassReduction;  
 
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
