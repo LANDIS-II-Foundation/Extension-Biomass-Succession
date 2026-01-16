@@ -384,14 +384,6 @@ namespace Landis.Extension.Succession.Biomass
         public Percentage ComputeNonWoodyPercentage(ICohort cohort,
                                                     ActiveSite site)
         {
-
-            //double mortalityAge = ComputeAgeMortality(cohort);
-            //double actualANPP = ComputeActualANPP(cohort, site); 
-
-            ////  Age mortality is discounted from ANPP to prevent the over-
-            ////  estimation of mortality.  ANPP cannot be negative.
-            //actualANPP = Math.Max(0, actualANPP - mortalityAge);
-
             return new Percentage(ComputeStandingLeafBiomass(cohort.Data.ANPP, cohort) / cohort.Data.Biomass);
         }
         //---------------------------------------------------------------------
