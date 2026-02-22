@@ -225,11 +225,11 @@ namespace Landis.Extension.Succession.Biomass
                 PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
                 PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}, biomassMortality={2:0.0}.", eventArgs.FractionBiomassReduction, cohort.Data.Biomass, fractionBiomassMortality);
             }
-            double nonWoodyBiomass = (double)cohort.ComputeNonWoodyBiomass(site) * (double)cohort.Data.Biomass;
+            double nonWoodyBiomass = (double)cohort.ComputeNonWoodyBiomass(site); // * (double)cohort.Data.Biomass;
             double woodyBiomass = (double)cohort.Data.Biomass - nonWoodyBiomass;
 
-            double foliarInput = (float)(fractionBiomassMortality * nonWoodyBiomass);
-            double woodInput = (float)(fractionBiomassMortality * woodyBiomass);
+            double foliarInput = (fractionBiomassMortality * nonWoodyBiomass);
+            double woodInput = (fractionBiomassMortality * woodyBiomass);
 
             // If the disturbanceType is null, then all foliar and wood inputs are added to the forest floor.  Select disturbances result in partial 
             // addition of foliar/wood inputs to the forest floor.
@@ -249,7 +249,6 @@ namespace Landis.Extension.Succession.Biomass
                     woodInput -= woodInput * (float)HarvestEffects.GetCohortWoodRemovalFraction(site);
                     foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemovalFraction(site);
                 }
-                //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
                 {
                     SiteVars.FireSeverity = PlugIn.ModelCore.GetSiteVar<byte>("Fire.Severity");
