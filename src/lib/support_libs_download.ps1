@@ -6,12 +6,12 @@ $master = "https://github.com/LANDIS-II-Foundation/Support-Library-Dlls-v8/raw/m
 # LANDIS-II support library dependencies
 # Modify here when any dependencies changed 
 
-$dlls = "Landis.Library.UniversalCohorts-v1.dll",
+$dlls = "Landis.Library.UniversalCohorts-v2.dll",
 "Landis.Library.Metadata-v2.dll",
 "Landis.Library.Parameters-v2.dll",
 "Landis.Library.Climate-v5.dll",
-"Landis.Library.Succession-v9.dll",
-"Landis.Library.InitialCommunity.Universal.dll"
+"Landis.Library.Succession-v10.dll",
+"Landis.Library.InitialCommunity.Universal-v2.dll"
 #************************************************
 
 
