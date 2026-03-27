@@ -12,7 +12,7 @@ The Biomass Succession Extension generally follows the methods outlined in Schel
 
 # Release Notes
 
-- Latest official release: Version 7.1 — October 2025
+- Latest official release: Version 7.2 — March 2026
 - [Biomass Succession User Guide](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/docs/LANDIS-II%20Biomass%20Succession%20v7%20User%20Guide.pdf).
 - [User Guide for Climate Library](https://github.com/LANDIS-II-Foundation/Library-Climate/blob/v8.0/docs/LANDIS-II%20Climate%20Library%20v5.0%20User%20Guide.pdf)
 - Full release details found in the User Guide and on GitHub.
@@ -26,7 +26,7 @@ To use Biomass Succession, you need:
 
 # Download and Install the Extension
 
-- The latest version can be [downloaded from GitHub](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V8%20Biomass%20Succession%207.1-setup.exe).
+- The latest version can be [downloaded from GitHub](https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession/blob/master/deploy/installer/LANDIS-II-V8%20Biomass%20Succession%207.2-setup.exe).
 - (Look for the download icon in the upper right.) 
 - Next, launch the installer.
 
