@@ -156,8 +156,8 @@ namespace Landis.Extension.Succession.Biomass
             if (PlugIn.ModelCore.CurrentTime <= 0 && SpinupMortalityFraction > 0.0)
             {
                 M_AGE += cohort.Data.Biomass * SpinupMortalityFraction;
-                if (PlugIn.CalibrateMode)
-                    PlugIn.ModelCore.UI.WriteLine("Yr={0}. SpinupMortalityFraction={1:0.0000}, AdditionalMortality={2:0.0}, Spp={3}, Age={4}.", (PlugIn.ModelCore.CurrentTime + SubYear), SpinupMortalityFraction, (cohort.Data.Biomass * SpinupMortalityFraction), cohort.Species.Name, cohort.Data.Age);
+                //if (PlugIn.CalibrateMode)
+                //    PlugIn.ModelCore.UI.WriteLine("Yr={0}. SpinupMortalityFraction={1:0.0000}, AdditionalMortality={2:0.0}, Spp={3}, Age={4}.", (PlugIn.ModelCore.CurrentTime + SubYear), SpinupMortalityFraction, (cohort.Data.Biomass * SpinupMortalityFraction), cohort.Species.Name, cohort.Data.Age);
             }
 
 
@@ -384,14 +384,6 @@ namespace Landis.Extension.Succession.Biomass
         public Percentage ComputeNonWoodyPercentage(ICohort cohort,
                                                     ActiveSite site)
         {
-
-            //double mortalityAge = ComputeAgeMortality(cohort);
-            //double actualANPP = ComputeActualANPP(cohort, site); 
-
-            ////  Age mortality is discounted from ANPP to prevent the over-
-            ////  estimation of mortality.  ANPP cannot be negative.
-            //actualANPP = Math.Max(0, actualANPP - mortalityAge);
-
             return new Percentage(ComputeStandingLeafBiomass(cohort.Data.ANPP, cohort) / cohort.Data.Biomass);
         }
         //---------------------------------------------------------------------

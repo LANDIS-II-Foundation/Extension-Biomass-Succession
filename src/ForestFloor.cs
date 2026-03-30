@@ -20,7 +20,7 @@ namespace Landis.Extension.Succession.Biomass
                                     ISpecies   species,
                                     ActiveSite site)
         {
-            double currentWoodyDebris = SiteVars.WoodyDebris[site].Mass;
+            //double currentWoodyDebris = SiteVars.WoodyDebris[site].Mass;
             SiteVars.WoodyDebris[site].AddMass(woodyBiomass, SpeciesData.WoodyDebrisDecay[species]);
         }
 

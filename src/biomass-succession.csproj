@@ -5,9 +5,9 @@
     <AssemblyName>Landis.Extension.Succession.Biomass-v7</AssemblyName>
     <AssemblyTitle>Landis.Extension.Succession.Biomass-v7</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
-    <AssemblyVersion>7.1.2</AssemblyVersion>
-	  <Version>7.1.2</Version>
-	  <FileVersion>7.1.2</FileVersion>
+    <AssemblyVersion>7.2</AssemblyVersion>
+	  <Version>7.2</Version>
+	  <FileVersion>7.2</FileVersion>
 	  <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
@@ -34,8 +34,8 @@
     <Reference Include="Landis.Library.Climate-v5">
       <HintPath>lib\Landis.Library.Climate-v5.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.InitialCommunity.Universal">
-      <HintPath>lib\Landis.Library.InitialCommunity.Universal.dll</HintPath>
+    <Reference Include="Landis.Library.InitialCommunity.Universal-v2">
+      <HintPath>lib\Landis.Library.InitialCommunity.Universal-v2.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Metadata-v2">
       <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
@@ -43,11 +43,11 @@
     <Reference Include="Landis.Library.Parameters-v2">
       <HintPath>lib\Landis.Library.Parameters-v2.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Succession-v9">
-      <HintPath>lib\Landis.Library.Succession-v9.dll</HintPath>
+    <Reference Include="Landis.Library.Succession-v10">
+      <HintPath>lib\Landis.Library.Succession-v10.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.UniversalCohorts-v1">
-      <HintPath>lib\Landis.Library.UniversalCohorts-v1.dll</HintPath>
+    <Reference Include="Landis.Library.UniversalCohorts-v2">
+      <HintPath>lib\Landis.Library.UniversalCohorts-v2.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

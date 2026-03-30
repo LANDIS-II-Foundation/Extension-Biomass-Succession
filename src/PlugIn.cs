@@ -218,30 +218,21 @@ namespace Landis.Extension.Succession.Biomass
 
             ICohort cohort = eventArgs.Cohort;
 
-            double biomassMortality = (double)eventArgs.Reduction;  
-
-            //If the source is RemoveCohort, eventArgs.Reduction is currently fixed to 1.0,
-            //but all cohort biomass is to be removed, and litter is calculated off of that.
-            //Currently RemoveCohort may have a non-null disturbanceType (when called by MarkCohorts),
-            //making it hard to distinguish the source being RemoveCohort or ReduceCohort,
-            //ie, whether the sent reduction=1.0 is the fixed value denoting total cohort biomass or a calculated one.
-            //But it is unlikely that ReduceCohort sends reduction exactly 1.0,
-            //so this is a klugey fix until universal cohort library is properly refactored
-            //Issue: https://github.com/LANDIS-II-Foundation/Library-Universal-Cohort/issues/4
-            if (biomassMortality == 1.0)
-                biomassMortality = cohort.Data.Biomass; 
+            double fractionBiomassMortality = (double)eventArgs.FractionBiomassReduction;  
 
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
                 PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}, biomassMortality={2:0.0}.", eventArgs.Reduction, cohort.Data.Biomass, biomassMortality);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}, biomassMortality={2:0.0}.", eventArgs.FractionBiomassReduction, cohort.Data.Biomass, fractionBiomassMortality);
             }
-            double nonWoodyFraction = (double)cohort.ComputeNonWoodyBiomass(site) / (double)cohort.Data.Biomass;
-            double woodyFraction = 1.0 - nonWoodyFraction;
+            double nonWoodyBiomass = (double)cohort.ComputeNonWoodyBiomass(site); // * (double)cohort.Data.Biomass;
+            double woodyBiomass = (double)cohort.Data.Biomass - nonWoodyBiomass;
 
-            double foliarInput = (float)(biomassMortality * nonWoodyFraction);
-            double woodInput = (float)(biomassMortality * woodyFraction);
+            double foliarInput = (fractionBiomassMortality * nonWoodyBiomass);
+            double woodInput = (fractionBiomassMortality * woodyBiomass);
 
+            // If the disturbanceType is null, then all foliar and wood inputs are added to the forest floor.  Select disturbances result in partial 
+            // addition of foliar/wood inputs to the forest floor.
             if (disturbanceType != null)
             {
 
@@ -258,12 +249,13 @@ namespace Landis.Extension.Succession.Biomass
                     woodInput -= woodInput * (float)HarvestEffects.GetCohortWoodRemovalFraction(site);
                     foliarInput -= foliarInput * (float)HarvestEffects.GetCohortLeafRemovalFraction(site);
                 }
-                //PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION PARTIAL MORTALITY: species={0}, age={1}, woodInput={2}, foliarInputs={3}.", cohort.Species.Name, cohort.Data.Age, woodInput, foliarInput);
                 if (disturbanceType.IsMemberOf("disturbance:fire"))
                 {
                     SiteVars.FireSeverity = PlugIn.ModelCore.GetSiteVar<byte>("Fire.Severity");
 
-                    if (eventArgs.Reduction >= 1)
+                    // Complete mortality should not be required to trigger post-fire-regeneration,
+                    // although a suitable minimum fire severity is TBD
+                    if (SiteVars.FireSeverity != null && SiteVars.FireSeverity[site] > 1)
                     {
                         Landis.Library.Succession.Reproduction.CheckForPostFireRegen(eventArgs.Cohort, site);
                     }
@@ -282,7 +274,7 @@ namespace Landis.Extension.Succession.Biomass
                 }
                 else
                 {
-                    // If not fire, check for resprouting:
+                    // If it was a disturbance, but not fire, check for resprouting:
                     Landis.Library.Succession.Reproduction.CheckForResprouting(eventArgs.Cohort, site);
                 }
 
