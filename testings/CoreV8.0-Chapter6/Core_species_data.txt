@@ -18,6 +18,8 @@ querelli	170	20	30	1000	0.5	20	150	resprout
 querrubr	 250	25	30	3000	0.5	20	200	resprout
 thujocci	800	30	45	60	0.8	5	75	none
 tiliamer	300	10	20	80	0.7	0	110	resprout
+queralba	400	40	30	1000	0.5	10	250	resprout
+carycord	300	30	30	1000	0.5	5	290	resprout
 
 
   
