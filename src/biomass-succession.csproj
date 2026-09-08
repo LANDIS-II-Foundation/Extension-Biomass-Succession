@@ -5,9 +5,9 @@
     <AssemblyName>Landis.Extension.Succession.Biomass-v7</AssemblyName>
     <AssemblyTitle>Landis.Extension.Succession.Biomass-v7</AssemblyTitle>
     <AssemblyCopyright>Landis-II-Foundation</AssemblyCopyright>
-    <AssemblyVersion>7.2</AssemblyVersion>
-	  <Version>7.2</Version>
-	  <FileVersion>7.2</FileVersion>
+    <AssemblyVersion>7.3</AssemblyVersion>
+	  <Version>7.3</Version>
+	  <FileVersion>7.3</FileVersion>
 	  <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Biomass-Succession</RepositoryUrl>
@@ -31,8 +31,8 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Landis.Library.Climate-v5">
-      <HintPath>lib\Landis.Library.Climate-v5.dll</HintPath>
+    <Reference Include="Landis.Library.Climate-v6">
+      <HintPath>lib\Landis.Library.Climate-v6.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.InitialCommunity.Universal-v2">
       <HintPath>lib\Landis.Library.InitialCommunity.Universal-v2.dll</HintPath>
