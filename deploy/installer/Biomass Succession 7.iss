@@ -1,7 +1,7 @@
 ; LANDIS-II Extension infomation
 #define CoreRelease "LANDIS-II-V8"
 #define ExtensionName "Biomass Succession"
-#define AppVersion "7.3"
+#define AppVersion "7.3.1"
 #define AppPublisher "LANDIS-II Foundation"
 #define AppURL "http://www.landis-ii.org/"
 

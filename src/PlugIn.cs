@@ -285,6 +285,9 @@ namespace Landis.Extension.Succession.Biomass
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
 
+            cohort.Data.AdditionalParameters.WoodBiomass *= 1.0 - fractionBiomassMortality;
+            cohort.Data.AdditionalParameters.LeafBiomass *= 1.0 - fractionBiomassMortality;
+
             if (disturbanceType != null)
                 Disturbed[site] = true;
 
