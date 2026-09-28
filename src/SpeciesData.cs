@@ -71,9 +71,6 @@ namespace Landis.Extension.Succession.Biomass
                         if (!SpeciesData.SppEcoData.ContainsKey(year))
                             continue;
 
-                        //if (DynamicInputs.TimestepData[species.Index, ecoregion.Index] == null)
-                        //    continue;
-
                         try
                         {
                             EstablishProbability[species, ecoregion] = SpeciesData.SppEcoData[year][species.Index, ecoregion.Index].ProbEstablish;

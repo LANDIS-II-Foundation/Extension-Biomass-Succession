@@ -14,7 +14,6 @@ namespace Landis.Extension.Succession.Biomass
         private string prescription;
         private double coarseLitterReduction;
         private double fineLitterReduction;
-        //private double somReduction;
         private double cohortWoodReduction;
         private double cohortLeafReduction;
 
@@ -86,20 +85,6 @@ namespace Landis.Extension.Succession.Biomass
             }
 
         }
-        //public double SOMReduction
-        //{
-        //    get
-        //    {
-        //        return somReduction;
-        //    }
-        //    set
-        //    {
-        //        if (value < 0.0 || value > 1.0)
-        //            throw new InputValueException(value.ToString(), "Soil Organic Matter (SOM) reduction due to fire must be between 0 and 1.0");
-        //        somReduction = value;
-        //    }
-
-        //}
 
         //---------------------------------------------------------------------
         public HarvestReductions()
@@ -109,7 +94,6 @@ namespace Landis.Extension.Succession.Biomass
             this.FineLitterReduction = 0.0;
             this.CohortLeafReduction = 0.0;
             this.CohortWoodReduction = 0.0;
-            //this.SOMReduction = 0.0;
         }
     }
 
@@ -175,7 +159,6 @@ namespace Landis.Extension.Succession.Biomass
                 {
                     litterLossMultiplier = prescriptionTableEntry.FineLitterReduction;
                     woodLossMultiplier = prescriptionTableEntry.CoarseLitterReduction;
-                    //som_Multiplier = prescription.SOMReduction;
 
                     found = true;
                 }
@@ -191,7 +174,6 @@ namespace Landis.Extension.Succession.Biomass
             SiteVars.Litter[site].ReduceMass(litterLossMultiplier);
 
             // Surface dead wood
-
             SiteVars.WoodyDebris[site].ReduceMass(woodLossMultiplier);
 
 

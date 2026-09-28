@@ -214,7 +214,6 @@ namespace Landis.Extension.Succession.Biomass
             }
 
             B_PM = indexC; 
-            // PlugIn.ModelCore.Log.WriteLine("indexC={0:0.00}, lightIndexC={1:0.00}, OldSchool={2:0.00}.", indexC, indexLightC, indexOldSchool);
 
             //  Actual ANPP: equation (4) from Scheller & Mladenoff, 2004.
             double actualANPP = maxANPP * Math.E * Math.Pow(B_AP, growthShape) * Math.Exp(-1 * Math.Pow(B_AP, growthShape)) * B_PM;
@@ -344,9 +343,7 @@ namespace Landis.Extension.Succession.Biomass
         {
 
             double annualLeafFraction = ComputeFractionANPPleaf(cohort.Species);
-
             double annualFoliar = ANPPactual * annualLeafFraction;
-
             double B_nonwoody = annualFoliar * SpeciesData.LeafLongevity[cohort.Species];
 
             //  Non-woody cannot be less than 2.5% or greater than leaf fraction of total

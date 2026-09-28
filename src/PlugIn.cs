@@ -8,7 +8,6 @@ using Landis.Library.Succession;
 using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Landis.Extension.Succession.Biomass
 {
@@ -127,18 +126,9 @@ namespace Landis.Extension.Succession.Biomass
             {
                 //PlugIn.ModelCore.UI.WriteLine("Initialize active site with SPIN UP.");
                 initialBiomass = InitialBiomass.ComputeSpinUpCohorts(site, initialCommunity);
-
                 SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
                 SiteVars.WoodyDebris[site] = initialBiomass.DeadWoodyPool.Clone();
                 SiteVars.Litter[site] = initialBiomass.DeadNonWoodyPool.Clone();
-
-                //foreach (ISpeciesCohorts speciesCohorts in initialBiomass.Cohorts)
-                //{
-                //    foreach (ICohort cohort in speciesCohorts)
-                //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-                //}
-
-
             }
 
         }
@@ -173,8 +163,6 @@ namespace Landis.Extension.Succession.Biomass
         }
 
         //---------------------------------------------------------------------
-        // Revised 10/5/09 - BRM
-
         public override byte ComputeShade(ActiveSite site)
         {
             IEcoregion ecoregion = ModelCore.Ecoregion[site];
@@ -285,9 +273,6 @@ namespace Landis.Extension.Succession.Biomass
             ForestFloor.AddWoody(woodInput, cohort.Species, site);
             ForestFloor.AddLitter(foliarInput, cohort.Species, site);
 
-            cohort.Data.AdditionalParameters.WoodBiomass *= 1.0 - fractionBiomassMortality;
-            cohort.Data.AdditionalParameters.LeafBiomass *= 1.0 - fractionBiomassMortality;
-
             if (disturbanceType != null)
                 Disturbed[site] = true;
 
@@ -321,16 +306,6 @@ namespace Landis.Extension.Succession.Biomass
                 SiteVars.ResetAnnualValues(site);
                 CohortBiomass.SubYear = y - 1;
                 SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), true);
-                
-                //if (y == 1)  WHERE DID THIS CODE COME FROM?  HUGE MYSTERY.
-                //else
-                //    SiteVars.Cohorts[site].Grow(site, (y == years && isSuccessionTimestep), false);
-
-                //foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-                //{
-                //    foreach (ICohort cohort in speciesCohorts)
-                //        PlugIn.ModelCore.UI.WriteLine("Year {0}:  Grow the cohort(s) {1} {2} {3}.", y, cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-                //}
 
                 double oldWood = SiteVars.WoodyDebris[site].Mass;
                 SiteVars.WoodyDebris[site].Decompose();

@@ -195,17 +195,8 @@ namespace Landis.Extension.Succession.Biomass
             }
 
             SiteCohorts cohorts = GrowSpinUpCohorts(sortedCohortList, site, CohortBiomass.InitialBiomass);
-            //SiteCohorts cohorts = MakeUniversalCohortsSpinUp(sortedCohortList, site, CohortBiomass.InitialBiomass);
-            //foreach (ICohort cohort in sortedCohortList)
-            //{
-            //    //foreach (ICohort cohort in speciesCohorts)
-            //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-            //}
 
-
-            initialBiomass = new InitialBiomass(cohorts,
-                                                SiteVars.WoodyDebris[site],
-                                                SiteVars.Litter[site]);
+            initialBiomass = new InitialBiomass(cohorts, SiteVars.WoodyDebris[site], SiteVars.Litter[site]);
             initialSites[key] = initialBiomass;
             return initialBiomass;
         }
@@ -219,10 +210,6 @@ namespace Landis.Extension.Succession.Biomass
 
             if (cohortList.Count == 0)
                 return SiteVars.Cohorts[site];
-
-            //GrowSpinUpCohorts(cohortList, site, initialBiomassMethod);
-
-            //return SiteVars.Cohorts[site];
 
             return GrowSpinUpCohorts(cohortList, site, CohortBiomass.InitialBiomass);
         }
@@ -272,11 +259,6 @@ namespace Landis.Extension.Succession.Biomass
                     //PlugIn.ModelCore.UI.WriteLine("Initialize new cohort = {0} {1}.", cohortList[indexNextCohort].Species.Name, initialBiomass);
                     indexNextCohort++;
 
-                    //foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-                    //{
-                    //    foreach (ICohort cohort in speciesCohorts)
-                    //        PlugIn.ModelCore.UI.WriteLine("Initial Community cohort = {0} {1} {2}.", cohort.Species.Name, cohort.Data.Age, cohort.Data.Biomass);
-                    //}
                 }
             }
 
