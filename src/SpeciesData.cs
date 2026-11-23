@@ -2,8 +2,6 @@
 
 using Landis.Core;
 using System.Collections.Generic;
-using Landis.Utilities;
-using Landis.Library.Succession;
 
 namespace Landis.Extension.Succession.Biomass
 {

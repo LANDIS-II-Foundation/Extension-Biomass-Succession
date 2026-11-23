@@ -3,8 +3,6 @@
 using Landis.SpatialModeling;
 using Landis.Core;
 using Landis.Utilities;
-using Landis.Library.Parameters;
-
 
 namespace Landis.Extension.Succession.Biomass
 {
